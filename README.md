@@ -2,6 +2,7 @@
 
 ❗WIP❗
 
+
 This is the repository for our School of Code full-stack final project. More information will be added here as the project progresses. 
 
 About the project:
