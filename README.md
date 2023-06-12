@@ -1,4 +1,4 @@
-# BC14_great_programming_team
+# BC14_Great Programming Team - Final Project
 
 ❗WIP❗
 
