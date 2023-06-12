@@ -1,5 +1,5 @@
 
-
+import React from 'react';
 
 // george and robertos work
 //PLAN:
@@ -12,29 +12,45 @@
 // pass selection choices props down
 //
 
-import React, { useState } from 'react';
-
-export default function VoteScreen() {
-  const [score, setScore] = useState(0);
-
-  function handleClick() {
-    setScore(score + 1);
-    console.log(score);
-  }
-
-  function handleNext() {
-    setScore(0);
-    console.log(score);
-  }
-
-  return (
-    <div>
-      <button className="option" onClick={handleClick}>
-        Restaurant
-      </button>
-      <button className="next_button" onClick={handleNext}>
-        Next
-      </button>
-    </div>
-  );
-}
+export default function VoteScreen({ rounds, setRounds, history  }){
+    const currentRound = rounds[0];
+  
+    const handleVote = (id) => {
+      setRounds((prevRounds) =>
+        prevRounds.map((round, index) => {
+          if (index === 0) {
+            return round.map((option) => {
+              if (option.id === id) {
+                if (option.score === 0) {
+                  return { ...option, score: 3 };
+                } else if (option.score === 3) {
+                  return { ...option, score: 2 };
+                } else if (option.score === 2) {
+                  return { ...option, score: 1 };
+                }
+              }
+              return option;
+            });
+          }
+          return round;
+        })
+      );
+    };
+  
+    const handleNext = () => {
+      history.push('/results');
+    };
+  
+    return (
+      <div>
+        <h1>Voting Page</h1>
+        {currentRound.map((option) => (
+          <button key={option.id} onClick={() => handleVote(option.id)}>
+            {option.name}
+          </button>
+        ))}
+        <button onClick={handleNext}>Next</button>
+      </div>
+    );
+  };
+  
