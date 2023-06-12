@@ -1,32 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// george and robertos work
-//PLAN:
-//import react and react router DONE!!
-//create function that returns JSX DONE!!
-//   return:
-//        selection choices component
-
-//logic to update score variable when button is selected?DONE!!
-// pass selection choices props down
-//
+import { useState } from "react";
 
 export default function VoteScreen({ rounds, setRounds, roundCount }) {
   const currentRound = rounds[roundCount];
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [isNextDisabled, setIsNextDisabled] = useState(true);
 
   function handleVote(optionid) {
-    //increase score of option with id of optionid  you clicked on by 1
-    //find the option with the id of optionid
-    //increase the score of that option by 1
-    //update the rounds state with the new score
+    if (selectedOption === optionid) {
+      // Deselect the option
+      setSelectedOption(null);
+      setIsNextDisabled(true);
+      updateOptionScore(optionid, -1);
+    } else {
+      // Select the option
+      setSelectedOption(optionid);
+      setIsNextDisabled(false);
+      updateOptionScore(optionid, 1);
+    }
+  }
 
+  function updateOptionScore(optionid, increment) {
     const updatedRounds = rounds.map((round) => {
       return round.map((option) => {
         if (option.id === optionid) {
           return {
             ...option,
-            score: option.score + 1,
+            score: option.score + increment,
           };
         } else {
           return option;
@@ -36,16 +37,25 @@ export default function VoteScreen({ rounds, setRounds, roundCount }) {
     setRounds(updatedRounds);
   }
 
+  const isOptionSelected = selectedOption !== null;
   return (
     <div>
       <h1>Voting Page</h1>
       {currentRound.map((option) => (
-        <button key={option.id} onClick={() => handleVote(option.id)}>
+        <button
+          key={option.id}
+          onClick={() => handleVote(option.id)}
+          disabled={option.disabled || (isOptionSelected && option.id !== selectedOption)}
+          style={{
+            backgroundColor: selectedOption === option.id ? "darkpurple" : "",
+            opacity: selectedOption && selectedOption !== option.id ? 0.5 : 1,
+          }}
+        >
           {option.name}
         </button>
       ))}
       <Link to="/results">
-        <button>Next</button>
+        <button disabled={isNextDisabled}>Next</button>
       </Link>
     </div>
   );

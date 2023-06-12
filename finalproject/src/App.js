@@ -49,7 +49,7 @@ function App() {
         <Route path="/join-group" element={<JoinGroup />} />
 
         <Route path="/votescreen" element={<VoteScreen rounds={rounds} setRounds={setRounds} roundCount={roundCount} />} />
-        <Route path="/results" element={<Results handleNextRound={handleNextRound} rounds={rounds}/>} />
+        <Route path="/results" element={<Results handleNextRound={handleNextRound} rounds={rounds} roundCount={roundCount} />} />
 
 
       </Routes>
