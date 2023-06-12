@@ -9,17 +9,27 @@ import {useState} from "react"
 
 
 function App() {
+  // useState for setting the round count in the currentRound variable in VoteScreen.js
   const [roundCount, setRoundCount] = useState(0);
+  
   const [rounds, setRounds] = useState([
     [
-      { id: 1, name: 'resturant', score: 0 },
-      { id: 2, name: 'cinema', score: 0 },
-      { id: 3, name: 'bar', score: 0 },
+      { id: 1, name: 'Restaurant', score: 0 },
+      { id: 2, name: 'Cinema', score: 0 },
+      { id: 3, name: 'Bar', score: 0 },
     ],
     [
-      { id: 4, name: 'mexican', score: 0 },
-      { id: 5, name: 'chinese', score: 0 },
-      { id: 6, name: 'italian', score: 0 },
+      { id: 4, name: 'Mexican', score: 0 },
+      { id: 5, name: 'Chinese', score: 0 },
+      { id: 6, name: 'Italian', score: 0 },
+      { id: 7, name: 'Indian', score: 0 },
+      { id: 8, name: 'Burger', score: 0 },
+      { id: 9, name: 'Thai', score: 0 },
+    ],
+    [
+      { id: 10, name: '£', score: 0 },
+      { id:11, name: '££', score: 0 },
+      { id: 12, name: '£££', score: 0 },
     ],
     // ... Add more rounds with different options as needed
   ]);
@@ -34,7 +44,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<VoteScreen rounds={rounds} setRounds={setRounds} roundCount={roundCount} />} />
-        <Route path="/results" element={<Results handleNextRound={handleNextRound}/>} />
+        <Route path="/results" element={<Results handleNextRound={handleNextRound} rounds={rounds}/>} />
       </Routes>
     </BrowserRouter>
   );
