@@ -1,0 +1,14 @@
+/* CSS for Homepage */
+
+.homepage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 15%;
+  margin-bottom: 30px;
+}
