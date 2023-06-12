@@ -1,11 +1,12 @@
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
-import { BrowserRouter, Routes, Route } from "react-router-dom"
 import {useState} from "react"
-
-
+import Homepage from "./pages/Homepage/Hompage.js";
+import CreateJoinGroup from "./pages/CreateJoin/CreateJoin.js";
+import JoinGroup from "./pages/JoinGroup/JoinGroup";
 
 
 function App() {
@@ -43,8 +44,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<VoteScreen rounds={rounds} setRounds={setRounds} roundCount={roundCount} />} />
+
+        <Route path="/votescreen" element={<VoteScreen rounds={rounds} setRounds={setRounds} roundCount={roundCount} />} />
         <Route path="/results" element={<Results handleNextRound={handleNextRound} rounds={rounds}/>} />
+
+        <Route path="/" element={<Homepage />} />
+
+        <Route path="/create-join" element={<CreateJoinGroup />} />
+
+        <Route path="/join-group" element={<JoinGroup />} />
       </Routes>
     </BrowserRouter>
   );
