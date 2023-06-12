@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 // george and robertos work
 //PLAN:
@@ -12,44 +13,27 @@ import React from 'react';
 // pass selection choices props down
 //
 
-export default function VoteScreen({ rounds, setRounds, history  }){
-    const currentRound = rounds[0];
+export default function VoteScreen({ rounds, setRounds, roundCount }){
+    const currentRound = rounds[roundCount];
   
-    const handleVote = (id) => {
-      setRounds((prevRounds) =>
-        prevRounds.map((round, index) => {
-          if (index === 0) {
-            return round.map((option) => {
-              if (option.id === id) {
-                if (option.score === 0) {
-                  return { ...option, score: 3 };
-                } else if (option.score === 3) {
-                  return { ...option, score: 2 };
-                } else if (option.score === 2) {
-                  return { ...option, score: 1 };
-                }
-              }
-              return option;
-            });
-          }
-          return round;
-        })
-      );
-    };
-  
-    const handleNext = () => {
-      history.push('/results');
-    };
+  function handleNext(){
+    <Link>
+
+    </Link>
+  }  
+    
   
     return (
       <div>
         <h1>Voting Page</h1>
         {currentRound.map((option) => (
-          <button key={option.id} onClick={() => handleVote(option.id)}>
+          <button key={option.id}>
             {option.name}
           </button>
         ))}
-        <button onClick={handleNext}>Next</button>
+        <Link to="/results">
+            <button>Next</button>
+        </Link>
       </div>
     );
   };
