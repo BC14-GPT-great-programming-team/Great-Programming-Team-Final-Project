@@ -44,15 +44,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/create-join" element={<CreateJoinGroup />} />
+        <Route path="/join-group" element={<JoinGroup />} />
 
         <Route path="/votescreen" element={<VoteScreen rounds={rounds} setRounds={setRounds} roundCount={roundCount} />} />
         <Route path="/results" element={<Results handleNextRound={handleNextRound} rounds={rounds}/>} />
 
-        <Route path="/" element={<Homepage />} />
 
-        <Route path="/create-join" element={<CreateJoinGroup />} />
-
-        <Route path="/join-group" element={<JoinGroup />} />
       </Routes>
     </BrowserRouter>
   );
