@@ -9,7 +9,7 @@ function Homepage() {
     <div className="homepage">
       <img className="logo" alt="logo" />
       <Button btnText="Go Solo" />
-      <Link to="../CreateJoin/CreateJoin.js">
+      <Link to="/create-join">
         <Button btnText="Group Mode" />
       </Link>
       <Button btnText="Spin The Wheel" />

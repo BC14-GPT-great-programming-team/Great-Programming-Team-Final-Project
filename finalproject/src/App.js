@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 // Import Pages
-import Homepage from "./pages/Homepage/Hompage";
-import CreateJoinGroup from "./pages/CreateJoin/CreateJoin";
+import Homepage from "./pages/Homepage/Hompage.js";
+import CreateJoinGroup from "./pages/CreateJoin/CreateJoin.js";
+import JoinGroup from "./pages/JoinGroup/JoinGroup";
 
 //      ❗DO NOT EDIT THIS BRANCH❗
 
@@ -13,9 +14,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route
-          path="./pages/CreateJoin/CreateJoin.js"
+          path="/create-join"
           element={<CreateJoinGroup />}
+      
         />
+        <Route path="/join-group" element={<JoinGroup/>} />
       </Routes>
     </BrowserRouter>
   );
