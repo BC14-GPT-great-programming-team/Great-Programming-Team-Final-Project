@@ -40,7 +40,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <h1>Test</h1>
         <Route path="/" element={<Homepage />} />
         <Route path="/create-join" element={<CreateJoinGroup />} />
         <Route path="/join-group" element={<JoinGroup />} />
