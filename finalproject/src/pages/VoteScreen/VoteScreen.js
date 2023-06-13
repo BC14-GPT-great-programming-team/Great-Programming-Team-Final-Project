@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function VoteScreen({ rounds, setRounds, roundCount }) {
+export default function VoteScreen({ rounds, setRounds, roundCount, venueData }) {
   // currentRound is an array of objects that represent the options for the current round
   const currentRound = rounds[roundCount];
   // selectedOption is the id of the option that the user has selected
   const [selectedOption, setSelectedOption] = useState(null);
   // isNextDisabled is a boolean that determines whether the Next button is disabled
   const [isNextDisabled, setIsNextDisabled] = useState(true);
+  venueData && console.log(venueData);
 
   // in handleVote we take in the id of the option that the user has selected
   // if the option is already selected, we deselect it

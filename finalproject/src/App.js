@@ -2,16 +2,20 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Homepage from "./pages/Homepage/Hompage.js";
 import CreateJoinGroup from "./pages/CreateJoin/CreateJoin.js";
 import JoinGroup from "./pages/JoinGroup/JoinGroup";
+import supabase from "./supabaseClient";
 
 function App() {
   const navigate = useNavigate();
   // useState for setting the round count in the currentRound variable in VoteScreen.js
   const [roundCount, setRoundCount] = useState(0);
-
+  // useState for setting the error when fetching data from Supabase
+  const [fetchError, setFetchError] = useState(null);
+  //useState for setting the venues data that is fetched from Supabase
+  const [venueData, setVenueData] = useState(null);
   const [rounds, setRounds] = useState([
     [
       { id: 1, name: "Restaurant", score: 0 },
@@ -35,6 +39,24 @@ function App() {
     // ... Add more rounds with different options as needed
     //... the rounds pathways can possibly be traversed by creating round blocks. The block that is selected in the first round will determine the following index of the array to be used in the next round (inside the roundCount) and all subsequent rounds will simply be adding 1 to the round count - to end the rounds and display the very final result page, we will need to add a conditional statement that will check if the round count is equal to the index of the last round in the array for that pathway. If it is, then the results page will be displayed, if not, then the next round will be displayed. (eg. restaurant pathway, round 1: restaurant, cinema, bar. round 2: mexican, chinese, italian, indian, burger, thai. round 3: £, ££, £££. round 4: results page.)
   ]);
+
+  useEffect (() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase
+        .from("venues")
+        .select()
+      if (error) {
+        setFetchError("could not fetch venues")
+        console.log(error)
+      }
+      if (data) {
+        setVenueData(data)
+        setFetchError(null)
+        console.log(data)
+      }
+    };
+    fetchData();
+  }, [roundCount])
 
   //this function is passed down to the results page and is triggered by the next button. It adds 1 to the round count which will then be used to determine which round is displayed in the vote screen.
   function handleNextRound() {
@@ -61,6 +83,7 @@ function App() {
               rounds={rounds}
               setRounds={setRounds}
               roundCount={roundCount}
+              venueData={venueData}
             />
           }
         />
