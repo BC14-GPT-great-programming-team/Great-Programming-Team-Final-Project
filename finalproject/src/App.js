@@ -70,7 +70,7 @@ function App() {
 
       if (error) {
         setFetchError("could not fetch venues");
-        console.log(error);
+        console.log(fetchError);
       }
       if (data) {
         setVenueData(data);
@@ -79,7 +79,7 @@ function App() {
       }
     };
     fetchData();
-  }, [roundCount, filters]);
+  }, [roundCount, filters, fetchError]);
 
   //this function is passed down to the results page and is triggered by the next button. It adds 1 to the round count which will then be used to determine which round is displayed in the vote screen.
 
