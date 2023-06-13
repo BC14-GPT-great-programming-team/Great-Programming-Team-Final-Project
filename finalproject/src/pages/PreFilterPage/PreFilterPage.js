@@ -2,29 +2,25 @@ import "./PreFilterPage.css";
 import Button from "../../Components/Button/Button";
 import { Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
+import Dropdown from "../../Components/Button/DropDown/DropDown";
 
 function PreFilter() {
 //add usestates for each option 
+
+const options = [
+{value: "none", label: "None"},
+{value: "vegetarian", label: "Vegetarian"},
+{value: "vegan", label: "Vegan"},
+{value: "halal", label: "Halal"}, 
+{value: "kosher", label: "Kosher"},
+{value: "gluten-free", label: "Gluten-free"}
+];
+
+
     return (
       <div>
-        <h1>Dietary requirements</h1>
-        <select name="Dietary" id="dietreq">
-        <option value="Option 1">none</option>
-            <option value="option 2">Vegetarian</option>
-            <option value="option 3">Vegan</option>
-            <option value="option 4">Halal</option>
-            <option value="option 5">Kosher</option>
-            <option value="option 6">Gluten-free</option>
-        </select>
-        
-        <h1>Price Range</h1>
-        <select name="priceRange" id="prices">
-        <option value="choice 1">under £10</option>
-            <option value="choice 2">under £20</option>
-            <option value="choice 3">under £40</option>
-            <option value="choice 3">over £40</option>
-            <option value="choice 4">I don't mind</option>
-        </select>
+       <Dropdown placeHolder="Select..." options={options} />
+
         <Link to="/votescreen">
             <Button btnText="Next" />
         </Link>
