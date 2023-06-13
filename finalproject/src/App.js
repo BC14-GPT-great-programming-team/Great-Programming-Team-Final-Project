@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
+
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
 import {useState} from "react"

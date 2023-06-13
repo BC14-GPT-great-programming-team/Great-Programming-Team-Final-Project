@@ -19,13 +19,18 @@ const options = [
 
     return (
       <div>
-       <Dropdown placeHolder="Select..." options={options} />
-
+        <h1>Dietary requirements</h1>
+        <Dropdown
+        isSearchable
+        isMulti
+        placeHolder="Select..."
+        options={options}
+        onChange={(value) => console.log(value)}
+        />
+        <ToggleSwitch />
         <Link to="/votescreen">
             <Button btnText="Next" />
         </Link>
-        
-        <ToggleSwitch />
       </div>
     )
 }
