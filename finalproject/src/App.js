@@ -16,6 +16,22 @@ function App() {
   const [fetchError, setFetchError] = useState(null);
   //useState for setting the venues data that is fetched from Supabase
   const [venueData, setVenueData] = useState(null);
+  //set useState to hold the current filters in an object 
+  //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
+
+  const [filters, setFilters] = useState({
+    city:null,
+    cuisine_type:"Italian",
+    avg_ppv:null,
+    cost_rating:2,
+    user_rating:null,
+    wheelchair_acc:null,
+    vegetarian_options:null,
+    vegan_options:null,
+    halal_options:null,
+    kosher_options:null,
+    glutenfree_options:null,
+  });
   const [rounds, setRounds] = useState([
     [
       { id: 1, name: "Restaurant", score: 0 },
@@ -45,6 +61,9 @@ function App() {
       const { data, error } = await supabase
         .from("venues")
         .select()
+        .eq("cost_rating", filters.cost_rating)
+        .eq("cuisine_type", filters.cuisine_type)
+
       if (error) {
         setFetchError("could not fetch venues")
         console.log(error)
@@ -94,6 +113,7 @@ function App() {
               handleNextRound={handleNextRound}
               rounds={rounds}
               roundCount={roundCount}
+              venueData={venueData}
             />
           }
         />
