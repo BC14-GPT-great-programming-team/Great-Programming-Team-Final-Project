@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function VoteScreen({ rounds, setRounds, roundCount, venueData }) {
+export default function VoteScreen({ rounds, setRounds, roundCount, venueData , setFilter, roundType, filters }) {
   // currentRound is an array of objects that represent the options for the current round
   const currentRound = rounds[roundCount];
   // selectedOption is the id of the option that the user has selected
@@ -15,18 +15,24 @@ export default function VoteScreen({ rounds, setRounds, roundCount, venueData })
   // if the option is already selected, we deselect it
   // if the option is not selected, we select it
   // we also update the score of the option
-  function handleVote(optionid) {
+  function handleVote(optionid, optionname) {
     if (selectedOption === optionid) {
       // Deselect the option
+      setFilter(roundType[roundCount],null)
       setSelectedOption(null);
       setIsNextDisabled(true);
       updateOptionScore(optionid, -1);
+    console.log(filters)
     } else {
       // Select the option
+      setFilter(roundType[roundCount],optionname)
       setSelectedOption(optionid);
       setIsNextDisabled(false);
       updateOptionScore(optionid, 1);
+    console.log(filters)
     }
+
+    
   }
 
   // updateOptionScore takes in the id of the option that we want to update the score of
@@ -57,7 +63,7 @@ export default function VoteScreen({ rounds, setRounds, roundCount, venueData })
       {currentRound.map((option) => (
         <button
           key={option.id}
-          onClick={() => handleVote(option.id)}
+          onClick={() => handleVote(option.id, option.name)}
           disabled={option.disabled || (isOptionSelected && option.id !== selectedOption)}
           style={{
             color: selectedOption === option.id ? "white" : "",

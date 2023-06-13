@@ -7,6 +7,7 @@ import Homepage from "./pages/Homepage/Hompage.js";
 import CreateJoinGroup from "./pages/CreateJoin/CreateJoin.js";
 import JoinGroup from "./pages/JoinGroup/JoinGroup";
 import supabase from "./supabaseClient";
+import FinalResults from "./pages/FinalResults/FinalResults";
 
 function App() {
   const navigate = useNavigate();
@@ -18,20 +19,20 @@ function App() {
   const [venueData, setVenueData] = useState(null);
   //set useState to hold the current filters in an object 
   //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
+  const roundTypes = ["venue_type", "cuisine_type", "cost_rating"];
 
   const [filters, setFilters] = useState({
-    city:null,
-    cuisine_type:"Italian",
-    avg_ppv:null,
-    cost_rating:2,
-    user_rating:null,
-    wheelchair_acc:null,
-    vegetarian_options:null,
-    vegan_options:null,
-    halal_options:null,
-    kosher_options:null,
-    glutenfree_options:null,
+    venue_type:null,
+    cuisine_type:null,
+    cost_rating:null,
   });
+
+  function setFilter(optionName, value) {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [optionName]: value,
+    }));
+  }
   const [rounds, setRounds] = useState([
     [
       { id: 1, name: "Restaurant", score: 0 },
@@ -47,9 +48,9 @@ function App() {
       { id: 9, name: "Thai", score: 0 },
     ],
     [
-      { id: 10, name: "£", score: 0 },
-      { id: 11, name: "££", score: 0 },
-      { id: 12, name: "£££", score: 0 },
+      { id: 10, name: 1, score: 0 },
+      { id: 11, name: 2, score: 0 },
+      { id: 12, name: 3, score: 0 },
     ]
     
     // ... Add more rounds with different options as needed
@@ -58,11 +59,15 @@ function App() {
 
   useEffect (() => {
     const fetchData = async () => {
+    
+
       const { data, error } = await supabase
         .from("venues")
         .select()
-        .eq("cost_rating", filters.cost_rating)
-        .eq("cuisine_type", filters.cuisine_type)
+        .eq ("venue_type", filters.venue_type)
+        .eq ("cuisine_type", filters.cuisine_type)
+        .eq ("cost_rating", filters.cost_rating)
+      
 
       if (error) {
         setFetchError("could not fetch venues")
@@ -75,13 +80,14 @@ function App() {
       }
     };
     fetchData();
-  }, [roundCount])
+  }, [roundCount,filters])
 
   //this function is passed down to the results page and is triggered by the next button. It adds 1 to the round count which will then be used to determine which round is displayed in the vote screen.
+  
   function handleNextRound() {
     
     if (roundCount === rounds.length - 1) {
-      navigate("/");
+      navigate("/finalresult");
     } else{
       setRoundCount(roundCount + 1);
       navigate("/votescreen");
@@ -94,7 +100,6 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/create-join" element={<CreateJoinGroup />} />
         <Route path="/join-group" element={<JoinGroup />} />
-
         <Route
           path="/votescreen"
           element={
@@ -103,6 +108,9 @@ function App() {
               setRounds={setRounds}
               roundCount={roundCount}
               venueData={venueData}
+              setFilter={setFilter}
+              roundType={roundTypes}
+              filters={filters}
             />
           }
         />
@@ -117,6 +125,7 @@ function App() {
             />
           }
         />
+        <Route path="/finalresult" element={<FinalResults venueData={venueData}/>} />
       </Routes>
     
   );
