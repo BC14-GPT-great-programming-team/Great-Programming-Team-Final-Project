@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 
 function PreFilter() {
-
+//add usestates for each option 
     return (
       <div>
         <h1>Dietary requirements</h1>
