@@ -14,6 +14,7 @@ function App() {
   const navigate = useNavigate();
   // useState for setting the round count in the currentRound variable in VoteScreen.js
   const [roundCount, setRoundCount] = useState(0);
+
   // useState for setting the error when fetching data from Supabase
   const [fetchError, setFetchError] = useState(null);
   //useState for setting the venues data that is fetched from Supabase
@@ -34,6 +35,8 @@ function App() {
       [optionName]: value,
     }));
   }
+
+
   const [rounds, setRounds] = useState([
     [
       { id: 1, name: "Restaurant", score: 0 },
@@ -101,6 +104,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/create-join" element={<CreateJoinGroup />} />
         <Route path="/join-group" element={<JoinGroup />} />
+
         <Route
           path="/votescreen"
           element={
@@ -108,10 +112,12 @@ function App() {
               rounds={rounds}
               setRounds={setRounds}
               roundCount={roundCount}
+
               venueData={venueData}
               setFilter={setFilter}
               roundType={roundTypes}
               filters={filters}
+
             />
           }
         />
@@ -128,6 +134,7 @@ function App() {
         />
         <Route path="/finalresult" element={<FinalResults venueData={venueData}/>} />
         <Route path="/prefilter" element={<PreFilter />} />
+
 
       </Routes>
     
