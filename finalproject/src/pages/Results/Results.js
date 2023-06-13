@@ -1,24 +1,15 @@
-import {React, useState} from 'react';
-import {Link, json} from 'react-router-dom';
+import {React} from 'react';
+import {Link} from 'react-router-dom';
 
-export default function Results({handleNextRound, rounds}){
+export default function Results({handleNextRound, rounds, roundCount, venueData}){
 //const [roundResult, setRoundResult] = useState("");
 
 
-// for (let i = 0; i < rounds.length; i++) {
-//   for (let j = 0; i < rounds[j].length; j++){
-//   if (rounds[i][j].score === 1) {
-  
-//     setRoundResult(rounds[i].name);
-//     break
-// } else {
-// return null;
-// }
-// }}
+
 
 const voteResults = rounds.map((round) => {
   return round.map((option) => {
-   if (option.score === 1) {
+   if (option.score >= 1) {
     return option.name;
   } else {
     return null;
@@ -31,12 +22,10 @@ const voteResults = rounds.map((round) => {
     <div>
     <div>
       <h1>Results Page</h1>
-      <h1>{voteResults}</h1>
-      <p>Results will go here</p>
+      <h1>{voteResults[roundCount]} is the winner!</h1>
     </div>
-    <Link to="/">
         <button onClick={handleNextRound}>Next</button>
-    </Link>
+    
     </div>
   )
 };
