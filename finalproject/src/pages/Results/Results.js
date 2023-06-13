@@ -6,6 +6,7 @@ export default function Results({handleNextRound, rounds, roundCount}){
 
 
 
+
 const voteResults = rounds.map((round) => {
   return round.map((option) => {
    if (option.score >= 1) {
@@ -23,9 +24,9 @@ const voteResults = rounds.map((round) => {
       <h1>Results Page</h1>
       <h1>{voteResults[roundCount]} is the winner!</h1>
     </div>
-    <Link to="/votescreen">
+    
         <button onClick={handleNextRound}>Next</button>
-    </Link>
+    
     </div>
   )
 };
