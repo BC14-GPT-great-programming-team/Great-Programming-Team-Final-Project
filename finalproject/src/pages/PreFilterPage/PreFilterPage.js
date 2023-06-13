@@ -17,7 +17,7 @@ const options = [
 ];
 
 
-    return (
+return (
       <div>
         <h1>Dietary requirements</h1>
         <Dropdown
