@@ -9,7 +9,10 @@ function Homepage() {
   return (
     <div className="homepage">
       <img className="logo" src={logoImage} alt="logo" />
-      <Button btnText="Go Solo" />
+      
+      <Link to="/prefilter">
+        <Button btnText="Go Solo" />
+      </Link>
       <Link to="/create-join">
         <Button btnText="Group Mode" />
       </Link>

@@ -8,6 +8,7 @@ import CreateJoinGroup from "./pages/CreateJoin/CreateJoin.js";
 import JoinGroup from "./pages/JoinGroup/JoinGroup";
 import supabase from "./supabaseClient";
 import FinalResults from "./pages/FinalResults/FinalResults";
+import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 
 function App() {
   const navigate = useNavigate();
@@ -126,6 +127,8 @@ function App() {
           }
         />
         <Route path="/finalresult" element={<FinalResults venueData={venueData}/>} />
+        <Route path="/prefilter" element={<PreFilter />} />
+
       </Routes>
     
   );
