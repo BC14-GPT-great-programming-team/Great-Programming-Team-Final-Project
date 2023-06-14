@@ -22,21 +22,21 @@ const Dropdown = ({
   placeHolder,
   options,
   isMulti,
-  isSearchable,
+  // isSearchable,
   onChange
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(isMulti ? [] : null);
-  const [searchValue, setSearchValue] = useState("");
-  const searchRef = useRef();
+  //const [searchValue, setSearchValue] = useState("");
+  // const searchRef = useRef();
   const inputRef = useRef();
 
-  useEffect(() => {
-    setSearchValue("");
-    if (showMenu && searchRef.current) {
-      searchRef.current.focus();
-    }
-  }, [showMenu]);
+  // useEffect(() => {
+  //   setSearchValue("");
+  //   if (showMenu && searchRef.current) {
+  //     searchRef.current.focus();
+  //   }
+  // }, [showMenu]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -116,20 +116,20 @@ const Dropdown = ({
     return selectedValue.value === option.value;
   };
 
-  const onSearch = (e) => {
-    setSearchValue(e.target.value);
-  };
+  // const onSearch = (e) => {
+  //   setSearchValue(e.target.value);
+  // };
 
-  const getOptions = () => {
-    if (!searchValue) {
-      return options;
-    }
+  // const getOptions = () => {
+  //   if (!searchValue) {
+  //     return options;
+  //   }
 
-    return options.filter(
-      (option) =>
-        option.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
-    );
-  };
+  //   return options.filter(
+  //     (option) =>
+  //       option.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
+  //   );
+  // };
 
   return (
     <div className="dropdown-container">
@@ -143,12 +143,12 @@ const Dropdown = ({
       </div>
       {showMenu && (
         <div className="dropdown-menu">
-          {isSearchable && (
+          {/* {isSearchable && (
             <div className="search-box">
               <input onChange={onSearch} value={searchValue} ref={searchRef} />
             </div>
-          )}
-          {getOptions().map((option) => (
+          )} */}
+          {options.map((option) => (
             <div
               onClick={() => onItemClick(option)}
               key={option.value}
