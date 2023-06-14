@@ -13,6 +13,7 @@ export default function Results({
   //   for (let j = 0; i < rounds[j].length; j++){
   //   if (rounds[i][j].score === 1) {
 
+  // the voteResults array is an array of arrays
   const voteResults = rounds.map((round) => {
     return round.map((option) => {
       if (option.score >= 1) {
