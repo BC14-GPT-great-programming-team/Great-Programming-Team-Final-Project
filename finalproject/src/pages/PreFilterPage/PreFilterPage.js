@@ -1,19 +1,40 @@
 import "./PreFilterPage.css";
+import  {useState, useEffect } from "react";
 import Button from "../../Components/Button/Button";
 import { Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 import Dropdown from "../../Components/Button/DropDown/DropDown";
 
 function PreFilter() {
-//add usestates for each option 
+
+const [prefilters, setpreFilters] = useState({
+  halal_options: null,
+  vegan_options: null,
+  vegetarian_options: null,
+  kosher_options: null,
+  gluten_free_options: null,
+});
+
+function setThepreFilter(optionName, value) {
+  setpreFilters((prevFilters) => ({
+    ...prevFilters,
+    [optionName]: value
+  }));
+}
+
+useEffect(() => {
+  console.log(prefilters);
+}, [prefilters]);
+
+
 
 const options = [
 {value: "none", label: "None"},
-{value: "vegetarian", label: "Vegetarian"},
-{value: "vegan", label: "Vegan"},
-{value: "halal", label: "Halal"}, 
-{value: "kosher", label: "Kosher"},
-{value: "gluten-free", label: "Gluten-free"}
+{value: "vegetarian", name:"vegetarian_options", label: "Vegetarian"},
+{value: "vegan", name:"vegan_options", label: "Vegan"},
+{value: "halal", name:"halal_options", label: "Halal"}, 
+{value:"kosher", name:"kosher_options", label: "Kosher" },
+{value: "gluten-free", name:"gluten_free_options", label: "Gluten-free" }
 ];
 
 
@@ -21,7 +42,7 @@ return (
       <div>
         <h1>Dietary requirements</h1>
         <Dropdown
-        isSearchable
+        setpreFilter={setThepreFilter}
         isMulti
         placeHolder="Select..."
         options={options}

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import "./DropDown.css";
 
 const Icon = () => {
@@ -9,7 +8,6 @@ const Icon = () => {
     </svg>
   );
 };
-
 const CloseIcon = () => {
   return (
     <svg height="20" width="20" viewBox="0 0 20 20">
@@ -18,25 +16,17 @@ const CloseIcon = () => {
   );
 };
 
-const Dropdown = ({
+function Dropdown({
+  setpreFilter,
   placeHolder,
   options,
   isMulti,
-  // isSearchable,
-  onChange
-}) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(isMulti ? [] : null);
-  //const [searchValue, setSearchValue] = useState("");
-  // const searchRef = useRef();
+  onChange,
+}) {
   const inputRef = useRef();
 
-  // useEffect(() => {
-  //   setSearchValue("");
-  //   if (showMenu && searchRef.current) {
-  //     searchRef.current.focus();
-  //   }
-  // }, [showMenu]);
+  const [showMenu, setShowMenu] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(isMulti ? [] : null);
 
   useEffect(() => {
     const handler = (e) => {
@@ -77,9 +67,11 @@ const Dropdown = ({
     }
     return selectedValue.label;
   };
-
+// removeOption function is used to remove the option from the dropdown menu
   const removeOption = (option) => {
-    return selectedValue.filter((o) => o.value !== option.value);
+    const filteredOptions = selectedValue.filter((o) => o.value !== option.value);
+    setpreFilter(option.name, null);
+    return filteredOptions;
   };
 
   const onTagRemove = (e, option) => {
@@ -89,6 +81,7 @@ const Dropdown = ({
     onChange(newValue);
   };
 
+  //this function handles the logic for what happens when an option is clicked in the dropdown menu
   const onItemClick = (option) => {
     let newValue;
     if (isMulti) {
@@ -96,10 +89,9 @@ const Dropdown = ({
         newValue = removeOption(option);
       } else {
         newValue = [...selectedValue, option];
+        setpreFilter(option.name, true); 
       }
-    } else {
-      newValue = option;
-    }
+    } 
     setSelectedValue(newValue);
     onChange(newValue);
   };
@@ -108,28 +100,11 @@ const Dropdown = ({
     if (isMulti) {
       return selectedValue.filter((o) => o.value === option.value).length > 0;
     }
-
     if (!selectedValue) {
       return false;
     }
-
     return selectedValue.value === option.value;
   };
-
-  // const onSearch = (e) => {
-  //   setSearchValue(e.target.value);
-  // };
-
-  // const getOptions = () => {
-  //   if (!searchValue) {
-  //     return options;
-  //   }
-
-  //   return options.filter(
-  //     (option) =>
-  //       option.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
-  //   );
-  // };
 
   return (
     <div className="dropdown-container">
@@ -143,14 +118,11 @@ const Dropdown = ({
       </div>
       {showMenu && (
         <div className="dropdown-menu">
-          {/* {isSearchable && (
-            <div className="search-box">
-              <input onChange={onSearch} value={searchValue} ref={searchRef} />
-            </div>
-          )} */}
           {options.map((option) => (
             <div
-              onClick={() => onItemClick(option)}
+              onClick={() => {
+                onItemClick(option);
+              }}
               key={option.value}
               className={`dropdown-item ${isSelected(option) && "selected"}`}
             >
@@ -161,6 +133,6 @@ const Dropdown = ({
       )}
     </div>
   );
-};
+}
 
 export default Dropdown;
