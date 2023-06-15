@@ -22,16 +22,19 @@ img {
   color: #ea9c90;
 }
 
-.homepageBtn {
-  animation: bounce 1s ease-in infinite;
+.bounceOne {
+  animation: bounce 2s ease-in infinite;
 }
 
 .bounceTwo {
-  animation-delay: 1s;
+  animation: bounce 2s ease-in infinite;
+  animation-delay: 0.7s;
 }
 
 .bounceThree {
-  animation-delay: 2s;
+  animation: bounce 2s ease-in infinite;
+  animation-delay: 1.4s;
+  background-color: #a7c0cb;
 }
 
 @keyframes bounce {
@@ -39,19 +42,19 @@ img {
     transform: translateY(0%);
   }
   80% {
-    transform: translateY(-15%);
+    transform: translateY(-10%);
   }
   90% {
     transform: translateY(0%);
   }
   95% {
-    transform: translateY(-7%);
+    transform: translateY(-5%);
   }
   97% {
     transform: translateY(0%);
   }
   99% {
-    transform: translateY(-3%);
+    transform: translateY(-2%);
   }
   100% {
     transform: translateY(0);
@@ -64,4 +67,8 @@ img {
 
 span {
   color: #ea9c90;
+}
+
+.spinBtnContainer {
+  margin-top: 30px;
 }
