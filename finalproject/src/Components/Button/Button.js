@@ -3,7 +3,7 @@
 import "./Button.css";
 
 function Button(props) {
-  return <button>{props.btnText}</button>;
+  return <button className={props.className}>{props.btnText}</button>;
 }
 
 export default Button;

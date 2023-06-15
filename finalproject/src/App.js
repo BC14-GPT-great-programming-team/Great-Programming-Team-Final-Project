@@ -22,7 +22,21 @@ function App() {
   //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
   const roundTypes = ["venue_type", "cuisine_type", "cost_rating"];
 
+  
+  const [prefilters, setpreFilters] = useState({
+    halal_options: null,
+    vegan_options: null,
+    vegetarian_options: null,
+    kosher_options: null,
+    gluten_free_options: null,
+    cost_low: null,
+    cost_medium: null,
+    cost_high: null,
+  });
+
+
   const [voteResults, setVoteResults] = useState([]);
+
 
   const [filters, setFilters] = useState({
     venue_type: null,
@@ -30,7 +44,8 @@ function App() {
     cost_rating: null,
   });
 
- 
+
+  //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
 
   function setFilter(optionName, value) {
     setFilters((prevFilters) => ({
@@ -88,6 +103,7 @@ function App() {
       { id: 9, name: "Thai", score: 0 },
     ],
     [
+      // CHANGE THIS BEFORE SPRINT DEMO TO ANOTHER FILTER!!
       { id: 10, name: 1, score: 0 },
       { id: 11, name: 2, score: 0 },
       { id: 12, name: 3, score: 0 },
@@ -151,10 +167,12 @@ function App() {
   }
 
   return (
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/create-join" element={<CreateJoinGroup />} />
-        <Route path="/join-group" element={<JoinGroup />} />
+
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/create-join" element={<CreateJoinGroup />} />
+      <Route path="/join-group" element={<JoinGroup />} />
+
 
         <Route
           path="/votescreen"
@@ -188,12 +206,11 @@ function App() {
           }
         />
         <Route path="/finalresult" element={<FinalResults venueData={venueData} handleRestart={handleRestart}/>} />
-        <Route path="/prefilter" element={<PreFilter />} />
-
-
+ <Route path="/prefilter" element={<PreFilter prefilters={prefilters} 
+        setpreFilters={setpreFilters}
+      />} />
       </Routes>
     
-
   );
 }
 
