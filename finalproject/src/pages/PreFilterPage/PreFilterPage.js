@@ -4,6 +4,7 @@ import Button from "../../Components/Button/Button";
 import { Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 import Dropdown from "../../Components/Button/DropDown/DropDown";
+import DropdownCost from "../../Components/DropDownCost/DropDownCost";
 
 function PreFilter() {
 
@@ -41,6 +42,13 @@ const options = [
 return (
       <div>
         <h1>Dietary requirements</h1>
+        <DropdownCost 
+          setpreFilter={setThepreFilter}
+        isMulti
+        placeHolder="Select..."
+        options={options}
+        onChange={(value) => console.log(value)}
+        />
         <Dropdown
         setpreFilter={setThepreFilter}
         isMulti
