@@ -1,14 +1,13 @@
 import "./PreFilterPage.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Button from "../../Components/Button/Button";
 import { Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 import Dropdown from "../../Components/Button/DropDown/DropDown";
 import DropdownCost from "../../Components/DropDownCost/DropDownCost";
+import PreFilterSVG from "./PreFilterSVG";
 
-function PreFilter({ setpreFilters, prefilters}) {
- 
-
+function PreFilter({ setpreFilters, prefilters }) {
   function setThepreFilter(optionName, value) {
     setpreFilters((prevFilters) => ({
       ...prevFilters,
@@ -38,8 +37,10 @@ function PreFilter({ setpreFilters, prefilters}) {
   ];
 
   return (
-    <div>
-      <h2>Budget</h2>
+    <div className="preFilter">
+      <h2>Select Filters</h2>
+      <p>If no filters needed press Next</p>
+      <h4>Budget</h4>
       <DropdownCost
         setpreFilter={setThepreFilter}
         isMulti
@@ -47,7 +48,7 @@ function PreFilter({ setpreFilters, prefilters}) {
         options={budgetOptions}
         onChange={(value) => console.log(value)}
       />
-      <h2>Dietary requirements</h2>
+      <h4>Dietary requirements</h4>
       <Dropdown
         setpreFilter={setThepreFilter}
         isMulti
@@ -57,8 +58,10 @@ function PreFilter({ setpreFilters, prefilters}) {
       />
       <ToggleSwitch />
       <Link to="/votescreen">
-        <Button btnText="Next" />
-      </Link>
+        <Button className="preFilterBtn" btnText="Next" />
+      </Link>{" "}
+      {/* Imported Background */}
+      <PreFilterSVG />
     </div>
   );
 }
