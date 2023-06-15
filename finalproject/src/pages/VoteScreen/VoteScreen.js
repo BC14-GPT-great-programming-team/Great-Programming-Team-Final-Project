@@ -1,8 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import "./VoteScreen.css";
 
-export default function VoteScreen({ rounds, setRounds, roundCount, venueData , setFilter, roundType, filters, voteResults, setVoteResults, currentResults }) {
+export default function VoteScreen({
+  rounds,
+  setRounds,
+  roundCount,
+  venueData,
+  setFilter,
+  roundType,
+  filters,
+  voteResults,
+  setVoteResults,
+  currentResults,
+}) {
   // currentRound is an array of objects that represent the options for the current round
   const currentRound = rounds[roundCount];
   // selectedOption is the id of the option that the user has selected
@@ -18,21 +30,19 @@ export default function VoteScreen({ rounds, setRounds, roundCount, venueData , 
   function handleVote(optionid, optionname) {
     if (selectedOption === optionid) {
       // Deselect the option
-      setFilter(roundType[roundCount],null)
+      setFilter(roundType[roundCount], null);
       setSelectedOption(null);
       setIsNextDisabled(true);
       updateOptionScore(optionid, -1);
-    console.log(filters)
+      console.log(filters);
     } else {
       // Select the option
-      setFilter(roundType[roundCount],optionname)
+      setFilter(roundType[roundCount], optionname);
       setSelectedOption(optionid);
       setIsNextDisabled(false);
       updateOptionScore(optionid, 1);
-    console.log(filters)
+      console.log(filters);
     }
-
-    
   }
 
   // updateOptionScore takes in the id of the option that we want to update the score of
@@ -54,13 +64,13 @@ export default function VoteScreen({ rounds, setRounds, roundCount, venueData , 
     setRounds(updatedRounds);
   }
 
-function handleVoteResult(){
-  setVoteResults(currentResults);
-}
+  function handleVoteResult() {
+    setVoteResults(currentResults);
+  }
 
   const isOptionSelected = selectedOption !== null;
   return (
-    <div>
+    <div className="voteScreen">
       <h1>Voting Page</h1>
       {/* so the below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
       The button that is selected turns purple and the text turns white when clicked(currently) The button also triggers the handleVote function which takes in an argument of the id from the object that it is currently mapping*/}
@@ -68,7 +78,10 @@ function handleVoteResult(){
         <button
           key={option.id}
           onClick={() => handleVote(option.id, option.name)}
-          disabled={option.disabled || (isOptionSelected && option.id !== selectedOption)}
+          disabled={
+            option.disabled ||
+            (isOptionSelected && option.id !== selectedOption)
+          }
           style={{
             color: selectedOption === option.id ? "white" : "",
             backgroundColor: selectedOption === option.id ? "blueviolet" : "",
@@ -81,7 +94,13 @@ function handleVoteResult(){
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
       <Link to="/results">
-        <button onClick={handleVoteResult}disabled={isNextDisabled}>Next</button>
+        <button
+          className="nextBtn"
+          onClick={handleVoteResult}
+          disabled={isNextDisabled}
+        >
+          Next
+        </button>
       </Link>
     </div>
   );

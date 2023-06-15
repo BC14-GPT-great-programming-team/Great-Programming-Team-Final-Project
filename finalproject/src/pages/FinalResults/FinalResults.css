@@ -1,15 +1,19 @@
 #resultscard {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    border: 1px solid black;
-    margin: 10px auto 10px auto;
-    width:50%;
-    border-radius: 15px;
-    background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  margin: 10px auto 10px auto;
+  width: 50%;
+  border-radius: 15px;
+  background-color: #f2f2f2;
 }
 
 #restaurant_image {
-    width:70%;
+  width: 70%;
+}
+
+.finalResultsPage {
+  text-align: center;
 }
