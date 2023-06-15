@@ -1,3 +1,4 @@
+
 import React from 'react';
 import "./FinalResults.css";
 import "../../App.css"
@@ -28,7 +29,7 @@ export default function FinalResults({rounds, roundCount, venueData, handleResta
      return <p>{restaurant.venue_name}</p>})} */}
 
         <button onClick={handleRestart}>Home/Restart</button>
-    
+  
     </div>
-  )
-};
+  );
+}
