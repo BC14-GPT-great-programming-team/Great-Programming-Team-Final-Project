@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function VoteScreen({ rounds, setRounds, roundCount, venueData , setFilter, roundType, filters }) {
+export default function VoteScreen({ rounds, setRounds, roundCount, venueData , setFilter, roundType, filters, voteResults, setVoteResults, currentResults }) {
   // currentRound is an array of objects that represent the options for the current round
   const currentRound = rounds[roundCount];
   // selectedOption is the id of the option that the user has selected
@@ -54,6 +54,10 @@ export default function VoteScreen({ rounds, setRounds, roundCount, venueData , 
     setRounds(updatedRounds);
   }
 
+function handleVoteResult(){
+  setVoteResults(currentResults);
+}
+
   const isOptionSelected = selectedOption !== null;
   return (
     <div>
@@ -77,7 +81,7 @@ export default function VoteScreen({ rounds, setRounds, roundCount, venueData , 
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
       <Link to="/results">
-        <button disabled={isNextDisabled}>Next</button>
+        <button onClick={handleVoteResult}disabled={isNextDisabled}>Next</button>
       </Link>
     </div>
   );
