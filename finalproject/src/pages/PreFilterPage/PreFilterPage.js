@@ -56,6 +56,7 @@ function PreFilter({ setpreFilters, prefilters }) {
         options={options}
         onChange={(value) => console.log(value)}
       />
+      {/* How to center this!?!?! */}
       <ToggleSwitch />
       <Link to="/votescreen">
         <Button className="preFilterBtn" btnText="Next" />
