@@ -67,9 +67,11 @@ function DropdownCost({
     }
     return selectedValue.label;
   };
-// removeOption function is used to remove the option from the dropdown menu
+  // removeOption function is used to remove the option from the dropdown menu
   const removeOption = (option) => {
-    const filteredOptions = selectedValue.filter((o) => o.value !== option.value);
+    const filteredOptions = selectedValue.filter(
+      (o) => o.value !== option.value
+    );
     setpreFilter(option.name, null);
     return filteredOptions;
   };
@@ -89,9 +91,9 @@ function DropdownCost({
         newValue = removeOption(option);
       } else {
         newValue = [...selectedValue, option];
-        setpreFilter(option.name, true); 
+        setpreFilter(option.name, option.value);
       }
-    } 
+    }
     setSelectedValue(newValue);
     onChange(newValue);
   };

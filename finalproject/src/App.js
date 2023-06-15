@@ -51,11 +51,12 @@ function App() {
       { id: 9, name: "Thai", score: 0 },
     ],
     [
+      // CHANGE THIS BEFORE SPRINT DEMO TO ANOTHER FILTER!!
       { id: 10, name: 1, score: 0 },
       { id: 11, name: 2, score: 0 },
       { id: 12, name: 3, score: 0 },
     ],
-  
+
     // ... Add more rounds with different options as needed
     //... the rounds pathways can possibly be traversed by creating round blocks. The block that is selected in the first round will determine the following index of the array to be used in the next round (inside the roundCount) and all subsequent rounds will simply be adding 1 to the round count - to end the rounds and display the very final result page, we will need to add a conditional statement that will check if the round count is equal to the index of the last round in the array for that pathway. If it is, then the results page will be displayed, if not, then the next round will be displayed. (eg. restaurant pathway, round 1: restaurant, cinema, bar. round 2: mexican, chinese, italian, indian, burger, thai. round 3: £, ££, £££. round 4: results page.)
   ]);
