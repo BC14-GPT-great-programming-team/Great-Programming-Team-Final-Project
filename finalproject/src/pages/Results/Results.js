@@ -2,7 +2,7 @@
 import {React} from 'react';
 // import {Link} from 'react-router-dom';
 
-export default function Results({handleNextRound, rounds, roundCount, venueData}) {
+export default function Results({handleNextRound, rounds, roundCount, venueData, voteResults}) {
 //const [roundResult, setRoundResult] = useState("");
 
 
@@ -13,12 +13,7 @@ export default function Results({handleNextRound, rounds, roundCount, venueData}
 
 
 
-const voteResults = rounds.map((round) => {
-  return round.map((option) => {
-   if (option.score >= 1) {return option.name;} else {return null;}
 
-  });
-});
 
   //console.log(voteResults)
   return (
