@@ -1,11 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 
 import Homepage from "./Hompage.js";
 import { MemoryRouter } from "react-router-dom";
 // import { createMemoryHistory } from 'history';
 // import { Router } from 'react-router-dom';
-
 
 // Logo Test
 test("renders homepage logo", () => {
@@ -86,9 +85,6 @@ test("render spin button", () => {
 //   // Assert that the URL has changed to "create-join"
 //   expect(window.location.pathname).toBe("/create-join");
 // });
-
-
-
 
 // // Create a mock history object
 // const history = createMemoryHistory();
