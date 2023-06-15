@@ -6,17 +6,8 @@ import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 import Dropdown from "../../Components/Button/DropDown/DropDown";
 import DropdownCost from "../../Components/DropDownCost/DropDownCost";
 
-function PreFilter() {
-  const [prefilters, setpreFilters] = useState({
-    halal_options: null,
-    vegan_options: null,
-    vegetarian_options: null,
-    kosher_options: null,
-    gluten_free_options: null,
-    cost_low: null,
-    cost_medium: null,
-    cost_high: null,
-  });
+function PreFilter({ setpreFilters, prefilters}) {
+ 
 
   function setThepreFilter(optionName, value) {
     setpreFilters((prevFilters) => ({

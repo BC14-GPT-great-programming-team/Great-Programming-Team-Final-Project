@@ -21,7 +21,17 @@ function App() {
   //set useState to hold the current filters in an object
   //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
   const roundTypes = ["venue_type", "cuisine_type", "cost_rating"];
-
+  
+  const [prefilters, setpreFilters] = useState({
+    halal_options: null,
+    vegan_options: null,
+    vegetarian_options: null,
+    kosher_options: null,
+    gluten_free_options: null,
+    cost_low: null,
+    cost_medium: null,
+    cost_high: null,
+  });
   const [filters, setFilters] = useState({
     venue_type: null,
     cuisine_type: null,
@@ -129,7 +139,9 @@ function App() {
         path="/finalresult"
         element={<FinalResults venueData={venueData} />}
       />
-      <Route path="/prefilter" element={<PreFilter />} />
+      <Route path="/prefilter" element={<PreFilter prefilters={prefilters} 
+        setpreFilters={setpreFilters}
+      />} />
     </Routes>
   );
 }
