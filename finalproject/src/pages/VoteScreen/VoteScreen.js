@@ -99,6 +99,9 @@ export default function VoteScreen({
           className="nextBtn"
           onClick={handleVoteResult}
           disabled={isNextDisabled}
+          style={{
+            backgroundColor: isNextDisabled ? "#ea9c90" : "#BFC995",
+          }}
         >
           Next
         </button>
