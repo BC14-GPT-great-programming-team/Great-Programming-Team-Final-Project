@@ -9,5 +9,7 @@ button {
   border: none;
   background-color: #c5a7cb;
   color: #fff;
+  font-weight: bold;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  
 }
