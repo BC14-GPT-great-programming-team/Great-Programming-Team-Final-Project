@@ -8,7 +8,67 @@
   justify-content: center;
 }
 
+.homepage h1 {
+  margin: 0;
+}
+
 img {
   width: 15%;
   margin-bottom: 30px;
+}
+
+.icon {
+  font-size: 80px;
+  color: #ea9c90;
+}
+
+.bounceOne {
+  animation: bounce 2s ease-in infinite;
+}
+
+.bounceTwo {
+  animation: bounce 2s ease-in infinite;
+  animation-delay: 0.7s;
+}
+
+.bounceThree {
+  animation: bounce 2s ease-in infinite;
+  animation-delay: 1.4s;
+  background-color: #a7c0cb;
+}
+
+@keyframes bounce {
+  70% {
+    transform: translateY(0%);
+  }
+  80% {
+    transform: translateY(-10%);
+  }
+  90% {
+    transform: translateY(0%);
+  }
+  95% {
+    transform: translateY(-5%);
+  }
+  97% {
+    transform: translateY(0%);
+  }
+  99% {
+    transform: translateY(-2%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.topHomeBtn {
+  margin-top: 20px;
+}
+
+span {
+  color: #ea9c90;
+}
+
+.spinBtnContainer {
+  margin-top: 30px;
 }
