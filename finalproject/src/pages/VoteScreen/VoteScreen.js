@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./VoteScreen.css";
+import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 
 export default function VoteScreen({
   rounds,
@@ -102,6 +103,7 @@ export default function VoteScreen({
           Next
         </button>
       </Link>
+      <PreFilterSVG />
     </div>
   );
 }
