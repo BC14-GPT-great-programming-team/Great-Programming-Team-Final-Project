@@ -1,6 +1,5 @@
 import "./PreFilterPage.css";
-import { useEffect } from "react";
-import Button from "../../Components/Button/Button";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 import Dropdown from "../../Components/Button/DropDown/DropDown";
@@ -8,12 +7,28 @@ import DropdownCost from "../../Components/DropDownCost/DropDownCost";
 import PreFilterSVG from "./PreFilterSVG";
 
 function PreFilter({ setpreFilters, prefilters }) {
+  const [userInput, setUserInput] = useState({ location: null });
+  const [inputValid, setInputValid] = useState(false);
+
   function setThepreFilter(optionName, value) {
     setpreFilters((prevFilters) => ({
       ...prevFilters,
       [optionName]: value,
     }));
   }
+  const handleNameSubmit = (event) => {
+    event.preventDefault();
+    const inputText = event.target.name.value.trim();
+    if (inputText) {
+      setUserInput({ location: inputText });
+      setInputValid(true);
+    } else {
+      setInputValid(false);
+    }
+  };
+  useEffect(() => {
+    console.log(userInput);
+  }, [userInput]);
 
   useEffect(() => {
     console.log(prefilters);
@@ -40,6 +55,13 @@ function PreFilter({ setpreFilters, prefilters }) {
     <div className="preFilter">
       <h2>Select Filters</h2>
       <p>If no filters needed press Next</p>
+      <h2>Enter Location</h2>
+      <form onSubmit={handleNameSubmit}>
+      <div>
+        <input type="text" name="name" required />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
       <h4>Budget</h4>
       <DropdownCost
         setpreFilter={setThepreFilter}
@@ -56,10 +78,11 @@ function PreFilter({ setpreFilters, prefilters }) {
         options={options}
         onChange={(value) => console.log(value)}
       />
-      {/* How to center this!?!?! */}
       <ToggleSwitch />
       <Link to="/votescreen">
-        <Button className="preFilterBtn" btnText="Next" />
+        <button className="preFilterBtn" 
+        disabled={!inputValid}
+        btnText="Next">Next</button>
       </Link>{" "}
       {/* Imported Background */}
       <PreFilterSVG />
