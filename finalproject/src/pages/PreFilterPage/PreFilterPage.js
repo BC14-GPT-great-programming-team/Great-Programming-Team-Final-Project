@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 import Dropdown from "../../Components/Button/DropDown/DropDown";
 import DropdownCost from "../../Components/DropDownCost/DropDownCost";
-import PreFilterSVG from "./PreFilterSVG";
+import PreFilterSVG from "./PreFilterSVGGreen";
 
 function PreFilter({ setpreFilters, prefilters }) {
   function setThepreFilter(optionName, value) {

@@ -1,5 +1,6 @@
 import { React } from "react";
 import "./Results.css";
+
 // import { Link } from "react-router-dom";
 
 export default function Results({ handleNextRound, roundCount, voteResults }) {
@@ -30,6 +31,7 @@ export default function Results({ handleNextRound, roundCount, voteResults }) {
       <button className="nextBtn" onClick={handleNextRound}>
         Next
       </button>
+    
     </div>
   );
 }

@@ -3,17 +3,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  background-color:rgba(251, 251, 251, 0.781);
+  border-radius: 30px;
   margin: 10px auto 10px auto;
-  width: 50%;
-  border-radius: 15px;
-  background-color: #f2f2f2;
+  width: 60%;
+  line-height: 7pt;
+  
+
 }
 
 #restaurant_image {
-  width: 70%;
+  width: 110%;
+  border-radius: 30px;
+  opacity: 1;
+  width: 89%;
+
 }
 
 .finalResultsPage {
   text-align: center;
+}
+
+.textMargin {
+  margin-bottom: 50px
 }
