@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./VoteScreen.css";
+import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 
 export default function VoteScreen({
   rounds,
@@ -98,10 +99,14 @@ export default function VoteScreen({
           className="nextBtn"
           onClick={handleVoteResult}
           disabled={isNextDisabled}
+          style={{
+            backgroundColor: isNextDisabled ? "#ea9c90" : "#BFC995",
+          }}
         >
           Next
         </button>
       </Link>
+      <PreFilterSVG />
     </div>
   );
 }
