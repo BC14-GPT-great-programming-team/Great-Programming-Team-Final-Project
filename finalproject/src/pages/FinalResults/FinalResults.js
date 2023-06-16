@@ -23,14 +23,14 @@ export default function FinalResults({
           id="restaurant_image"
           alt="restaurant"
         ></img>
-      
-        <h2>{venueData && venueData[0].address}</h2>
-        <h2>{venueData && venueData[0].city}</h2>
-        <h2>{venueData && venueData[0].email}</h2>
-        <h2>{venueData && venueData[0].phone_no}</h2>
-        <h2>{venueData && venueData[0].address}</h2>
-        <h2>{venueData && venueData[0].website_url}</h2>
-        <h2>{venueData && venueData[0].cuisine_type}</h2>
+      <div className="textMargin">
+        <p>{venueData && venueData[0].address}</p>
+        
+        
+        <p>{venueData && venueData[0].phone_no}</p>
+        <p>{venueData && venueData[0].address}</p>
+        <p>{venueData && venueData[0].website_url}</p>
+      </div>
         {/* <img src={venueData && venueData[0].image_url} alt="restaurant"></img> */}
         
       </div>

@@ -3,9 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  background-color:rgba(251, 251, 251, 0.781);
+  border-radius: 30px;
   margin: 10px auto 10px auto;
-  width: 50%;
+  width: 60%;
+  line-height: 7pt;
   
 
 }
@@ -13,9 +15,15 @@
 #restaurant_image {
   width: 110%;
   border-radius: 30px;
+  opacity: 1;
+  width: 89%;
 
 }
 
 .finalResultsPage {
   text-align: center;
+}
+
+.textMargin {
+  margin-bottom: 50px
 }
