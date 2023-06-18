@@ -10,9 +10,7 @@ export default function VoteScreen({
   roundCount,
   venueData,
   setFilter,
-  roundType,
   filters,
-  voteResults,
   setVoteResults,
   currentResults,
 }) {
@@ -24,21 +22,18 @@ export default function VoteScreen({
   const [isNextDisabled, setIsNextDisabled] = useState(true);
   venueData && console.log(venueData);
 
-  // in handleVote we take in the id of the option that the user has selected
-  // if the option is already selected, we deselect it
-  // if the option is not selected, we select it
-  // we also update the score of the option
-  function handleVote(optionid, optionname) {
+  // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
+  function handleVote(optionid, optionname, roundLabel) {
     if (selectedOption === optionid) {
       // Deselect the option
-      setFilter(roundType[roundCount], null);
+      setFilter(roundLabel, null);
       setSelectedOption(null);
       setIsNextDisabled(true);
       updateOptionScore(optionid, -1);
       console.log(filters);
     } else {
       // Select the option
-      setFilter(roundType[roundCount], optionname);
+      setFilter(roundLabel, optionname);
       setSelectedOption(optionid);
       setIsNextDisabled(false);
       updateOptionScore(optionid, 1);
@@ -65,6 +60,7 @@ export default function VoteScreen({
     setRounds(updatedRounds);
   }
 
+  //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
   function handleVoteResult() {
     setVoteResults(currentResults);
   }
@@ -73,12 +69,12 @@ export default function VoteScreen({
   return (
     <div className="voteScreen">
       <h1>Voting Page</h1>
-      {/* so the below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
-      The button that is selected turns purple and the text turns white when clicked(currently) The button also triggers the handleVote function which takes in an argument of the id from the object that it is currently mapping*/}
+      {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
+      */}
       {currentRound.map((option) => (
         <button
           key={option.id}
-          onClick={() => handleVote(option.id, option.name)}
+          onClick={() => handleVote(option.id, option.name, option.roundLabel)}
           disabled={
             option.disabled ||
             (isOptionSelected && option.id !== selectedOption)

@@ -20,11 +20,12 @@ function App() {
   const [fetchError, setFetchError] = useState(null);
   //useState for setting the venues data that is fetched from Supabase
   const [venueData, setVenueData] = useState(null);
-  //set useState to hold the current filters in an object
-  //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
-  const roundTypes = ["venue_type", "cuisine_type", "cost_rating"];
 
+  //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
   
+  const [voteResults, setVoteResults] = useState([]);
+
+  //filters to be interpolated into the query
   const [prefilters, setpreFilters] = useState({
     halal_options: null,
     vegan_options: null,
@@ -35,16 +36,15 @@ function App() {
     cost_medium: null,
     cost_high: null,
   });
-
-
-  const [voteResults, setVoteResults] = useState([]);
-
-
   const [filters, setFilters] = useState({
     venue_type: null,
     cuisine_type: null,
     cost_rating: null,
   });
+
+
+
+
 
 
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
@@ -70,54 +70,42 @@ function App() {
     navigate("/");
     setRounds([
       [
-        { id: 1, name: "Restaurant", score: 0 },
-        { id: 2, name: "Cinema", score: 0 },
-        { id: 3, name: "Bar", score: 0 },
+        { id: 1, name: "Restaurant",roundLabel:"venue_type", score: 0 },
+        { id: 2, name: "Cinema",roundLabel:"venue_type", score: 0 },
+        { id: 3, name: "Bar",roundLabel:"venue_type", score: 0 },
       ],
       [
-        { id: 4, name: "Mexican", score: 0 },
-        { id: 5, name: "Chinese", score: 0 },
-        { id: 6, name: "Italian", score: 0 },
-        { id: 7, name: "Indian", score: 0 },
-        { id: 8, name: "Burger", score: 0 },
-        { id: 9, name: "Thai", score: 0 },
+        { id: 4, name: "Mexican",roundLabel:"cuisine_type", score: 0 },
+        { id: 5, name: "Chinese",roundLabel:"cuisine_type", score: 0 },
+        { id: 6, name: "Italian",roundLabel:"cuisine_type", score: 0 },
+        { id: 7, name: "Indian",roundLabel:"cuisine_type", score: 0 },
+        { id: 8, name: "Burger",roundLabel:"cuisine_type", score: 0 },
+        { id: 9, name: "Thai",roundLabel:"cuisine_type", score: 0 },
       ],
-      [
-        { id: 10, name: 1, score: 0 },
-        { id: 11, name: 2, score: 0 },
-        { id: 12, name: 3, score: 0 },
-      ]
+  
     ])
   }
 
   const [rounds, setRounds] = useState([
     [
-      { id: 1, name: "Restaurant", score: 0 },
-      { id: 2, name: "Cinema", score: 0 },
-      { id: 3, name: "Bar", score: 0 },
+      { id: 1, name: "Restaurant",roundLabel:"venue_type", score: 0 },
+      { id: 2, name: "Cinema",roundLabel:"venue_type", score: 0 },
+      { id: 3, name: "Bar",roundLabel:"venue_type", score: 0 },
     ],
     [
-      { id: 4, name: "Mexican", score: 0 },
-      { id: 5, name: "Chinese", score: 0 },
-      { id: 6, name: "Italian", score: 0 },
-      { id: 7, name: "Indian", score: 0 },
-      { id: 8, name: "Burger", score: 0 },
-      { id: 9, name: "Thai", score: 0 },
-    ],
-    [
-      // CHANGE THIS BEFORE SPRINT DEMO TO ANOTHER FILTER!!
-      { id: 10, name: 1, score: 0 },
-      { id: 11, name: 2, score: 0 },
-      { id: 12, name: 3, score: 0 },
+      { id: 4, name: "Mexican",roundLabel:"cuisine_type", score: 0 },
+      { id: 5, name: "Chinese",roundLabel:"cuisine_type", score: 0 },
+      { id: 6, name: "Italian",roundLabel:"cuisine_type", score: 0 },
+      { id: 7, name: "Indian",roundLabel:"cuisine_type", score: 0 },
+      { id: 8, name: "Burger",roundLabel:"cuisine_type", score: 0 },
+      { id: 9, name: "Thai",roundLabel:"cuisine_type", score: 0 },
     ],
 
-    // ... Add more rounds with different options as needed
-    //... the rounds pathways can possibly be traversed by creating round blocks. The block that is selected in the first round will determine the following index of the array to be used in the next round (inside the roundCount) and all subsequent rounds will simply be adding 1 to the round count - to end the rounds and display the very final result page, we will need to add a conditional statement that will check if the round count is equal to the index of the last round in the array for that pathway. If it is, then the results page will be displayed, if not, then the next round will be displayed. (eg. restaurant pathway, round 1: restaurant, cinema, bar. round 2: mexican, chinese, italian, indian, burger, thai. round 3: £, ££, £££. round 4: results page.)
   ]);
 
 
   
-
+// this maps through all the rounds and maps through all the options in the round then returns an array of the names of the options that have a score of 1 or more. This is then passed down to the results page and used to display the results of the vote.
   let currentResults = rounds.map((round) => {
     return round.map((option) => {
      if (option.score >= 1) {return option.name;} else {return null;}
@@ -127,9 +115,7 @@ function App() {
 
 
 
-  
-
-
+//this is the call to supabase
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,7 +124,6 @@ function App() {
         .select()
         .eq("venue_type", filters.venue_type)
         .eq("cuisine_type", filters.cuisine_type)
-        .eq("cost_rating", filters.cost_rating);
 
       if (error) {
         setFetchError("could not fetch venues");
@@ -186,7 +171,6 @@ function App() {
 
               venueData={venueData}
               setFilter={setFilter}
-              roundType={roundTypes}
               filters={filters}
               voteResults={voteResults}
               setVoteResults={setVoteResults}
