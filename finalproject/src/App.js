@@ -12,7 +12,7 @@ import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 // import PreFilterSVG from "./pages/PreFilterPage/PreFilterSVG";
 const initialRounds = {
   round1: [
-    { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, currentRound: "round1", nextRoundID: "res1" },
+    { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "res1" },
     { id: 2, name: "Cinema", roundLabel: "venue_type", score: 0, nextRoundID: "" },
     { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "" },
   ],
@@ -27,8 +27,10 @@ const initialRounds = {
 };
 function App() {
   const navigate = useNavigate();
+  //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentRoundID, setCurrentRoundID] = useState("round1");
+  //this is selected option name that is passed down to the results page and displayed.
   const [currentResult, setTheCurrentResult] = useState(null);
 
   // useState for setting the error when fetching data from Supabase
@@ -37,6 +39,10 @@ function App() {
   const [venueData, setVenueData] = useState(null);
 
   //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
+  //this is the array of rounds that is used to display the options on the vote screen. The score is used to determine which option has been selected. The roundLabel is used to determine which filter to apply to the data from supabase.
+  const [rounds, setRounds] = useState(initialRounds);
+
+  const currentRound = rounds[currentRoundID];
 
   //filters to be interpolated into the query - prefilters are set from the prefilter page and filters are set from the vote screen
   const [prefilters, setpreFilters] = useState({
@@ -78,18 +84,13 @@ function App() {
     setRounds(initialRounds);
   }
 
-  //this is the array of rounds that is used to display the options on the vote screen. The score is used to determine which option has been selected. The roundLabel is used to determine which filter to apply to the data from supabase.
-  const [rounds, setRounds] = useState(initialRounds);
 
-  const currentRound = rounds[currentRoundID];
-
-  //this function is called in the vote screen and it takes in the option name and sets the current result to the option name. This is then passed down to the results page and displayed.
+  //this function is called in the vote screen by the handleVote function which is called by the option buttons on the vote screen. It takes in the option name and sets the current result state to the option name. This is then passed down to the results page and displayed.
   function setCurrentResult(optionname) {
     setTheCurrentResult(optionname);
   }
 
   //this is the call to supabase
-
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await supabase
@@ -112,12 +113,12 @@ function App() {
     fetchData();
   }, [currentRound, filters, fetchError]);
 
+  //this function is triggered by the next button on the vote screen.
   function handleNextRound() {
     const currentOption = currentRound.find(
       (option) => option.id === selectedOption
     );
     const nextRoundID = currentOption.nextRoundID;
-
     if (nextRoundID === "") {
       navigate("/finalresult");
     } else {

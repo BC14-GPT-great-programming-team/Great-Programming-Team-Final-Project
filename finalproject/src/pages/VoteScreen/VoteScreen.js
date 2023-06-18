@@ -20,7 +20,6 @@ export default function VoteScreen({
   // isNextDisabled is a boolean that determines whether the Next button is disabled
   const [isNextDisabled, setIsNextDisabled] = useState(true);
  
-
   // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
   function handleVote(optionid, optionname, roundLabel) {
     if (selectedOption === optionid) {
@@ -41,11 +40,9 @@ export default function VoteScreen({
   }
 
   // updateOptionScore takes in the id of the option that we want to update the score of
-  // and the increment that we want to update the score by
-  // it updates the score of the option in the rounds array
+  // and the increment that we want to update the score by (either 1 or -1)
   function updateOptionScore(optionid, increment) {
     const updatedRounds = { ...rounds }; // Create a shallow copy of the rounds object
-  
     // Loop through each round in the updatedRounds object
     Object.keys(updatedRounds).forEach((roundKey) => {
       updatedRounds[roundKey] = updatedRounds[roundKey].map((option) => {
@@ -59,7 +56,6 @@ export default function VoteScreen({
         }
       });
     });
-  
     setRounds(updatedRounds);
   }
 
