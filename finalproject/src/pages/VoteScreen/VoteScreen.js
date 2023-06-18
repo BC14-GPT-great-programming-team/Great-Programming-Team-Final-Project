@@ -13,7 +13,8 @@ export default function VoteScreen({
   setSelectedOption,
   setCurrentResult,
   setTheCurrentResult,
-  currentResult
+  currentResult,
+  currentRoundID
 }) {
   const navigate = useNavigate();
   
@@ -68,7 +69,7 @@ export default function VoteScreen({
   const isOptionSelected = selectedOption !== null;
   return (
     <div className="voteScreen">
-      <h1>Voting Page</h1>
+      <h1>Pick your {currentRoundID}</h1>
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
       */}
       {currentRound && currentRound.map((option) => (

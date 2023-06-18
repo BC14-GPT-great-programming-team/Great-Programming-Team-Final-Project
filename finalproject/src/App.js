@@ -1,3 +1,6 @@
+//import rounds to use useContext
+import { RoundsProvider, useRounds } from './roundData';
+
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
@@ -10,26 +13,28 @@ import FinalResults from "./pages/FinalResults/FinalResults";
 import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 // Green dynamic background can be applied to every page with below
 // import PreFilterSVG from "./pages/PreFilterPage/PreFilterSVG";
-const initialRounds = {
-  round1: [
-    { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "res1" },
-    { id: 2, name: "Cinema", roundLabel: "venue_type", score: 0, nextRoundID: "" },
-    { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "" },
-  ],
-  res1: [
-    { id: 4, name: "Mexican", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-    { id: 5, name: "Chinese", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-    { id: 6, name: "Italian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-    { id: 7, name: "Indian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-    { id: 8, name: "Burger", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-    { id: 9, name: "Thai", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-  ],
-};
+// const initialRounds = {
+//   round1: [
+//     { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "res1" },
+//     { id: 2, name: "Cinema", roundLabel: "venue_type", score: 0, nextRoundID: "" },
+//     { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "" },
+//   ],
+//   res1: [
+//     { id: 4, name: "Mexican", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
+//     { id: 5, name: "Chinese", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
+//     { id: 6, name: "Italian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
+//     { id: 7, name: "Indian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
+//     { id: 8, name: "Burger", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
+//     { id: 9, name: "Thai", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
+//   ],
+// };
 function App() {
+  //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
+  const initialRounds = useRounds();
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
-  const [currentRoundID, setCurrentRoundID] = useState("round1");
+  const [currentRoundID, setCurrentRoundID] = useState("Activity");
   //this is selected option name that is passed down to the results page and displayed.
   const [currentResult, setTheCurrentResult] = useState(null);
 
@@ -78,7 +83,7 @@ function App() {
       cost_rating: null,
     });
     setSelectedOption(null);
-    setCurrentRoundID("round1");
+    setCurrentRoundID("Activity");
     setTheCurrentResult(null);
     navigate("/");
     setRounds(initialRounds);
@@ -113,7 +118,7 @@ function App() {
     fetchData();
   }, [currentRound, filters, fetchError]);
 
-  //this function is triggered by the next button on the vote screen.
+  //this function is triggered by the next button on the results screen.
   function handleNextRound() {
     const currentOption = currentRound.find(
       (option) => option.id === selectedOption
@@ -147,6 +152,7 @@ function App() {
             setFilter={setFilter}
             currentResult={currentResult}
             setTheCurrentResult={setTheCurrentResult}
+            currentRoundID={currentRoundID}
           />
         }
       />
@@ -178,7 +184,9 @@ function App() {
 function Root() {
   return (
     <BrowserRouter>
-      <App />
+      <RoundsProvider>
+    <App />
+  </RoundsProvider>
       {/* <PreFilterSVG /> */}
     </BrowserRouter>
   );
