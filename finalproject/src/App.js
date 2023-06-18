@@ -34,7 +34,7 @@ function App() {
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
-  const [currentRoundID, setCurrentRoundID] = useState("Activity");
+  const [currentRoundID, setCurrentRoundID] = useState("An Activity");
   //this is selected option name that is passed down to the results page and displayed.
   const [currentResult, setTheCurrentResult] = useState(null);
 
@@ -83,7 +83,7 @@ function App() {
       cost_rating: null,
     });
     setSelectedOption(null);
-    setCurrentRoundID("Activity");
+    setCurrentRoundID("An Activity");
     setTheCurrentResult(null);
     navigate("/");
     setRounds(initialRounds);
