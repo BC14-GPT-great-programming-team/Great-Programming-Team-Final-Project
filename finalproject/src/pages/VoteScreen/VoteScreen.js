@@ -7,17 +7,17 @@ import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 export default function VoteScreen({
   rounds,
   setRounds,
-  roundCount,
   venueData,
   setFilter,
   filters,
   setVoteResults,
   currentResults,
+  currentRound,
+  selectedOption,
+  setSelectedOption,
 }) {
-  // currentRound is an array of objects that represent the options for the current round
-  const currentRound = rounds[roundCount];
-  // selectedOption is the id of the option that the user has selected
-  const [selectedOption, setSelectedOption] = useState(null);
+  
+  
   // isNextDisabled is a boolean that determines whether the Next button is disabled
   const [isNextDisabled, setIsNextDisabled] = useState(true);
   venueData && console.log(venueData);

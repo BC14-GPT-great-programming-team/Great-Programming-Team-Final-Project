@@ -13,8 +13,9 @@ import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 
 function App() {
   const navigate = useNavigate();
-  // useState for setting the round count in the currentRound variable in VoteScreen.js
-  const [roundCount, setRoundCount] = useState(0);
+
+  const [currentRoundID, setCurrentRoundID] = useState("round1");
+
 
   // useState for setting the error when fetching data from Supabase
   const [fetchError, setFetchError] = useState(null);
@@ -22,10 +23,10 @@ function App() {
   const [venueData, setVenueData] = useState(null);
 
   //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
-  
+
   const [voteResults, setVoteResults] = useState([]);
 
-  //filters to be interpolated into the query
+  //filters to be interpolated into the query - prefilters are set from the prefilter page and filters are set from the vote screen
   const [prefilters, setpreFilters] = useState({
     halal_options: null,
     vegan_options: null,
@@ -42,11 +43,6 @@ function App() {
     cost_rating: null,
   });
 
-
-
-
-
-
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
 
   function setFilter(optionName, value) {
@@ -56,78 +52,84 @@ function App() {
     }));
   }
 
-
-  function handleRestart(){
+  // function is triggered by Restart button on the final Results page and it resets everything to the initial state.
+  function handleRestart() {
     setFilters({
-      venue_type:null,
-      cuisine_type:null,
-      cost_rating:null,
-    })
-    setRoundCount(0);
+      venue_type: null,
+      cuisine_type: null,
+      cost_rating: null,
+    });
+    setCurrentRoundID("round1");
     console.log(`before the reset ${voteResults}`);
     setVoteResults([]);
     console.log(`after the reset ${voteResults}`);
     navigate("/");
     setRounds([
       [
-        { id: 1, name: "Restaurant",roundLabel:"venue_type", score: 0 },
-        { id: 2, name: "Cinema",roundLabel:"venue_type", score: 0 },
-        { id: 3, name: "Bar",roundLabel:"venue_type", score: 0 },
+        { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0 },
+        { id: 2, name: "Cinema", roundLabel: "venue_type", score: 0 },
+        { id: 3, name: "Bar", roundLabel: "venue_type", score: 0 },
       ],
       [
-        { id: 4, name: "Mexican",roundLabel:"cuisine_type", score: 0 },
-        { id: 5, name: "Chinese",roundLabel:"cuisine_type", score: 0 },
-        { id: 6, name: "Italian",roundLabel:"cuisine_type", score: 0 },
-        { id: 7, name: "Indian",roundLabel:"cuisine_type", score: 0 },
-        { id: 8, name: "Burger",roundLabel:"cuisine_type", score: 0 },
-        { id: 9, name: "Thai",roundLabel:"cuisine_type", score: 0 },
+        { id: 4, name: "Mexican", roundLabel: "cuisine_type", score: 0 },
+        { id: 5, name: "Chinese", roundLabel: "cuisine_type", score: 0 },
+        { id: 6, name: "Italian", roundLabel: "cuisine_type", score: 0 },
+        { id: 7, name: "Indian", roundLabel: "cuisine_type", score: 0 },
+        { id: 8, name: "Burger", roundLabel: "cuisine_type", score: 0 },
+        { id: 9, name: "Thai", roundLabel: "cuisine_type", score: 0 },
       ],
-  
-    ])
+    ]);
   }
 
-  const [rounds, setRounds] = useState([
-    [
-      { id: 1, name: "Restaurant",roundLabel:"venue_type", score: 0 },
-      { id: 2, name: "Cinema",roundLabel:"venue_type", score: 0 },
-      { id: 3, name: "Bar",roundLabel:"venue_type", score: 0 },
+  //this is the array of rounds that is used to display the options on the vote screen. The score is used to determine which option has been selected. The roundLabel is used to determine which filter to apply to the data from supabase.
+  const [rounds, setRounds] = useState({
+    round1: [
+      {
+        id: 1,
+        name: "Restaurant",
+        roundLabel: "venue_type",
+        score: 0, currentRound: "round1",
+        nextRoundID: "restaurant1 "
+      },
+      { id: 2, name: "Cinema", roundLabel: "venue_type", score: 0 ,nextRoundID: ""},
+      { id: 3, name: "Bar", roundLabel: "venue_type", score: 0 },
     ],
-    [
-      { id: 4, name: "Mexican",roundLabel:"cuisine_type", score: 0 },
-      { id: 5, name: "Chinese",roundLabel:"cuisine_type", score: 0 },
-      { id: 6, name: "Italian",roundLabel:"cuisine_type", score: 0 },
-      { id: 7, name: "Indian",roundLabel:"cuisine_type", score: 0 },
-      { id: 8, name: "Burger",roundLabel:"cuisine_type", score: 0 },
-      { id: 9, name: "Thai",roundLabel:"cuisine_type", score: 0 },
+    restaurant1: [
+      { id: 4, name: "Mexican", roundLabel: "cuisine_type", score: 0 },
+      { id: 5, name: "Chinese", roundLabel: "cuisine_type", score: 0 },
+      { id: 6, name: "Italian", roundLabel: "cuisine_type", score: 0 },
+      { id: 7, name: "Indian", roundLabel: "cuisine_type", score: 0 },
+      { id: 8, name: "Burger", roundLabel: "cuisine_type", score: 0 },
+      { id: 9, name: "Thai", roundLabel: "cuisine_type", score: 0 },
     ],
-
-  ]);
-
-
-  
-// this maps through all the rounds and maps through all the options in the round then returns an array of the names of the options that have a score of 1 or more. This is then passed down to the results page and used to display the results of the vote.
-  let currentResults = rounds.map((round) => {
-    return round.map((option) => {
-     if (option.score >= 1) {return option.name;} else {return null;}
-  
-    });
   });
 
-
-
-//this is the call to supabase
-
+  
+  // this maps through all the rounds and maps through all the options in the round then returns an array of the names of the options that have a score of 1 or more. This is then passed down to the results page and used to display the results of the vote.
+  let currentResults = rounds.map((round) => {
+    return round.map((option) => {
+      if (option.score >= 1) {
+        return option.name;
+      } else {
+        return null;
+      }
+    });
+  });
+  
+  //this is the call to supabase
+  const currentRound = rounds[currentRoundID];
+  
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await supabase
-        .from("venues")
-        .select()
-        .eq("venue_type", filters.venue_type)
-        .eq("cuisine_type", filters.cuisine_type)
-
+      .from("venues")
+      .select()
+      .eq("venue_type", filters.venue_type)
+      .eq("cuisine_type", filters.cuisine_type);
+      
       if (error) {
         setFetchError("could not fetch venues");
-
+        
         console.log(fetchError);
       }
       if (data) {
@@ -137,67 +139,68 @@ function App() {
       }
     };
     fetchData();
-
-  }, [roundCount,filters,fetchError])
-
-
-  //this function is passed down to the results page and is triggered by the next button. It adds 1 to the round count which will then be used to determine which round is displayed in the vote screen.
-
+  }, [currentRound, filters, fetchError]);
+  
+  const [selectedOption, setSelectedOption] = useState(null);
+  
   function handleNextRound() {
-
-    if (roundCount === rounds.length - 1) {
+    if (currentRound.nextRoundID === "") {
       navigate("/finalresult");
     } else {
-      setRoundCount(roundCount + 1);
+      setCurrentRoundID(currentRoundID.nextRoundID);
       navigate("/votescreen");
     }
   }
 
   return (
-
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/create-join" element={<CreateJoinGroup />} />
       <Route path="/join-group" element={<JoinGroup />} />
 
-
-        <Route
-          path="/votescreen"
-          element={
-            <VoteScreen
-              rounds={rounds}
-              setRounds={setRounds}
-              roundCount={roundCount}
-
-              venueData={venueData}
-              setFilter={setFilter}
-              filters={filters}
-              voteResults={voteResults}
-              setVoteResults={setVoteResults}
-              currentResults={currentResults}
-
-            />
-          }
-        />
-        <Route
-          path="/results"
-          element={
-            <Results
-              handleNextRound={handleNextRound}
-              rounds={rounds}
-              roundCount={roundCount}
-              venueData={venueData}
-              voteResults={voteResults}
-            />
-          }
-        />
-        <Route path="/finalresult" element={<FinalResults venueData={venueData} handleRestart={handleRestart}/>} />
- <Route path="/prefilter" element={<PreFilter prefilters={prefilters} 
-        setpreFilters={setpreFilters}
-      />} />
-      
-      </Routes>
-    
+      <Route
+        path="/votescreen"
+        element={
+          <VoteScreen
+          selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+            rounds={rounds}
+            setRounds={setRounds}
+            currentRound={currentRound}
+            venueData={venueData}
+            setFilter={setFilter}
+            filters={filters}
+            voteResults={voteResults}
+            setVoteResults={setVoteResults}
+            currentResults={currentResults}
+          />
+        }
+      />
+      <Route
+        path="/results"
+        element={
+          <Results
+            handleNextRound={handleNextRound}
+            rounds={rounds}
+            currentRoundID={currentRoundID}
+            venueData={venueData}
+            voteResults={voteResults}
+          />
+        }
+      />
+      <Route
+        path="/finalresult"
+        element={
+          <FinalResults venueData={venueData} handleRestart={handleRestart} />
+        }
+      />
+      <Route
+        path="/prefilter"
+        element={
+          <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} />
+        }
+      />
+    </Routes>
   );
 }
 
