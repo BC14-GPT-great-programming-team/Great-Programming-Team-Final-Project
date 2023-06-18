@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./VoteScreen.css";
 import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
@@ -7,20 +7,19 @@ import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 export default function VoteScreen({
   rounds,
   setRounds,
-  venueData,
   setFilter,
-  filters,
-  setVoteResults,
-  currentResults,
   currentRound,
   selectedOption,
   setSelectedOption,
+  setCurrentResult,
+  setTheCurrentResult,
+  currentResult
 }) {
-  
+  const navigate = useNavigate();
   
   // isNextDisabled is a boolean that determines whether the Next button is disabled
   const [isNextDisabled, setIsNextDisabled] = useState(true);
-  venueData && console.log(venueData);
+ 
 
   // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
   function handleVote(optionid, optionname, roundLabel) {
@@ -30,14 +29,14 @@ export default function VoteScreen({
       setSelectedOption(null);
       setIsNextDisabled(true);
       updateOptionScore(optionid, -1);
-      console.log(filters);
+      setCurrentResult(null);
     } else {
       // Select the option
       setFilter(roundLabel, optionname);
       setSelectedOption(optionid);
       setIsNextDisabled(false);
       updateOptionScore(optionid, 1);
-      console.log(filters);
+      setCurrentResult(optionname);
     }
   }
 
@@ -45,8 +44,11 @@ export default function VoteScreen({
   // and the increment that we want to update the score by
   // it updates the score of the option in the rounds array
   function updateOptionScore(optionid, increment) {
-    const updatedRounds = rounds.map((round) => {
-      return round.map((option) => {
+    const updatedRounds = { ...rounds }; // Create a shallow copy of the rounds object
+  
+    // Loop through each round in the updatedRounds object
+    Object.keys(updatedRounds).forEach((roundKey) => {
+      updatedRounds[roundKey] = updatedRounds[roundKey].map((option) => {
         if (option.id === optionid) {
           return {
             ...option,
@@ -57,12 +59,14 @@ export default function VoteScreen({
         }
       });
     });
+  
     setRounds(updatedRounds);
   }
 
   //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
   function handleVoteResult() {
-    setVoteResults(currentResults);
+    setTheCurrentResult(currentResult);
+      navigate("/results");
   }
 
   const isOptionSelected = selectedOption !== null;
@@ -71,7 +75,7 @@ export default function VoteScreen({
       <h1>Voting Page</h1>
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
       */}
-      {currentRound.map((option) => (
+      {currentRound && currentRound.map((option) => (
         <button
           key={option.id}
           onClick={() => handleVote(option.id, option.name, option.roundLabel)}
@@ -90,7 +94,7 @@ export default function VoteScreen({
       ))}
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
-      <Link to="/results">
+      
         <button
           className="nextBtn"
           onClick={handleVoteResult}
@@ -101,7 +105,7 @@ export default function VoteScreen({
         >
           Next
         </button>
-      </Link>
+      
       <PreFilterSVG />
     </div>
   );
