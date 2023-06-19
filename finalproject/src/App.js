@@ -8,6 +8,7 @@ import JoinGroup from "./pages/JoinGroup/JoinGroup";
 import supabase from "./supabaseClient";
 import FinalResults from "./pages/FinalResults/FinalResults";
 import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
+import CreateGroup from "./pages/CreateGroup/CreateGroup";
 // Green dynamic background can be applied to every page with below
 // import PreFilterSVG from "./pages/PreFilterPage/PreFilterSVG";
 
@@ -211,9 +212,11 @@ function App() {
  <Route path="/prefilter" element={<PreFilter prefilters={prefilters} 
         setpreFilters={setpreFilters}
       />} />
-      
+      <Route path="/creategroup" 
+      element={
+        <CreateGroup/>} />
       </Routes>
-    
+      
   );
 }
 

@@ -9,10 +9,15 @@ function CreateJoinGroup() {
   return (
     <div className="createJoinGroup">
       
+      <Link to="/creategroup"> 
       <Button btnText="Create Group" />
+      </Link>
+      
       <Link to="/join-group">
+      
       <Button btnText="Join Group" />
       </Link>
+      
     </div>
   );
 }
