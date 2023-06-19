@@ -29,6 +29,16 @@ import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 //   ],
 // };
 function App() {
+
+  fetch(`http://localhost:8888/.netlify/functions/votehandler`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error('THIS IS OUR ERROR:', error);
+  });
+
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
   const navigate = useNavigate();
