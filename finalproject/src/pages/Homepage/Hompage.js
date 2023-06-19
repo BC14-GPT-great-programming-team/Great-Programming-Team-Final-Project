@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 // import logoImage from "../../Assets/logo_test_2.jpg";
 import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
-import { FaUsers, FaDharmachakra } from "react-icons/fa";
+// import { FaUsers, FaDharmachakra } from "react-icons/fa";
 
 function Homepage() {
   return (
@@ -14,7 +14,7 @@ function Homepage() {
       <h1>
         Consens<span>U</span>s
       </h1>
-      <FaUsers className="icon" />
+      {/* <FaUsers className="icon" /> */}
       <h4>The Ultimate Decision Maker</h4>
 
       <Link to="/prefilter">
@@ -30,7 +30,7 @@ function Homepage() {
         <Button
           className="homepageBtn bounceThree"
           btnText="Spin The Wheel   "
-          icon={<FaDharmachakra />}
+          // icon={<FaDharmachakra />}
         />
       </div>
       <p>"Saving your friendships one decision at a time!"</p>
