@@ -1,0 +1,13 @@
+/* CSS for Home Button */
+
+.homeBtn {
+  background: none;
+  box-shadow: none;
+  width: 20px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 30px;
+  color: #666;
+  top: 20px;
+  left: 20px;
+}

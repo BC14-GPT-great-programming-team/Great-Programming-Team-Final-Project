@@ -1,5 +1,5 @@
 //import rounds to use useContext
-import { RoundsProvider, useRounds } from './roundData';
+import { RoundsProvider, useRounds } from "./roundData";
 
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
@@ -11,23 +11,10 @@ import JoinGroup from "./pages/JoinGroup/JoinGroup";
 import supabase from "./supabaseClient";
 import FinalResults from "./pages/FinalResults/FinalResults";
 import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
+import CreateGroup from "./pages/CreateGroup/CreateGroup";
+import Lobby from "./pages/Lobby/Lobby";
 // Green dynamic background can be applied to every page with below
-// import PreFilterSVG from "./pages/PreFilterPage/PreFilterSVG";
-// const initialRounds = {
-//   round1: [
-//     { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "res1" },
-//     { id: 2, name: "Cinema", roundLabel: "venue_type", score: 0, nextRoundID: "" },
-//     { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "" },
-//   ],
-//   res1: [
-//     { id: 4, name: "Mexican", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 5, name: "Chinese", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 6, name: "Italian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 7, name: "Indian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 8, name: "Burger", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 9, name: "Thai", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//   ],
-// };
+
 function App() {
 
   async function fetchVoteHandler() {
@@ -40,6 +27,8 @@ function App() {
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
+  
+
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
@@ -97,7 +86,6 @@ function App() {
     navigate("/");
     setRounds(initialRounds);
   }
-
 
   //this function is called in the vote screen by the handleVote function which is called by the option buttons on the vote screen. It takes in the option name and sets the current result state to the option name. This is then passed down to the results page and displayed.
   function setCurrentResult(optionname) {
@@ -186,6 +174,10 @@ function App() {
           <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} />
         }
       />
+     
+      <Route path="/creategroup" element={<CreateGroup />} />
+
+      <Route path="/lobby" element={<Lobby />} />
     </Routes>
   );
 }
@@ -194,8 +186,8 @@ function Root() {
   return (
     <BrowserRouter>
       <RoundsProvider>
-    <App />
-  </RoundsProvider>
+        <App />
+      </RoundsProvider>
       {/* <PreFilterSVG /> */}
     </BrowserRouter>
   );
