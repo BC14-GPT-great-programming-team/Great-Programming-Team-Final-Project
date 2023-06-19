@@ -1,5 +1,5 @@
 //import rounds to use useContext
-import { RoundsProvider, useRounds } from './roundData';
+import { RoundsProvider, useRounds } from "./roundData";
 
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
@@ -91,7 +91,6 @@ function App() {
     setRounds(initialRounds);
   }
 
-
   //this function is called in the vote screen by the handleVote function which is called by the option buttons on the vote screen. It takes in the option name and sets the current result state to the option name. This is then passed down to the results page and displayed.
   function setCurrentResult(optionname) {
     setTheCurrentResult(optionname);
@@ -179,14 +178,9 @@ function App() {
           <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} />
         }
       />
-      <Route path="/creategroup" 
-      element={
-        <CreateGroup/>} />
-      
-      <Route path="/Lobby" 
-      element={
-        <Lobby/>} />
-      
+      <Route path="/creategroup" element={<CreateGroup />} />
+
+      <Route path="/lobby" element={<Lobby />} />
     </Routes>
   );
 }
@@ -195,8 +189,8 @@ function Root() {
   return (
     <BrowserRouter>
       <RoundsProvider>
-    <App />
-  </RoundsProvider>
+        <App />
+      </RoundsProvider>
       {/* <PreFilterSVG /> */}
     </BrowserRouter>
   );
