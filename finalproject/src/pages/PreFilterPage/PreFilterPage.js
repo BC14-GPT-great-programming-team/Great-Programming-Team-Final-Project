@@ -1,10 +1,11 @@
 import "./PreFilterPage.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
 import Dropdown from "../../Components/Button/DropDown/DropDown";
 import DropdownCost from "../../Components/DropDownCost/DropDownCost";
 import PreFilterSVG from "./PreFilterSVGGreen";
+import HomeButton from "../../Components/HomeButton/HomeButton";
 
 function PreFilter({ setpreFilters, prefilters }) {
   const navigate = useNavigate();
@@ -58,13 +59,16 @@ function PreFilter({ setpreFilters, prefilters }) {
 
   return (
     <div className="preFilter">
+      <Link to="/">
+        <HomeButton />
+      </Link>
       <h2>Select Filters</h2>
       <p>If no filters needed, press Next</p>
       <h2>Enter Location</h2>
       <form onSubmit={handleNameSubmit}>
         <div>
           <input
-          className="locationInput"
+            className="locationInput"
             type="text"
             name="name"
             value={userInput.location}
@@ -91,8 +95,8 @@ function PreFilter({ setpreFilters, prefilters }) {
         <ToggleSwitch />
 
         <button
-          className='preFilterBtn'
-          style={{backgroundColor: inputValid ? "#c5a7cb" :"#ea9c90"}}
+          className="preFilterBtn"
+          style={{ backgroundColor: inputValid ? "#c5a7cb" : "#ea9c90" }}
           disabled={!inputValid}
           type="submit"
         >
