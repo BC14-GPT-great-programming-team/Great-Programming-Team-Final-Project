@@ -1,3 +1,5 @@
+//this is the vote handler function that will work on the server
+
 exports.handler = async function (event, context) {
     try {
         const data = {message: "Hello from the serverless function"};
