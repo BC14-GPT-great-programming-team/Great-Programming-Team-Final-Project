@@ -30,7 +30,7 @@ import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 // };
 function App() {
 
-  fetch(`http://localhost:8888/.netlify/functions/votehandler`)
+  fetch(`http://localhost:8888/.netlify/finalproject/functions/votehandler`)
   .then(response => response.json())
   .then(data => {
     console.log(data);
