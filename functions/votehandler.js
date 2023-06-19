@@ -1,10 +1,11 @@
 exports.handler = async function (event, context) {
     try {
-        //put our function here later
+        const data = {message: "Hello from the serverless function"};
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ message: "Hello from the serverless function" }),
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify(data),
         };
     } catch (error) {
         console.error(`Error occurred`, error);
@@ -13,4 +14,4 @@ exports.handler = async function (event, context) {
             body: JSON.stringify({ error: `Something went wrong` }),
         };
     }
-}
+};
