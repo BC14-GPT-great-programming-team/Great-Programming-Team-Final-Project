@@ -12,6 +12,7 @@ import supabase from "./supabaseClient";
 import FinalResults from "./pages/FinalResults/FinalResults";
 import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 import CreateGroup from "./pages/CreateGroup/CreateGroup";
+import Lobby from "./pages/Lobby/Lobby";
 // Green dynamic background can be applied to every page with below
 // import PreFilterSVG from "./pages/PreFilterPage/PreFilterSVG";
 // const initialRounds = {
@@ -182,6 +183,9 @@ function App() {
       element={
         <CreateGroup/>} />
       
+      <Route path="/Lobby" 
+      element={
+        <Lobby/>} />
       
     </Routes>
   );

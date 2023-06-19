@@ -11,8 +11,9 @@ function JoinGroup() {
       </Link>
       <input placeholder="Enter Code" />
       <input placeholder="Enter Name" />
-
+      <Link to="/lobby">
       <Button btnText="NEXT" />
+      </Link>
     </div>
   );
 }
