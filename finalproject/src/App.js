@@ -31,7 +31,7 @@ import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 function App() {
 
   async function fetchVoteHandler() {
-    const response = await fetch(`http://localhost:8888/netlify/functions/votehandler`);
+    const response = await fetch(`http://localhost:8888/.netlify/functions/votehandler`);
     const data = await response.json();
     console.log(data);
   }
