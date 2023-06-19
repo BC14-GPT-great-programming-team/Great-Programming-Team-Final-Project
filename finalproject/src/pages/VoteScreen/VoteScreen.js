@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./VoteScreen.css";
 import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
@@ -7,51 +7,46 @@ import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 export default function VoteScreen({
   rounds,
   setRounds,
-  roundCount,
-  venueData,
   setFilter,
-  roundType,
-  filters,
-  voteResults,
-  setVoteResults,
-  currentResults,
+  currentRound,
+  selectedOption,
+  setSelectedOption,
+  setCurrentResult,
+  setTheCurrentResult,
+  currentResult,
+  currentRoundID
 }) {
-  // currentRound is an array of objects that represent the options for the current round
-  const currentRound = rounds[roundCount];
-  // selectedOption is the id of the option that the user has selected
-  const [selectedOption, setSelectedOption] = useState(null);
+  const navigate = useNavigate();
+  
   // isNextDisabled is a boolean that determines whether the Next button is disabled
   const [isNextDisabled, setIsNextDisabled] = useState(true);
-  venueData && console.log(venueData);
-
-  // in handleVote we take in the id of the option that the user has selected
-  // if the option is already selected, we deselect it
-  // if the option is not selected, we select it
-  // we also update the score of the option
-  function handleVote(optionid, optionname) {
+ 
+  // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
+  function handleVote(optionid, optionname, roundLabel) {
     if (selectedOption === optionid) {
       // Deselect the option
-      setFilter(roundType[roundCount], null);
+      setFilter(roundLabel, null);
       setSelectedOption(null);
       setIsNextDisabled(true);
       updateOptionScore(optionid, -1);
-      console.log(filters);
+      setCurrentResult(null);
     } else {
       // Select the option
-      setFilter(roundType[roundCount], optionname);
+      setFilter(roundLabel, optionname);
       setSelectedOption(optionid);
       setIsNextDisabled(false);
       updateOptionScore(optionid, 1);
-      console.log(filters);
+      setCurrentResult(optionname);
     }
   }
 
   // updateOptionScore takes in the id of the option that we want to update the score of
-  // and the increment that we want to update the score by
-  // it updates the score of the option in the rounds array
+  // and the increment that we want to update the score by (either 1 or -1)
   function updateOptionScore(optionid, increment) {
-    const updatedRounds = rounds.map((round) => {
-      return round.map((option) => {
+    const updatedRounds = { ...rounds }; // Create a shallow copy of the rounds object
+    // Loop through each round in the updatedRounds object
+    Object.keys(updatedRounds).forEach((roundKey) => {
+      updatedRounds[roundKey] = updatedRounds[roundKey].map((option) => {
         if (option.id === optionid) {
           return {
             ...option,
@@ -65,20 +60,22 @@ export default function VoteScreen({
     setRounds(updatedRounds);
   }
 
+  //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
   function handleVoteResult() {
-    setVoteResults(currentResults);
+    setTheCurrentResult(currentResult);
+      navigate("/results");
   }
 
   const isOptionSelected = selectedOption !== null;
   return (
     <div className="voteScreen">
-      <h1>Voting Page</h1>
-      {/* so the below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
-      The button that is selected turns purple and the text turns white when clicked(currently) The button also triggers the handleVote function which takes in an argument of the id from the object that it is currently mapping*/}
-      {currentRound.map((option) => (
+      <h1>Pick {currentRoundID}</h1>
+      {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
+      */}
+      {currentRound && currentRound.map((option) => (
         <button
           key={option.id}
-          onClick={() => handleVote(option.id, option.name)}
+          onClick={() => handleVote(option.id, option.name, option.roundLabel)}
           disabled={
             option.disabled ||
             (isOptionSelected && option.id !== selectedOption)
@@ -94,7 +91,7 @@ export default function VoteScreen({
       ))}
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
-      <Link to="/results">
+      
         <button
           className="nextBtn"
           onClick={handleVoteResult}
@@ -105,7 +102,7 @@ export default function VoteScreen({
         >
           Next
         </button>
-      </Link>
+      
       <PreFilterSVG />
     </div>
   );
