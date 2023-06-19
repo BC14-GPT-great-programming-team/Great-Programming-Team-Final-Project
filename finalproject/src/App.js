@@ -18,7 +18,7 @@ import Lobby from "./pages/Lobby/Lobby";
 function App() {
 
   async function fetchVoteHandler() {
-    const response = await fetch(`http://https://consensusgpt.netlify.app/.netlify/functions/votehandler`);
+    const response = await fetch(`https://consensusgpt.netlify.app/.netlify/functions/votehandler`);
     const data = await response.json();
     console.log(data);
   }
