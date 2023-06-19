@@ -12,7 +12,7 @@ exports.handler = async function (event, context) {
 
         const requestBody = JSON.parse(event.body);
 
-        if (!requestBody.type) {return {
+        if (!requestBody) {return {
           statusCode: 200,
           headers: { "Content-Type": "application/json"},
           message: 'No request type specified',

@@ -22,7 +22,7 @@ function App() {
     const data = await response.json();
     console.log(data);
   }
-  fetchVoteHandler();
+  // fetchVoteHandler();
 
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
