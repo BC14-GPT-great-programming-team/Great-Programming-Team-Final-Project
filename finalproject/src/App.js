@@ -14,25 +14,12 @@ import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 import CreateGroup from "./pages/CreateGroup/CreateGroup";
 import Lobby from "./pages/Lobby/Lobby";
 // Green dynamic background can be applied to every page with below
-// import PreFilterSVG from "./pages/PreFilterPage/PreFilterSVG";
-// const initialRounds = {
-//   round1: [
-//     { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "res1" },
-//     { id: 2, name: "Cinema", roundLabel: "venue_type", score: 0, nextRoundID: "" },
-//     { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "" },
-//   ],
-//   res1: [
-//     { id: 4, name: "Mexican", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 5, name: "Chinese", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 6, name: "Italian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 7, name: "Indian", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 8, name: "Burger", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//     { id: 9, name: "Thai", roundLabel: "cuisine_type", score: 0, nextRoundID: "" },
-//   ],
-// };
+
 function App() {
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
+  
+
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
@@ -178,6 +165,7 @@ function App() {
           <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} />
         }
       />
+     
       <Route path="/creategroup" element={<CreateGroup />} />
 
       <Route path="/lobby" element={<Lobby />} />

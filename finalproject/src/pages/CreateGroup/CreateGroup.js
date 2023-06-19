@@ -7,9 +7,9 @@ import { useState } from "react";
 function CreateGroup() {
   // use navigate
   const navigate = useNavigate();
-
-  // States
   const [userNameInput, setUserNameInput] = useState("");
+  // States
+  // const [userNameInput, setUserNameInput] = useState("");
   const [groupNameInput, setGroupNameInput] = useState("");
   const [userValid, setuserValid] = useState(false);
   const [groupValid, setGroupValid] = useState(false);

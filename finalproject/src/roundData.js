@@ -4,6 +4,8 @@ const RoundsContext = createContext();
 
 export const RoundsProvider = ({ children }) => {
 
+
+
 const initialRounds = {
     'An Activity': [
       { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "A Cuisine" },
@@ -29,7 +31,7 @@ const initialRounds = {
   };
 
   return (
-    <RoundsContext.Provider value={initialRounds}>
+    <RoundsContext.Provider value={{rounds: initialRounds}} >
       {children}
     </RoundsContext.Provider>
   );

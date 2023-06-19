@@ -1,5 +1,4 @@
 // Component for Button
-import { FaArrowRight } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
