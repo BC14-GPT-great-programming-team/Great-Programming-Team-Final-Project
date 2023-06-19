@@ -11,6 +11,7 @@ import JoinGroup from "./pages/JoinGroup/JoinGroup";
 import supabase from "./supabaseClient";
 import FinalResults from "./pages/FinalResults/FinalResults";
 import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
+import CreateGroup from "./pages/CreateGroup/CreateGroup";
 // Green dynamic background can be applied to every page with below
 // import PreFilterSVG from "./pages/PreFilterPage/PreFilterSVG";
 // const initialRounds = {
@@ -139,45 +140,49 @@ function App() {
       <Route path="/create-join" element={<CreateJoinGroup />} />
       <Route path="/join-group" element={<JoinGroup />} />
 
-      <Route
-        path="/votescreen"
-        element={
-          <VoteScreen
-            setCurrentResult={setCurrentResult}
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
-            rounds={rounds}
-            setRounds={setRounds}
-            currentRound={currentRound}
-            setFilter={setFilter}
-            currentResult={currentResult}
-            setTheCurrentResult={setTheCurrentResult}
-            currentRoundID={currentRoundID}
-          />
-        }
-      />
-      <Route
-        path="/results"
-        element={
-          <Results
-            handleNextRound={handleNextRound}
-            currentResult={currentResult}
-          />
-        }
-      />
-      <Route
-        path="/finalresult"
-        element={
-          <FinalResults venueData={venueData} handleRestart={handleRestart} />
-        }
-      />
-      <Route
-        path="/prefilter"
-        element={
-          <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} />
-        }
-      />
-    </Routes>
+
+
+        <Route
+          path="/votescreen"
+          element={
+            <VoteScreen
+              rounds={rounds}
+              setRounds={setRounds}
+              roundCount={roundCount}
+
+              venueData={venueData}
+              setFilter={setFilter}
+              roundType={roundTypes}
+              filters={filters}
+              voteResults={voteResults}
+              setVoteResults={setVoteResults}
+              currentResults={currentResults}
+
+            />
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <Results
+              handleNextRound={handleNextRound}
+              rounds={rounds}
+              roundCount={roundCount}
+              venueData={venueData}
+              voteResults={voteResults}
+            />
+          }
+        />
+        <Route path="/finalresult" element={<FinalResults venueData={venueData} handleRestart={handleRestart}/>} />
+ <Route path="/prefilter" element={<PreFilter prefilters={prefilters} 
+        setpreFilters={setpreFilters}
+      />} />
+      <Route path="/creategroup" 
+      element={
+        <CreateGroup/>} />
+      </Routes>
+      
+
   );
 }
 

@@ -8,11 +8,24 @@ import HomeButton from "../../Components/HomeButton/HomeButton";
 function CreateJoinGroup() {
   return (
     <div className="createJoinGroup">
+
       <HomeButton />
+
+      
+      <Link to="/creategroup"> 
+
       <Button btnText="Create Group" />
-      <Link to="/join-group">
-        <Button btnText="Join Group" />
       </Link>
+      
+      <Link to="/join-group">
+
+        <Button btnText="Join Group" />
+
+      
+      <Button btnText="Join Group" />
+
+      </Link>
+      
     </div>
   );
 }
