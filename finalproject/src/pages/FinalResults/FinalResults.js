@@ -20,7 +20,7 @@ export default function FinalResults({ venueData, handleRestart }) {
           <p>{venueData && venueData[0].address}</p>
 
           <p>{venueData && venueData[0].phone_no}</p>
-          <p>{venueData && venueData[0].address}</p>
+          <p> User rating: {venueData && venueData[0].user_rating}</p>
           <p>{venueData && venueData[0].website_url}</p>
         </div>
         {/* <img src={venueData && venueData[0].image_url} alt="restaurant"></img> */}
