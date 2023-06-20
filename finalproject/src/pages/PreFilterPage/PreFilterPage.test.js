@@ -9,7 +9,7 @@ test if the next button routes to the solo voting screen start when clicked (the
 */
 import { render, screen, fireEvent } from "@testing-library/react";
 import PreFilter from "../PreFilterPage/PreFilterPage.js";
-import { MemoryRouter,Route, Routes  } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import VoteScreen from "../VoteScreen/VoteScreen.js";
 
 //testing to see if the page can be rendered for the pre filter
@@ -50,7 +50,7 @@ test("input value and button state", () => {
 
   //   User Event
   fireEvent.change(locationInput, { target: { value: mockedLocation } });
-  //the fireevent changes the lack of input from empty to that of our mocked location "london" 
+  //the fireevent changes the lack of input from empty to that of our mocked location "london"
   //so that it holds a value within textbox now
 
   //   Final Test to see if Button is enabled
@@ -59,7 +59,10 @@ test("input value and button state", () => {
   //if so it enables the button again and next button is able to be clicked
   expect(nextBtn).toBeEnabled();
 });
+
+// Test that Link to Vote Screen works
 test("link of pre filter to solo voting", () => {
+  const mockedLocation = "London";
   render(
     <MemoryRouter>
       {/* Use Routes!!! for paths */}
@@ -72,12 +75,15 @@ test("link of pre filter to solo voting", () => {
   );
 
   const nextBtn = screen.getByRole("button", { name: "Next" });
+  const locationInput = screen.getByRole("textbox");
   expect(nextBtn).toBeInTheDocument();
-  // Get attribute
-  // expect(soloBtn.getAttribute("to", "/prefilter"));
 
   // Fire User Event
+  fireEvent.change(locationInput, { target: { value: mockedLocation } });
+  expect(locationInput.value).toBe(mockedLocation);
   fireEvent.click(nextBtn);
-  const votingPage = screen.getByRole("button", { name: "Restaurant" });
+
+  //   Check link worked
+  const votingPage = screen.getByRole("heading", { name: "Pick" });
   expect(votingPage).toBeInTheDocument();
 });
