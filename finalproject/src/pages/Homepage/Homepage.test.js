@@ -56,15 +56,15 @@ test("solo link to pre filter", () => {
   const soloBtn = screen.getByRole("button", { name: "Go Solo" });
   expect(soloBtn).toBeInTheDocument();
   // Get attribute
-  // expect(soloBtn.getAttribute("to", "/prefilter")); 
-
-  
+  // expect(soloBtn.getAttribute("to", "/prefilter"));
 
   // Fire User Event
   fireEvent.click(soloBtn);
   const preFilterPage = screen.getByRole("heading", { name: "Select Filters" });
   expect(preFilterPage).toBeInTheDocument();
 });
+
+// Test group mode button links to create join
 test("Group link to create/join", () => {
   render(
     <MemoryRouter>
@@ -72,16 +72,14 @@ test("Group link to create/join", () => {
       <Routes>
         {/* Set the element to the page you want to link to */}
         <Route path="/" element={<Homepage />} />
-        <Route path="/create-join" element={<CreateJoinGroup/>} />
+        <Route path="/create-join" element={<CreateJoinGroup />} />
       </Routes>
     </MemoryRouter>
   );
- const GroupBtn = screen.getByRole("button", { name: "Group Mode" });
+  const GroupBtn = screen.getByRole("button", { name: "Group Mode" });
   expect(GroupBtn).toBeInTheDocument();
-
 
   fireEvent.click(GroupBtn);
   const createGroupPage = screen.getByRole("button", { name: "Create Group" });
   expect(createGroupPage).toBeInTheDocument();
-
-  });
+});
