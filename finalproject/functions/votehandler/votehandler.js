@@ -16,7 +16,7 @@ exports.handler = async function (event, context) {
 
         const {data, error}= await supabase
         .from('users')
-        .insert({username:requestBody.username, user_email:requestBody.user_email})
+        .insert({username:requestBody.username})
         .single()
         .select();
 
@@ -42,7 +42,7 @@ exports.handler = async function (event, context) {
       
         const {data, error}= await supabase
         .from('groups')
-        .insert({group_name:requestBody.group_name})
+        .insert({group_name:requestBody.group_name, created_by:requestBody.user_id})
         .single()
         .select();
 
@@ -57,6 +57,7 @@ exports.handler = async function (event, context) {
           const responseData = {
             message: 'New group created',
             group_id:data.group_id,
+            created_by:data.created_by,
           };
 
         return {

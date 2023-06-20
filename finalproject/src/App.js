@@ -17,8 +17,12 @@ import Lobby from "./pages/Lobby/Lobby";
 
 function App() {
 
+const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+// const serverURL = "http://https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+
+
   async function fetchVoteHandler() {
-    const response = await fetch(`http://localhost:8888/.netlify/functions/votehandler`);
+    const response = await fetch(serverURL);
     const data = await response.json();
     console.log(data);
   }
@@ -27,7 +31,8 @@ function App() {
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
-  
+  const [userid, setUserId] = useState(null);
+  const [groupid, setGroupId] = useState(null);
 
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
@@ -175,7 +180,12 @@ function App() {
         }
       />
      
-      <Route path="/creategroup" element={<CreateGroup />} />
+      <Route path="/creategroup" element={
+      <CreateGroup serverURL={serverURL} 
+                  userid={userid} 
+                  setUserId={setUserId} 
+                  groupid={groupid} 
+                  setGroupId={setGroupId}/>} />
 
       <Route path="/lobby" element={<Lobby />} />
     </Routes>
