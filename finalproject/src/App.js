@@ -18,8 +18,10 @@ import Lobby from "./pages/Lobby/Lobby";
 function App() {
 
 
+
 // const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
  const serverURL = "http://https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+
 
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.

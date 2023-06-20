@@ -12,7 +12,13 @@ exports.handler = async function (event, context) {
 
         const requestBody = JSON.parse(event.body);
 
-        if (requestBody.type === "createUser")  {
+        if (!requestBody) {return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          message: 'No request type specified',
+      };}
+
+        else if (requestBody.type === "createUser")  {
 
         const {data, error}= await supabase
         .from('users')
