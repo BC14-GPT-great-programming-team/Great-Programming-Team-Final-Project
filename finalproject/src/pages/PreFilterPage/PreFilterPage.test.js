@@ -1,6 +1,6 @@
 /*
 render of page from the pre filter -
-test for the next button to not be clicked until location form imput is filled / used
+test for the next button to not be clicked until location form imput is filled / used -
 test if the drop down box choices are selectable 
 test if the toggle for accessiblity (wheelchair) is able to be checked or unchecked on click
 test if the next button routes to the solo voting screen start when clicked (the group hasn't been implemented yet)
@@ -9,7 +9,8 @@ test if the next button routes to the solo voting screen start when clicked (the
 */
 import { render, screen, fireEvent } from "@testing-library/react";
 import PreFilter from "../PreFilterPage/PreFilterPage.js";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { MemoryRouter,Route, Routes  } from "react-router-dom";
+import VoteScreen from "../VoteScreen/VoteScreen.js";
 
 //testing to see if the page can be rendered for the pre filter
 test("render of page for the pre filter", () => {
@@ -58,4 +59,25 @@ test("input value and button state", () => {
   //if so it enables the button again and next button is able to be clicked
   expect(nextBtn).toBeEnabled();
 });
+test("link of pre filter to solo voting", () => {
+  render(
+    <MemoryRouter>
+      {/* Use Routes!!! for paths */}
+      <Routes>
+        {/* Set the element to the page you want to link to */}
+        <Route path="/" element={<PreFilter />} />
+        <Route path="/votescreen" element={<VoteScreen />} />
+      </Routes>
+    </MemoryRouter>
+  );
 
+  const nextBtn = screen.getByRole("button", { name: "Next" });
+  expect(nextBtn).toBeInTheDocument();
+  // Get attribute
+  // expect(soloBtn.getAttribute("to", "/prefilter"));
+
+  // Fire User Event
+  fireEvent.click(nextBtn);
+  const votingPage = screen.getByRole("button", { name: "Restaurant" });
+  expect(votingPage).toBeInTheDocument();
+});
