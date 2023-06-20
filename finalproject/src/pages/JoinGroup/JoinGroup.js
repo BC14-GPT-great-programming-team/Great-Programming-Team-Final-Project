@@ -80,12 +80,12 @@ import { useState } from "react";
         .then((data) => {
           setGroupId(data.group_id);
           setUserId(data.user_id);
-          setGroupName(data.group_name);
           
           const groupUsernamesRequestBody = {
             type: "getGroupMembers",
             group_id: data.group_id,
           };
+          
           fetch(serverURL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -97,6 +97,24 @@ import { useState } from "react";
               setGroupUsernames(data.usernames);
               console.log(groupUsernames)
             });
+
+            const groupNameRequestBody = {
+              type: "getGroupName",
+              group_id: data.group_id,
+            };
+            
+            fetch(serverURL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(groupNameRequestBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                setGroupName(data.group_name);
+               
+              });
+
+
 
           if (userValid && groupValid) {
             navigate("/lobby");
