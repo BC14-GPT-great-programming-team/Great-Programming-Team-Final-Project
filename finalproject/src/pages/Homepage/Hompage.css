@@ -13,7 +13,7 @@
 }
 
 img {
-  width: 55%;
+  width: 35%;
   margin-bottom: 30px;
 }
 
@@ -74,6 +74,6 @@ span {
 }
 
 .motto {
-  font-family: DiloWorld;
-  color: #ea9c90;
+  font-family: SonoVariable;
+  color: #000000;
 }
