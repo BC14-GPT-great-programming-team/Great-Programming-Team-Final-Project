@@ -88,6 +88,7 @@ exports.handler = async function (event, context) {
         message: 'User assigned to group',
         group_id:data.group_id,
         user_id:data.user_id,
+        group_name:data.group_name,
       };
 
       return {

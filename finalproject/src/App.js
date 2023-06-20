@@ -185,7 +185,7 @@ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
                   userid={userid} 
                   setUserId={setUserId} 
                   setGroupId={setGroupId}
-                  setGroupName={setGroupName}      
+                  setGroupName={setGroupName}   
                   />} />
 
       <Route path="/lobby" element={<Lobby />} groupid={groupid} groupName={groupName} />

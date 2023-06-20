@@ -2,16 +2,18 @@
 import Button from "../../Components/Button/Button";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
+
 import "./Lobby.css";
 
-function Lobby({groupid, groupName}) {
+function Lobby({ groupName, groupid}) {
+  
   return (
     <div className="lobby">
       <Link to="/">
         <HomeButton />
       </Link>
 
-      <h2>{groupName}</h2>
+      <h2>{groupName && groupName}</h2>
       <div className="container"></div>
       <br></br>
       <p>Everybody in?</p>
@@ -21,7 +23,7 @@ function Lobby({groupid, groupName}) {
         <p> to begin</p>
       </div>
       <br></br>
-      <p className="roomcode">{groupid}</p>
+      <p className="roomcode">{groupid && groupid}</p>
     </div>
   );
 }

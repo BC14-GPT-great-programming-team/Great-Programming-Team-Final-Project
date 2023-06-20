@@ -72,8 +72,6 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName}) {
     })
       .then((response) => response.json())
       .then((data) => {
-        setGroupId(data.group_id);
-    setGroupName(data.group_name);
 
     const assignUserRequestBody = {
       type: "assignUser",
@@ -88,10 +86,13 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName}) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-    
+        setGroupId(data.group_id);
+        setGroupName(data.group_name);
 
     if (userValid && groupValid) {
-      navigate("/lobby");
+      setTimeout(() => {
+        navigate("/lobby");
+      }, 1000);
     }
   });
 });
