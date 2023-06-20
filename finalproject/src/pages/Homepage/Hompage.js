@@ -3,19 +3,19 @@
 import "./Hompage.css";
 import { Link } from "react-router-dom";
 import Button from "../../Components/Button/Button";
-// import logoImage from "../../Assets/logo_test_2.jpg";
+import consensuslogo from "../../Assets/consensuslogo.png";
 import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 // import { FaUsers, FaDharmachakra } from "react-icons/fa";
 
 function Homepage() {
   return (
     <div className="homepage">
-      {/* <img className="logo" src={logoImage} alt="logo" /> */}
-      <h1>
+      <img className="logo" src={consensuslogo} alt="logo" />
+      {/* <h1>
         Consens<span>U</span>s
       </h1>
       {/* <FaUsers className="icon" /> */}
-      <h4>The Ultimate Decision Maker</h4>
+      {/* <h4>The Ultimate Decision Maker</h4>  */}
 
       <Link to="/prefilter">
         <Button
@@ -33,7 +33,7 @@ function Homepage() {
           // icon={<FaDharmachakra />}
         />
       </div>
-      <p>"Saving your friendships one decision at a time!"</p>
+      <p className="motto">"Saving your friendships one decision at a time!"</p>
       <PreFilterSVG />
     </div>
   );

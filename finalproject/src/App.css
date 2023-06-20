@@ -5,8 +5,32 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  font-family: Multicolore;
+  ;
 }
 
 .nextBtn {
   background-color: #ea9c90;
+}
+
+@font-face {
+  font-family: Inder;
+  src: url(../public/Inder-Regular.ttf);
+}
+@font-face {
+  font-family: DiloWorld;
+  src: url(../public/DiloWorld\ 2.ttf);
+}
+
+@font-face {
+  font-family: Multicolore;
+  src: url(../public/Multicolore\ Pro\ 4.otf);
+}
+@font-face {
+  font-family: Sirukota;
+  src: url(../public/Sirukota.ttf);
+}
+@font-face {
+  font-family: SonoVariable;
+  src: url(../public/SonoVariable.ttf);
 }
