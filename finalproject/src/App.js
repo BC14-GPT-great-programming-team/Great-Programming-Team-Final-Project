@@ -20,15 +20,6 @@ function App() {
 const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 // const serverURL = "http://https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
-
-  async function fetchVoteHandler() {
-    const response = await fetch(serverURL);
-    const data = await response.json();
-    console.log(data);
-  }
-  // fetchVoteHandler();
-
-
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
   const [userid, setUserId] = useState(null);
@@ -140,7 +131,16 @@ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/create-join" element={<CreateJoinGroup />} />
-      <Route path="/join-group" element={<JoinGroup />} />
+      <Route path="/join-group" element={<JoinGroup serverURL={serverURL} 
+      setUserId={setUserId} 
+      setGroupId={setGroupId}
+      userid={userid}
+      setGroupName={setGroupName}
+      setGroupUsernames={setGroupUsernames}
+      groupUsernames={groupUsernames}
+      />
+      } 
+    />
 
       <Route
         path="/votescreen"
