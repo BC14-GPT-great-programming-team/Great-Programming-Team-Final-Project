@@ -17,18 +17,19 @@ import Lobby from "./pages/Lobby/Lobby";
 
 function App() {
 
-  // async function fetchVoteHandler() {
-  //   const response = await fetch(`https://consensusgpt.netlify.app/.netlify/functions/votehandler`);
-  //   const data = await response.json();
-  //   console.log(data);
-  // }
-  // fetchVoteHandler();
+
+
+// const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+ const serverURL = "http://https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+
 
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
-  
-
+  const [userid, setUserId] = useState(null);
+  const [groupid, setGroupId] = useState(null);
+  const [groupName, setGroupName] = useState("");
+  const [groupUsernames, setGroupUsernames] = useState([]);
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
@@ -134,7 +135,16 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/create-join" element={<CreateJoinGroup />} />
-      <Route path="/join-group" element={<JoinGroup />} />
+      <Route path="/join-group" element={<JoinGroup serverURL={serverURL} 
+      setUserId={setUserId} 
+      setGroupId={setGroupId}
+      userid={userid}
+      setGroupName={setGroupName}
+      setGroupUsernames={setGroupUsernames}
+      groupUsernames={groupUsernames}
+      />
+      } 
+    />
 
       <Route
         path="/votescreen"
@@ -175,9 +185,21 @@ function App() {
         }
       />
      
-      <Route path="/creategroup" element={<CreateGroup />} />
+      <Route path="/creategroup" element={
+      <CreateGroup serverURL={serverURL} 
+                  userid={userid} 
+                  setUserId={setUserId} 
+                  setGroupId={setGroupId}
+                  setGroupName={setGroupName}
+                  groupUsernames={groupUsernames}   
+                  setGroupUsernames={setGroupUsernames}
+                  />} />
 
-      <Route path="/lobby" element={<Lobby />} />
+      <Route path="/lobby" element={
+      <Lobby groupid={groupid} 
+            groupName={groupName}
+              groupUsernames={groupUsernames}
+            />}  />
     </Routes>
   );
 }

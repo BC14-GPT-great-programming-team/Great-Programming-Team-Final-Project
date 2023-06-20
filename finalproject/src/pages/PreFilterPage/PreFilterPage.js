@@ -58,13 +58,14 @@ function PreFilter({ setpreFilters, prefilters }) {
   ];
 
   return (
+    
     <div className="preFilter">
       <Link to="/">
         <HomeButton />
       </Link>
-      <h2>Select Filters</h2>
-      <p>If no filters needed, press Next</p>
-      <h2>Enter Location</h2>
+      {/* <h2>Select Filters</h2> */}
+      {/* <p>If no filters needed, press Next</p> */}
+      <h4> Location</h4>
       <form onSubmit={handleNameSubmit}>
         <div>
           <input
@@ -107,6 +108,7 @@ function PreFilter({ setpreFilters, prefilters }) {
       {/* Imported Background */}
       <PreFilterSVG />
     </div>
+    
   );
 }
 
