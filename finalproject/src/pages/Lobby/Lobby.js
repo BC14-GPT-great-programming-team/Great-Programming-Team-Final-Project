@@ -2,17 +2,27 @@
 import Button from "../../Components/Button/Button";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
+
 import "./Lobby.css";
 
-function Lobby() {
+function Lobby({ groupName, groupid, groupUsernames}) {
+  
   return (
     <div className="lobby">
       <Link to="/">
         <HomeButton />
       </Link>
 
-      <h2> group name</h2>
-      <div className="container"></div>
+      <h2>Welcome, {groupName}!</h2>
+      <p className="roomcode">Your room code is {groupid} - share this with your friends to let them join!</p>
+      <div className="container">
+        <p>Players in this room:</p>
+        <div className="playerList">
+          {groupUsernames.map((username) => (
+            <p>{username}</p>
+          ))}
+          </div>
+      </div>
       <br></br>
       <p>Everybody in?</p>
       <div className="startContainer">
@@ -21,7 +31,6 @@ function Lobby() {
         <p> to begin</p>
       </div>
       <br></br>
-      <p className="roomcode">ROOM CODE</p>
     </div>
   );
 }
