@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Homepage from "./Hompage.js";
 import PreFilter from "../PreFilterPage/PreFilterPage.js";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import CreateJoinGroup from "../CreateJoin/CreateJoin.js";
 
 // Test all buttons render on screen
 test("renders buttons", () => {
@@ -55,10 +56,32 @@ test("solo link to pre filter", () => {
   const soloBtn = screen.getByRole("button", { name: "Go Solo" });
   expect(soloBtn).toBeInTheDocument();
   // Get attribute
-  expect(soloBtn.getAttribute("to", "/prefilter"));
+  // expect(soloBtn.getAttribute("to", "/prefilter")); 
+
+  
 
   // Fire User Event
   fireEvent.click(soloBtn);
   const preFilterPage = screen.getByRole("heading", { name: "Select Filters" });
   expect(preFilterPage).toBeInTheDocument();
 });
+test("Group link to create/join", () => {
+  render(
+    <MemoryRouter>
+      {/* Use Routes!!! for paths */}
+      <Routes>
+        {/* Set the element to the page you want to link to */}
+        <Route path="/" element={<Homepage />} />
+        <Route path="/create-join" element={<CreateJoinGroup/>} />
+      </Routes>
+    </MemoryRouter>
+  );
+ const GroupBtn = screen.getByRole("button", { name: "Group Mode" });
+  expect(GroupBtn).toBeInTheDocument();
+
+
+  fireEvent.click(GroupBtn);
+  const createGroupPage = screen.getByRole("button", { name: "Create Group" });
+  expect(createGroupPage).toBeInTheDocument();
+
+  });
