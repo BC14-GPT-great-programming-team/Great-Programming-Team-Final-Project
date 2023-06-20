@@ -58,6 +58,7 @@ exports.handler = async function (event, context) {
             message: 'New group created',
             group_id:data.group_id,
             created_by:data.created_by,
+            group_name:data.group_name,
           };
 
         return {

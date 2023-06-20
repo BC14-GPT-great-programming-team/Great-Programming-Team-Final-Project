@@ -4,14 +4,14 @@ import HomeButton from "../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
 import "./Lobby.css";
 
-function Lobby() {
+function Lobby({groupid, groupName}) {
   return (
     <div className="lobby">
       <Link to="/">
         <HomeButton />
       </Link>
 
-      <h2> group name</h2>
+      <h2>{groupName}</h2>
       <div className="container"></div>
       <br></br>
       <p>Everybody in?</p>
@@ -21,7 +21,7 @@ function Lobby() {
         <p> to begin</p>
       </div>
       <br></br>
-      <p className="roomcode">ROOM CODE</p>
+      <p className="roomcode">{groupid}</p>
     </div>
   );
 }

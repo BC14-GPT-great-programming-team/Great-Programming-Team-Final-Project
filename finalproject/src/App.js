@@ -33,7 +33,7 @@ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
   const initialRounds = useRounds();
   const [userid, setUserId] = useState(null);
   const [groupid, setGroupId] = useState(null);
-
+  const [groupName, setGroupName] = useState("");
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
@@ -184,10 +184,11 @@ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
       <CreateGroup serverURL={serverURL} 
                   userid={userid} 
                   setUserId={setUserId} 
-                  groupid={groupid} 
-                  setGroupId={setGroupId}/>} />
+                  setGroupId={setGroupId}
+                  setGroupName={setGroupName}      
+                  />} />
 
-      <Route path="/lobby" element={<Lobby />} />
+      <Route path="/lobby" element={<Lobby />} groupid={groupid} groupName={groupName} />
     </Routes>
   );
 }

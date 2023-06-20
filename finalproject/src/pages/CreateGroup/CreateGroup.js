@@ -4,7 +4,7 @@ import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function CreateGroup({serverURL, setUserId, setGroupId, userid, groupid}) {
+function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName}) {
   // use navigate
   const navigate = useNavigate();
   const [userNameInput, setUserNameInput] = useState("");
@@ -73,7 +73,7 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, groupid}) {
       .then((response) => response.json())
       .then((data) => {
         setGroupId(data.group_id);
-    
+    setGroupName(data.group_name);
 
     const assignUserRequestBody = {
       type: "assignUser",
