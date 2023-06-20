@@ -4,7 +4,7 @@ import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName}) {
+function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName, setGroupUsernames, groupUsernames}) {
   // use navigate
   const navigate = useNavigate();
   const [userNameInput, setUserNameInput] = useState("");
@@ -72,6 +72,7 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName}) {
     })
       .then((response) => response.json())
       .then((data) => {
+        setGroupName(data.group_name);
 
     const assignUserRequestBody = {
       type: "assignUser",
@@ -87,12 +88,25 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName}) {
       .then((data) => {
         console.log(data);
         setGroupId(data.group_id);
-        setGroupName(data.group_name);
+        
+        const groupUsernamesRequestBody = {
+          type: "getGroupMembers",
+          group_id: data.group_id,
+        };
+        fetch(serverURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(groupUsernamesRequestBody),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.usernames);
+            setGroupUsernames(data.usernames);
+            console.log(groupUsernames)
+          });
 
     if (userValid && groupValid) {
-      setTimeout(() => {
-        navigate("/lobby");
-      }, 1000);
+        navigate("/lobby")
     }
   });
 });

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import "./Lobby.css";
 
-function Lobby({ groupName, groupid}) {
+function Lobby({ groupName, groupid, groupUsernames}) {
   
   return (
     <div className="lobby">
@@ -13,8 +13,16 @@ function Lobby({ groupName, groupid}) {
         <HomeButton />
       </Link>
 
-      <h2>{groupName && groupName}</h2>
-      <div className="container"></div>
+      <h2>Welcome, {groupName}!</h2>
+      <p className="roomcode">Your room code is {groupid} - share this with your friends to let them join!</p>
+      <div className="container">
+        <p>Players in this room:</p>
+        <div className="playerList">
+          {groupUsernames.map((username) => (
+            <p>{username}</p>
+          ))}
+          </div>
+      </div>
       <br></br>
       <p>Everybody in?</p>
       <div className="startContainer">
@@ -23,7 +31,6 @@ function Lobby({ groupName, groupid}) {
         <p> to begin</p>
       </div>
       <br></br>
-      <p className="roomcode">{groupid && groupid}</p>
     </div>
   );
 }

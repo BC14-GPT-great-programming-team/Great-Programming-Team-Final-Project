@@ -98,7 +98,38 @@ exports.handler = async function (event, context) {
     };
 
 
-    } else { 
+    } 
+    
+    else if (requestBody.type === "getGroupMembers") {
+      
+      const {data, error}= await supabase
+      .from('users')
+      .select("user_name")
+      .eq('group_id', requestBody.group_id)
+      .select();
+
+      if (error) {
+          console.error('Supabase error:', error);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
+
+        const usernames = data.map((user) => user.username);
+
+        const responseData = {
+          message: 'Group members retrieved',
+          usernames:usernames,
+        };
+
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
+
+  } else { 
       return {
         statusCode: 400,
         headers: { "Content-Type": "application/json"},
