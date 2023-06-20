@@ -17,12 +17,19 @@ import Lobby from "./pages/Lobby/Lobby";
 
 function App() {
 
+//function below is to test the serverless code in the functions folder on netlify
+//define the serverlessURL depending on whether you are in development or production
+//testing URL is http://localhost:8888/.netlify/functions/votehandler
+//production URL is https://consensusgpt.netlify.app/.netlify/functions/votehandler
+
+const serverlessURL = "http://localhost:8888/.netlify/functions/votehandler";
+
   async function fetchVoteHandler() {
-    const response = await fetch(`http://localhost:8888/.netlify/functions/votehandler`);
+    const response = await fetch(serverlessURL);
     const data = await response.json();
     console.log(data);
   }
-  fetchVoteHandler();
+  // fetchVoteHandler();
 
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
