@@ -5,6 +5,8 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  font-family: Multicolore;
+  ;
 }
 
 .nextBtn {
@@ -14,4 +16,17 @@ body {
 @font-face {
   font-family: Inder;
   src: url(../public/Inder-Regular.ttf);
+}
+@font-face {
+  font-family: DiloWorld;
+  src: url(../public/DiloWorld\ 2.ttf);
+}
+
+@font-face {
+  font-family: Multicolore;
+  src: url(../public/Multicolore\ Pro\ 4.otf);
+}
+@font-face {
+  font-family: Sirukota;
+  src: url(../public/Sirukota.ttf);
 }
