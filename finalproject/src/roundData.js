@@ -31,7 +31,7 @@ const initialRounds = {
   };
 
   return (
-    <RoundsContext.Provider value={{rounds: initialRounds}} >
+    <RoundsContext.Provider value={initialRounds} >
       {children}
     </RoundsContext.Provider>
   );
