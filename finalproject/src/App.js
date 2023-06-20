@@ -18,8 +18,9 @@ import Lobby from "./pages/Lobby/Lobby";
 function App() {
 
 
-
+//comment out the below line for deployment
 // const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+//comment out the below line for testing
  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
 
