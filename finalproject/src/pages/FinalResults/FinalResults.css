@@ -3,20 +3,39 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color:rgba(251, 251, 251, 0.781);
+  background-color: transparent;
+  border: 2px solid rgba(251, 251, 251, 0.781);
   border-radius: 30px;
-  margin: 10px auto 10px auto;
+
+  margin: 5px auto 5px auto;
   width: 60%;
   line-height: 7pt;
-  font-size:1.9vw;
+  font-size: 1.9vw;
+  padding: 4%;
+  color: rgb(130, 69, 146);
 }
 
-#restaurant_image {
-  width: 110%;
-  border-radius: 30px;
-  opacity: 1;
-  width: 89%;
+.enjoy {
+  padding-top: 5%;
+  color: white;
+  text-shadow: -2px 0 #a268b0, 0 2px #a268b0, 2px 0 #a268b0, 0 -2px #a268b0;
+}
 
+h1 {
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+h2 {
+  padding: 10px;
+  font-weight: 600;
+}
+
+.restaurant_image {
+  width: 40%;
+  border-radius: 30px;
+  margin-top: 10px;
+  opacity: 0.9;
 }
 
 .finalResultsPage {
@@ -24,5 +43,22 @@
 }
 
 .textMargin {
-  margin-bottom: 50px
+  margin-bottom: 20px;
+  margin-top: 1px;
+  word-spacing: 10%;
+  line-height: 160%;
+}
+
+.resturant {
+  word-spacing: 10%;
+  font-size: x-large;
+  line-height: 130%;
+}
+
+.location {
+  width: 10%;
+}
+
+p {
+  font-family: "Inder", sans-serif;
 }

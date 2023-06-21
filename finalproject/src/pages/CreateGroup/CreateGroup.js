@@ -16,14 +16,14 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName, se
 
   // Funtions for inputs
   const handleUserNameChange = (event) => {
-    const inputText = event.target.value.trim();
+    const inputText = event.target.value;
     setUserNameInput(inputText);
     console.log(userNameInput);
     setuserValid(!!inputText);
   };
 
   const handleGroupNameChange = (event) => {
-    const inputText = event.target.value.trim();
+    const inputText = event.target.value;
     setGroupNameInput(inputText);
     console.log(groupNameInput);
     setGroupValid(!!inputText);
@@ -43,7 +43,7 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName, se
 
     const userRequestBody = {
       type: "createUser",
-      username: userNameInput
+      username: userNameInput.trim()
     };
 
     fetch(serverURL, {
@@ -61,7 +61,7 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName, se
 
     const groupRequestBody = {
       type: "createGroup",
-      group_name: groupNameInput,
+      group_name: groupNameInput.trim(),
       user_id: useriddata,
     };
     console.log(groupRequestBody)
