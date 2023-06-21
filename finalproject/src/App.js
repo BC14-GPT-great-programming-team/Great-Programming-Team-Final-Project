@@ -45,6 +45,8 @@ function App() {
   //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
   //this is the array of rounds that is used to display the options on the vote screen. The score is used to determine which option has been selected. The roundLabel is used to determine which filter to apply to the data from supabase.
   const [rounds, setRounds] = useState(initialRounds);
+  //usestate for storing wether in group or solo mixBlendMode: 
+  const [groupMode, setGroupMode] = useState(false);
 
   const currentRound = rounds[currentRoundID];
 
@@ -133,7 +135,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
+      <Route path="/" element={<Homepage setGroupMode={setGroupMode} />} />
       <Route path="/create-join" element={<CreateJoinGroup />} />
       <Route path="/join-group" element={<JoinGroup serverURL={serverURL} 
       setUserId={setUserId} 
@@ -181,7 +183,7 @@ function App() {
       <Route
         path="/prefilter"
         element={
-          <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} />
+          <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} groupMode={groupMode} />
         }
       />
      
@@ -199,6 +201,8 @@ function App() {
       <Lobby groupid={groupid} 
             groupName={groupName}
               groupUsernames={groupUsernames}
+              setGroupUsernames = {setGroupUsernames}
+              serverURL = {serverURL}
             />}  />
     </Routes>
   );
