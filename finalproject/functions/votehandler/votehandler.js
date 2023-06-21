@@ -48,7 +48,7 @@ exports.handler = async function (event, context) {
       
         const {data, error}= await supabase
         .from('groups')
-        .insert({group_name:requestBody.group_name, created_by:requestBody.user_id})
+        .insert({group_name:requestBody.group_name, created_by:requestBody.user_id, accept_new_members:true})
         .single()
         .select();
 
@@ -77,6 +77,35 @@ exports.handler = async function (event, context) {
       
       const {data, error} = await supabase
       .from('users')
+      .select('accept_new_members')
+      .eq('group_id', requestBody.group_id)
+      .single()
+      .select();
+
+      if (error) {
+        console.error('Supabase error:', error);
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+        };
+      }
+
+      const responseData = {
+        accept_new_members:data.accept_new_members,
+        group_id:data.group_id,
+      };
+
+      if (responseData.accept_new_members === false) {
+        return {
+          statusCode: 400,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify({ error: 'Group is not accepting new members' }),
+      };
+
+      } else {
+
+      const {data, error} = await supabase
+      .from('users')
       .update({group_id:requestBody.group_id})
       .eq('user_id', requestBody.user_id)
       .single()
@@ -102,12 +131,10 @@ exports.handler = async function (event, context) {
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify(responseData),
     };
+  }
 
 
-    } 
-
-
-     else if (requestBody.type === "getGroupName") {
+    } else if (requestBody.type === "getGroupName") {
       
       const {data, error} = await supabase
       .from('groups')

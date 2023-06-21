@@ -2,7 +2,7 @@
 import Button from "../../Components/Button/Button";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./Lobby.css";
 
 function Lobby({ groupName, groupid, groupUsernames, serverURL, setGroupUsernames}) {
@@ -29,7 +29,7 @@ function Lobby({ groupName, groupid, groupUsernames, serverURL, setGroupUsername
     const interval = setInterval(fetchGroupUsernames, 1000);
 
     return () => clearInterval(interval);
-  }, [])
+  }, [groupid, serverURL, setGroupUsernames])
 
   return (
     <div className="lobby">
