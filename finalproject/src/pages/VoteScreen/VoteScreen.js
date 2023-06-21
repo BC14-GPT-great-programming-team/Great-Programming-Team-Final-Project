@@ -70,6 +70,9 @@ export default function VoteScreen({
   return (
     <div className="voteScreen">
       <h1>Pick {currentRoundID}</h1>
+      <br>
+  
+      </br>
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
       */}
       {currentRound && currentRound.map((option) => (
