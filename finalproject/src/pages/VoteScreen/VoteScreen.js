@@ -60,7 +60,7 @@ export default function VoteScreen({
     setRounds(updatedRounds);
   }
 
-  //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
+  //this is triggered by the Next button on the vote screen and navigates to the results page and sets the current result state to the current result. This is then passed down to the results page and displayed.
   function handleVoteResult() {
     setTheCurrentResult(currentResult);
       navigate("/results");
