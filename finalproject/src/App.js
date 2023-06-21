@@ -19,9 +19,9 @@ function App() {
 
 
 //comment out the below line for deployment
-// const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 //comment out the below line for testing
- const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+//  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
 
 
@@ -63,7 +63,9 @@ function App() {
   const [filters, setFilters] = useState({
     venue_type: null,
     cuisine_type: null,
-    cost_rating: null,
+    atmosphere: null,
+    time: null,
+    dining_experience: null,
   });
 
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
@@ -97,15 +99,28 @@ function App() {
   //this is the call to supabase
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await supabase
-        .from("venues")
-        .select()
-        .eq("venue_type", filters.venue_type)
-        .eq("cuisine_type", filters.cuisine_type);
-
+      const query = supabase.from("venues").select();
+  //the eq calls need to be wrapped in conditionals because if they are null or undefined they will return an error.
+      if (filters.venue_type !== null && filters.venue_type !== undefined) {
+        query.eq("venue_type", filters.venue_type);
+      }
+      if (filters.time !== null && filters.time !== undefined) {
+        query.eq("time", filters.time);
+      }
+      if (filters.cuisine_type !== null && filters.cuisine_type !== undefined) {
+        query.eq("cuisine_type", filters.cuisine_type);
+      }
+      if (filters.atmosphere !== null && filters.atmosphere !== undefined) {
+        query.eq("atmosphere", filters.atmosphere);
+      }
+      if (filters.dining_experience !== null && filters.dining_experience !== undefined) {
+        query.eq("dining_experience", filters.dining_experience);
+      }
+  
+      const { data, error } = await query;
+  
       if (error) {
-        setFetchError("could not fetch venues");
-
+        setFetchError("Could not fetch venues");
         console.log(fetchError);
       }
       if (data) {
@@ -114,6 +129,7 @@ function App() {
         console.log(data);
       }
     };
+  
     fetchData();
   }, [currentRound, filters, fetchError]);
 
