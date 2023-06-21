@@ -60,7 +60,7 @@ export default function VoteScreen({
     setRounds(updatedRounds);
   }
 
-  //this is triggered by the Next button on the vote screen and navigates to the results page and sets the current result state to the current result. This is then passed down to the results page and displayed.
+  //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
   function handleVoteResult() {
     setTheCurrentResult(currentResult);
       navigate("/results");
@@ -70,9 +70,6 @@ export default function VoteScreen({
   return (
     <div className="voteScreen">
       <h1>Pick {currentRoundID}</h1>
-      <br>
-  
-      </br>
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
       */}
       {currentRound && currentRound.map((option) => (

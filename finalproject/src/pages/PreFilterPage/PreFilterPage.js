@@ -7,7 +7,7 @@ import DropdownCost from "../../Components/DropDownCost/DropDownCost";
 import PreFilterSVG from "./PreFilterSVGGreen";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-function PreFilter({ setpreFilters, prefilters }) {
+function PreFilter({ setpreFilters, prefilters, groupMode }) {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({ location: "" });
   const [inputValid, setInputValid] = useState(false);
@@ -24,12 +24,19 @@ function PreFilter({ setpreFilters, prefilters }) {
     setUserInput({ location: inputText });
     setInputValid(!!inputText);
   };
-
+//why is the if clause never satisfied?
   const handleNameSubmit = (event) => {
     event.preventDefault();
     if (inputValid) {
+      if (groupMode) {
+        console.log("group mode")
+        navigate("/creategroup");
+      } else {
       navigate("/votescreen");
+      console.log("solo mode")
+      }
     }
+   
   };
 
   useEffect(() => {

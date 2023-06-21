@@ -5,17 +5,19 @@ import PreFilterSVG from "../PreFilterPage/PreFilterSVGPeach";
 import locationicon from "../../Assets/locationicon.png";
 
 export default function FinalResults({ venueData, handleRestart }) {
- 
   return (
     <div className="finalResultsPage">
     
       <h1 className="enjoy">Enjoy your night out!</h1>
       <br></br>
       <div id="resultscard">
-        <h1 className="resturant">{venueData && venueData[0].venue_name}</h1>
+
+        <h2 className="resturant">{venueData && venueData[0].venue_name}</h2>
+
+
         <img
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-          id="restaurant_image"
+          src={venueData && venueData[0].image_url}
+          className="restaurant_image"
           alt="restaurant"
         ></img>
         <img className="location" src={locationicon} alt="locationicon" />

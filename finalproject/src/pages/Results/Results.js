@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Results.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({ handleNextRound, currentResult }) {
+export default function Results({ handleNextRound, currentResult}) {
   return (
     <div className="resultsPage">
       <Link to="/">
@@ -30,7 +30,7 @@ export default function Results({ handleNextRound, currentResult }) {
         <span style={{"--i": 14 }}>:</span>
         </h2>
         <h2>{currentResult}</h2>
-        
+
       </div>
       
       <button className="nextBtn" onClick={handleNextRound}>
