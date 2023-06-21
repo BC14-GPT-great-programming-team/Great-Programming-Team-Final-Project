@@ -41,11 +41,11 @@ function Lobby({ groupName, groupid, groupUsernames, serverURL, setGroupUsername
       <p className="roomcode">Your room code is {groupid} - share this with your friends to let them join!</p>
       <div className="container">
         <p>Players in this room:</p>
-        <div className="playerList">
+        <ul className="playerList">
           {groupUsernames.map((username) => (
-            <p>{username}</p>
+            <li>{username}</li>
           ))}
-          </div>
+          </ul>
       </div>
       <br></br>
       <p>Everybody in?</p>

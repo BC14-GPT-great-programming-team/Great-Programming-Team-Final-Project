@@ -29,11 +29,14 @@ function PreFilter({ setpreFilters, prefilters, groupMode }) {
     event.preventDefault();
     if (inputValid) {
       if (groupMode) {
+        console.log("group mode")
         navigate("/creategroup");
-      }else {
+      } else {
       navigate("/votescreen");
+      console.log("solo mode")
       }
     }
+   
   };
 
   useEffect(() => {
