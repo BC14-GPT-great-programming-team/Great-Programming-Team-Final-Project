@@ -2,11 +2,13 @@
 import Button from "../../Components/Button/Button";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 import "./Lobby.css";
 
 function Lobby({ groupName, groupid, groupUsernames}) {
   
+
+
   return (
     <div className="lobby">
       <Link to="/">
