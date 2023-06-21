@@ -170,6 +170,8 @@ function App() {
           <Results
             handleNextRound={handleNextRound}
             currentResult={currentResult}
+            rounds={rounds}
+            currentRoundID={currentRoundID}
           />
         }
       />
