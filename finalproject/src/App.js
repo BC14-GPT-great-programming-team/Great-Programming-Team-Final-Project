@@ -19,8 +19,8 @@ function App() {
 
 
 
-// const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
- const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+//  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
 
 

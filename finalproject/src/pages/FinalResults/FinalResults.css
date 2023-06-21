@@ -5,10 +5,21 @@
   align-items: center;
   background-color:rgba(251, 251, 251, 0.781);
   border-radius: 30px;
-  margin: 10px auto 10px auto;
+  margin: 5px auto 5px auto;
   width: 60%;
   line-height: 7pt;
   font-size:1.9vw;
+  padding: 4%;
+  color: rgb(150, 79, 168);
+  
+  
+}
+
+.enjoy {
+  padding-top: 5%;
+  color: white;
+  text-shadow: -2px 0 #a268b0, 0 2px #a268b0, 2px 0 #a268b0, 0 -2px #a268b0;
+
 }
 
 #restaurant_image {
@@ -21,8 +32,22 @@
 
 .finalResultsPage {
   text-align: center;
+  
 }
 
 .textMargin {
-  margin-bottom: 50px
+  margin-bottom: 20px;
+  margin-top: 1px;
+  word-spacing: 10%;
+  line-height: 160% ;
+}
+
+.resturant {
+  word-spacing: 10%;
+  font-size: x-large;
+  line-height: 130% ;
+}
+
+.location {
+  width: 10%;
 }
