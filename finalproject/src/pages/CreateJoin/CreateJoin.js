@@ -13,7 +13,7 @@ function CreateJoinGroup() {
       <HomeButton />
       </Link>
       
-      <Link to="/creategroup"> 
+      <Link to="/prefilter"> 
       <Button btnText="Create Group" />
       </Link>
       

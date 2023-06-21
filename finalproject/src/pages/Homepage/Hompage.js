@@ -7,7 +7,12 @@ import consensuslogo from "../../Assets/consensuslogo.png";
 import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 // import { FaUsers, FaDharmachakra } from "react-icons/fa";
 
-function Homepage() {
+function Homepage({groupMode,setGroupMode}) {
+
+  function changeMode() {
+    setGroupMode(true);
+  }
+
   return (
     <div className="homepage">
       <img className="logo" src={consensuslogo} alt="logo" />
@@ -24,7 +29,7 @@ function Homepage() {
         />
       </Link>
       <Link to="/create-join">
-        <Button className="homepageBtn bounceTwo" btnText="Group Mode" />
+        <Button onClick={changeMode} className="homepageBtn bounceTwo" btnText="Group Mode" />
       </Link>
       <div className="spinBtnContainer">
         <Button
