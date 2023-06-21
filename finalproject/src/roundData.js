@@ -37,12 +37,12 @@ const initialRounds = {
     ],
 
     'A Dining Experience': [
-      { id: 10, name: "Fine Dining", roundLabel: "experience", score: 0, nextRoundID: "" },
-      { id: 11, name: "Contemporary", roundLabel: "experience", score: 0, nextRoundID: "" },
-      { id: 12, name: "Fast Food", roundLabel: "experience", score: 0, nextRoundID: "" },
-      { id: 13, name: "Buffet", roundLabel: "experience", score: 0, nextRoundID: "" },
-      { id: 14, name: "All Day Breakfast", roundLabel: "experience", score: 0, nextRoundID: "" },
-      { id: 15, name: "Gastropub", roundLabel: "experience", score: 0, nextRoundID: "" },
+      { id: 10, name: "Fine Dining", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
+      { id: 11, name: "Contemporary", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
+      { id: 12, name: "Fast Food", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
+      { id: 13, name: "Buffet", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
+      { id: 14, name: "All Day Breakfast", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
+      { id: 15, name: "Gastropub", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
     ],
     
   };
