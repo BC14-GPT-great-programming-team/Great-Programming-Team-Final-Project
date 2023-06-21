@@ -8,6 +8,7 @@ export default function FinalResults({ venueData, handleRestart }) {
  
   return (
     <div className="finalResultsPage">
+    
       <h1 className="enjoy">Enjoy your night out!</h1>
       <br></br>
       <div id="resultscard">
