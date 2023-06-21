@@ -5,9 +5,31 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Lobby.css";
 
-function Lobby({ groupName, groupid, groupUsernames}) {
+function Lobby({ groupName, groupid, groupUsernames, serverURL, setGroupUsernames}) {
   
+  useEffect(() => {
+    const fetchGroupUsernames = () => {
+      const groupUsernamesRequestBody = {
+        type: "getGroupMembers", 
+        group_id: groupid,
+      };
 
+      fetch(serverURL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(groupUsernamesRequestBody),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        setGroupUsernames(data.usernames);
+      });
+    };
+    fetchGroupUsernames();
+
+    const interval = setInterval(fetchGroupUsernames, 1000);
+
+    return () => clearInterval(interval);
+  }, [])
 
   return (
     <div className="lobby">
