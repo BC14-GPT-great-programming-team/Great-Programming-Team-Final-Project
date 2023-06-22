@@ -51,7 +51,9 @@ function Lobby({ groupName, groupid, groupUsernames, serverURL, setGroupUsername
       <p>Everybody in?</p>
       <div className="startContainer">
         <p>Press </p>
+        <Link to="/groupvotescreen">
         <Button className="startBtn" btnText="START" />
+        </Link>
         <p> to begin</p>
       </div>
       <br></br>

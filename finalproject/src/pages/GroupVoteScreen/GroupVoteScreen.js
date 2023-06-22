@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./VoteScreen.css";
+import "./GroupVoteScreen.css";
 import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 
-export default function VoteScreen({
+export default function GroupVoteScreen({
   rounds,
   setRounds,
   setFilter,
@@ -63,7 +63,7 @@ export default function VoteScreen({
   //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
   function handleVoteResult() {
     setTheCurrentResult(currentResult);
-      navigate("/results");
+      navigate("/groupresults");
   }
 
   const isOptionSelected = selectedOption !== null;

@@ -168,7 +168,41 @@ exports.handler = async function (event, context) {
           body: JSON.stringify(responseData),
       };
 
-  } else { 
+  } 
+  //paste below here
+  else if (requestBody.type === "castvote") {
+      
+    const {data, error}= await supabase
+    .from('votes')
+    .insert({group_id:requestBody.group_id, 
+             user_id:requestBody.user_id,
+            vote_rank:requestBody.vote_rank,
+          vote_stage:requestBody.vote_stage})
+    .single()
+    .select();
+
+    if (error) {
+        console.error('Supabase error:', error);
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+        };
+      }
+
+      const responseData = {
+        message: 'vote recieved',
+        voteid:data.id,
+      };
+
+    return {
+        statusCode: 200,
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(responseData),
+    };
+
+} 
+  //paste above here
+  else { 
       return {
         statusCode: 400,
         headers: { "Content-Type": "application/json"},

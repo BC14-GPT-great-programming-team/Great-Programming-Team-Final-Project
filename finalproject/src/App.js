@@ -1,6 +1,5 @@
 //import rounds to use useContext
 import { RoundsProvider, useRounds } from "./roundData";
-
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
@@ -13,6 +12,8 @@ import FinalResults from "./pages/FinalResults/FinalResults";
 import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 import CreateGroup from "./pages/CreateGroup/CreateGroup";
 import Lobby from "./pages/Lobby/Lobby";
+import GroupVoteScreen from "./pages/GroupVoteScreen/GroupVoteScreen";
+import GroupResults from "./pages/GroupResults/GroupResults";
 // Green dynamic background can be applied to every page with below
 
 function App() {
@@ -20,11 +21,11 @@ function App() {
 
 
 
-// const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
 //comment out the below line for deployment
  
-const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+//const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
 
 
@@ -167,6 +168,35 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
       />
       } 
     />
+
+<Route
+        path="/groupvotescreen"
+        element={
+          <GroupVoteScreen
+            setCurrentResult={setCurrentResult}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+            rounds={rounds}
+            setRounds={setRounds}
+            currentRound={currentRound}
+            setFilter={setFilter}
+            currentResult={currentResult}
+            setTheCurrentResult={setTheCurrentResult}
+            currentRoundID={currentRoundID}
+          />
+        }
+      />
+<Route
+        path="/groupresults"
+        element={
+          <GroupResults
+            handleNextRound={handleNextRound}
+            currentResult={currentResult}
+            rounds={rounds}
+            currentRoundID={currentRoundID}
+          />
+        }
+      />
 
       <Route
         path="/votescreen"

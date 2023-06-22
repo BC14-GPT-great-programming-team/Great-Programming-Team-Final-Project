@@ -1,0 +1,42 @@
+/* CSS for Results Page */
+
+.resultsPage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    text-align: center;
+  }
+  
+  .wavy {
+  
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    min-height: 65vh;
+    position: relative;
+    line-height: 35px;
+    flex-direction: column;
+  }
+  
+  .wavy span {
+    position: relative;
+    display: inline-block;
+    font-size: 1em;
+    text-transform: uppercase;
+    animation: animate 1s infinite;
+    animation-delay: calc(0.9s * var(--i));
+  }
+  @keyframes animate {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  
+  }
