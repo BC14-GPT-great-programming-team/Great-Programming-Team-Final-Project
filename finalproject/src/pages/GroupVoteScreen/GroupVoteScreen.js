@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./VoteScreen.css";
-import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 
-export default function VoteScreen({
+export default function GroupVoteScreen({
   rounds,
   setRounds,
   setFilter,
@@ -14,7 +14,10 @@ export default function VoteScreen({
   setCurrentResult,
   setTheCurrentResult,
   currentResult,
-  currentRoundID
+  currentRoundID,
+  userid,
+  groupid,
+  serverURL
 }) {
   const navigate = useNavigate();
   
@@ -22,17 +25,15 @@ export default function VoteScreen({
   const [isNextDisabled, setIsNextDisabled] = useState(true);
  
   // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
-  function handleVote(optionid, optionname, roundLabel) {
+  function handleVote(optionid, optionname) {
     if (selectedOption === optionid) {
       // Deselect the option
-      setFilter(roundLabel, null);
+      setCurrentResult(null);
       setSelectedOption(null);
       setIsNextDisabled(true);
       updateOptionScore(optionid, -1);
-      setCurrentResult(null);
     } else {
       // Select the option
-      setFilter(roundLabel, optionname);
       setSelectedOption(optionid);
       setIsNextDisabled(false);
       updateOptionScore(optionid, 1);
@@ -63,10 +64,29 @@ export default function VoteScreen({
   //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
   function handleVoteResult() {
     setTheCurrentResult(currentResult);
-      navigate("/results");
-  }
+    const userRequestBody = {
+      type: "castVote",
+      user_id: userid,
+      group_id: groupid,
+      vote_stage: currentRoundID,
+      vote_rank: 1,
+      vote_choice: currentResult,
+      round_label: currentRound[0].roundLabel,
+    };
+    fetch(serverURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userRequestBody),
+    }) 
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`this is the response ${data.message}`)
+    
+      navigate("/groupresults");
+    });}
 
   const isOptionSelected = selectedOption !== null;
+  
   return (
     <div className="voteScreen">
       <h1>Pick {currentRoundID}</h1>

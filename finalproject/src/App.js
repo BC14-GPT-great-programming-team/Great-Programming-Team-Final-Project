@@ -1,6 +1,5 @@
 //import rounds to use useContext
 import { RoundsProvider, useRounds } from "./roundData";
-
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
@@ -13,6 +12,9 @@ import FinalResults from "./pages/FinalResults/FinalResults";
 import PreFilter from "./pages/PreFilterPage/PreFilterPage.js";
 import CreateGroup from "./pages/CreateGroup/CreateGroup";
 import Lobby from "./pages/Lobby/Lobby";
+import GroupVoteScreen from "./pages/GroupVoteScreen/GroupVoteScreen";
+import GroupResults from "./pages/GroupResults/GroupResults";
+import GroupFinalResults from "./pages/GroupFinalResult/GroupFinalResult";
 // Green dynamic background can be applied to every page with below
 
 function App() {
@@ -20,11 +22,11 @@ function App() {
 
 
 
-// const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
 //comment out the below line for deployment
  
-const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+//const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
 
 
@@ -40,7 +42,7 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
   const [currentRoundID, setCurrentRoundID] = useState("An Activity");
   //this is selected option name that is passed down to the results page and displayed.
   const [currentResult, setTheCurrentResult] = useState(null);
-
+const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
   // useState for setting the error when fetching data from Supabase
   const [fetchError, setFetchError] = useState(null);
   //useState for setting the venues data that is fetched from Supabase
@@ -73,6 +75,14 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
     dining_experience: null,
   });
 
+  const [groupFilters, setGroupFilters] = useState({
+    venue_type: null,
+    cuisine_type: null,
+    atmosphere: null,
+    time: null,
+    dining_experience: null,
+  });
+
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
 
   function setFilter(optionName, value) {
@@ -81,6 +91,14 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
       [optionName]: value,
     }));
   }
+
+  function setGroupFilter(optionName, value) {
+    setGroupFilters((prevFilters) => ({
+      ...prevFilters,
+      [optionName]: value,
+    }));
+  }
+
 
   // function is triggered by Restart button on the final Results page and it resets everything to the initial state.
   function handleRestart() {
@@ -153,6 +171,20 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
     }
   }
 
+  function handleNextGroupRound() {
+    const currentOption = currentRound.find(
+      (option) => option.id === selectedOption
+    );
+    const nextRoundID = currentOption.nextRoundID;
+    if (nextRoundID === "") {
+      navigate("/groupfinalresult");
+    } else {
+      setCurrentRoundID(nextRoundID);
+      setSelectedOption(null);
+      navigate("/groupvotescreen");
+    }
+  }
+
   return (
     <Routes>
       <Route path="/" element={<Homepage setGroupMode={setGroupMode} />} />
@@ -167,6 +199,42 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
       />
       } 
     />
+
+<Route
+        path="/groupvotescreen"
+        element={
+          <GroupVoteScreen
+            setCurrentResult={setCurrentResult}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+            rounds={rounds}
+            setRounds={setRounds}
+            currentRound={currentRound}
+            setFilter={setFilter}
+            currentResult={currentResult}
+            setTheCurrentResult={setTheCurrentResult}
+            currentRoundID={currentRoundID}
+            userid={userid}
+            groupid={groupid}
+            serverURL={serverURL}
+          />
+        }
+      />
+<Route
+        path="/groupresults"
+        element={
+          <GroupResults
+            handleNextGroupRound={handleNextGroupRound}
+            currentResult={currentResult}
+            rounds={rounds}
+            currentRoundID={currentRoundID}
+            serverURL={serverURL}
+            groupid={groupid}
+            CurrentGroupResult={CurrentGroupResult}
+            setCurrentGroupResult={setCurrentGroupResult}
+          />
+        }
+      />
 
       <Route
         path="/votescreen"
@@ -202,6 +270,16 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
           <FinalResults venueData={venueData} handleRestart={handleRestart} />
         }
       />
+
+<Route
+        path="/groupfinalresult"
+        element={
+          <GroupFinalResults venueData={venueData} handleRestart={handleRestart} />
+        }
+      />
+
+
+
       <Route
         path="/prefilter"
         element={
