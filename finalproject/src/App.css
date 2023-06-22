@@ -1,3 +1,16 @@
+/* CSS variables: */
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --off-white: #f6f2e9;
+  --peach-color: #ea9c90;
+  --light-peach-color: #F2B7AE;
+  --light-blue-color: #a7c0cb;
+  --light-purple-color: #b78ac0;
+  --medium-purple-color: #a268b0;
+  --dark-purple-color: #824592; 
+}
+
 body {
   box-sizing: border-box;
   display: flexbox;
@@ -10,7 +23,7 @@ body {
 }
 
 .nextBtn {
-  background-color: #ea9c90;
+  background-color: var(--peach-color);
 }
 
 @font-face {

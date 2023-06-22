@@ -9,12 +9,12 @@
   .container {
     height:40vw;
     width: 30vw;
-    background-color: #F2B7AE;
+    background-color: var(--light-peach-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid #F2B7AE;
+    border: 2px solid var(--light-peach-color);;
     border-radius: 20px;
   }
 
@@ -28,5 +28,5 @@
   }
 
   .roomcode {
-    color: #A7C0CB;
+    color: var(--light-blue);
   }
