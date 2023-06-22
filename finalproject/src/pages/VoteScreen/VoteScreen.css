@@ -9,7 +9,6 @@
 }
 
 h1 {
-padding: 5%;
-color: rgb(130, 69, 146);
-
+  padding: 5%;
+  color: var(--dark-purple-color);
 }

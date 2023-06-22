@@ -1,3 +1,4 @@
+
 .finalResultsPage {
   display: flex;
   flex-direction: column;
@@ -17,15 +18,16 @@
   width: 30%;
   color: rgb(130, 69, 146);
   margin: 20px 0;
+  color: var(--dark-purple-color);
 }
 
 .enjoy {
   margin: 10px 0 10px;
   color: white;
-  text-shadow: -2px 0 #a268b0, 0 2px #a268b0, 2px 0 #a268b0, 0 -2px #a268b0;
   font-family: "Multicolore", sans-serif;
-  font-size: 2rem;
+  text-shadow: -2px 0 var(--medium-purple-color), 0 2px var(--medium-purple-color), 2px 0 var(--medium-purple-color), 0 -2px var(--medium-purple-color);
 }
+
 
 h2 {
   margin: 5px 0 0 0;
