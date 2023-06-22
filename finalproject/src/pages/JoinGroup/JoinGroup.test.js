@@ -7,10 +7,11 @@ test("the button for next on the page", () => {
   render(
     <MemoryRouter>
       <JoinGroup />
+
     </MemoryRouter>
   );
 
-  const nextBtn = screen.getByRole("button", { name: "NEXT" });
+  const nextBtn = screen.getByRole("button", { name: "Next" });
   expect(nextBtn).toBeInTheDocument();
 });
 
