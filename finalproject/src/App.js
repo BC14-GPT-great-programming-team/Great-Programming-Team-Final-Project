@@ -14,6 +14,7 @@ import CreateGroup from "./pages/CreateGroup/CreateGroup";
 import Lobby from "./pages/Lobby/Lobby";
 import GroupVoteScreen from "./pages/GroupVoteScreen/GroupVoteScreen";
 import GroupResults from "./pages/GroupResults/GroupResults";
+import GroupFinalResults from "./pages/GroupFinalResult/GroupFinalResult";
 // Green dynamic background can be applied to every page with below
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
   const [currentRoundID, setCurrentRoundID] = useState("An Activity");
   //this is selected option name that is passed down to the results page and displayed.
   const [currentResult, setTheCurrentResult] = useState(null);
-
+const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
   // useState for setting the error when fetching data from Supabase
   const [fetchError, setFetchError] = useState(null);
   //useState for setting the venues data that is fetched from Supabase
@@ -154,6 +155,20 @@ function App() {
     }
   }
 
+  function handleNextGroupRound() {
+    const currentOption = currentRound.find(
+      (option) => option.id === selectedOption
+    );
+    const nextRoundID = currentOption.nextRoundID;
+    if (nextRoundID === "") {
+      navigate("/groupfinalresult");
+    } else {
+      setCurrentRoundID(nextRoundID);
+      setSelectedOption(null);
+      navigate("/groupvotescreen");
+    }
+  }
+
   return (
     <Routes>
       <Route path="/" element={<Homepage setGroupMode={setGroupMode} />} />
@@ -183,6 +198,9 @@ function App() {
             currentResult={currentResult}
             setTheCurrentResult={setTheCurrentResult}
             currentRoundID={currentRoundID}
+            userid={userid}
+            groupid={groupid}
+            serverURL={serverURL}
           />
         }
       />
@@ -190,10 +208,14 @@ function App() {
         path="/groupresults"
         element={
           <GroupResults
-            handleNextRound={handleNextRound}
+            handleNextGroupRound={handleNextGroupRound}
             currentResult={currentResult}
             rounds={rounds}
             currentRoundID={currentRoundID}
+            serverURL={serverURL}
+            groupid={groupid}
+            CurrentGroupResult={CurrentGroupResult}
+            setCurrentGroupResult={setCurrentGroupResult}
           />
         }
       />
@@ -232,6 +254,16 @@ function App() {
           <FinalResults venueData={venueData} handleRestart={handleRestart} />
         }
       />
+
+<Route
+        path="/groupfinalresult"
+        element={
+          <GroupFinalResults venueData={venueData} handleRestart={handleRestart} />
+        }
+      />
+
+
+
       <Route
         path="/prefilter"
         element={

@@ -14,7 +14,10 @@ export default function GroupVoteScreen({
   setCurrentResult,
   setTheCurrentResult,
   currentResult,
-  currentRoundID
+  currentRoundID,
+  userid,
+  groupid,
+  serverURL
 }) {
   const navigate = useNavigate();
   
@@ -22,17 +25,15 @@ export default function GroupVoteScreen({
   const [isNextDisabled, setIsNextDisabled] = useState(true);
  
   // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
-  function handleVote(optionid, optionname, roundLabel) {
+  function handleVote(optionid, optionname) {
     if (selectedOption === optionid) {
       // Deselect the option
-      setFilter(roundLabel, null);
+      setCurrentResult(null);
       setSelectedOption(null);
       setIsNextDisabled(true);
       updateOptionScore(optionid, -1);
-      setCurrentResult(null);
     } else {
       // Select the option
-      setFilter(roundLabel, optionname);
       setSelectedOption(optionid);
       setIsNextDisabled(false);
       updateOptionScore(optionid, 1);
@@ -63,10 +64,28 @@ export default function GroupVoteScreen({
   //this is triggered by the Next button and sets the voteResults state to the currentResults state which is an array of objects that represent the options for the current round
   function handleVoteResult() {
     setTheCurrentResult(currentResult);
+    const userRequestBody = {
+      type: "castVote",
+      user_id: userid,
+      group_id: groupid,
+      vote_stage: currentRoundID,
+      vote_rank: 1,
+      vote_choice: currentResult,
+    };
+    fetch(serverURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userRequestBody),
+    }) 
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`this is the response ${data.message}`)
+    
       navigate("/groupresults");
-  }
+    });}
 
   const isOptionSelected = selectedOption !== null;
+  
   return (
     <div className="voteScreen">
       <h1>Pick {currentRoundID}</h1>

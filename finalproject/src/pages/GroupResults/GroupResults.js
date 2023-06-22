@@ -1,9 +1,45 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({ handleNextRound, currentResult}) {
+export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult}) {
+
+
+
+    useEffect(() => {
+        const fetchVotes = () => {
+          const groupUsernamesRequestBody = {
+            type: "getVotes", 
+            group_id: groupid,
+            vote_stage: currentRoundID,
+          };
+    
+          fetch(serverURL, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(groupUsernamesRequestBody),
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            let resultArray = data.resultArray
+            let resultArraySorted = resultArray.sort((a, b) => a.votes - b.votes)
+           setCurrentGroupResult(resultArraySorted)
+           console.log(currentRoundID)
+           console.log(groupid);
+           console.log(CurrentGroupResult)
+           console.log(data.resultArray)
+          });
+        };
+        fetchVotes();
+    
+        const interval = setInterval(fetchVotes, 2000);
+    
+        return () => clearInterval(interval);
+      }, [])
+
+
+
   return (
     <div className="resultsPage">
       <Link to="/">
@@ -29,11 +65,14 @@ export default function Results({ handleNextRound, currentResult}) {
         <span style={{"--i": 13 }}>n</span>
         <span style={{"--i": 14 }}>:</span>
         </h2>
-        <h2>{currentResult}</h2>
+        <h2>{CurrentGroupResult && CurrentGroupResult[0].choice}</h2>
+        {CurrentGroupResult && CurrentGroupResult.map (result => {  
+            return (<h2>{result.choice}:{result.votes}</h2>)
+        })}
 
       </div>
       
-      <button className="nextBtn" onClick={handleNextRound}>
+      <button className="nextBtn" onClick={handleNextGroupRound}>
         Next
       </button>
     </div>

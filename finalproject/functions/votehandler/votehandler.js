@@ -177,7 +177,8 @@ exports.handler = async function (event, context) {
     .insert({group_id:requestBody.group_id, 
              user_id:requestBody.user_id,
             vote_rank:requestBody.vote_rank,
-          vote_stage:requestBody.vote_stage})
+          vote_stage:requestBody.vote_stage,
+        vote_choice:requestBody.vote_choice})
     .single()
     .select();
 
@@ -217,12 +218,12 @@ exports.handler = async function (event, context) {
           };
         }
 
-         const voteranks = data.map((vote) => vote.vote_rank);
+        
          const votechoices = data.map((vote) => vote.vote_choice);
          const uniquechoices = [...new Set(votechoices)];
          const resultArray = uniquechoices.map((choice) => ({
           choice: choice,
-          count:0,
+          votes:0,
         }));
         data.forEach((vote) => {
           const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
