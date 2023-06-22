@@ -3,7 +3,7 @@
 import "./Hompage.css";
 import { Link } from "react-router-dom";
 import Button from "../../Components/Button/Button";
-import consensuslogo from "../../Assets/consensuslogo.png";
+import consenusLogo from "../../Assets/officialLogo.png";
 import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 
 // import { FaUsers, FaDharmachakra } from "react-icons/fa";
@@ -12,7 +12,7 @@ function Homepage({setGroupMode}) {
 
   return (
     <div className="homepage">
-      <img className="logo" src={consensuslogo} alt="logo" />
+      <img className="logo" src={consenusLogo} alt="logo" />
       {/* <h1>
         Consens<span>U</span>s
       </h1>
