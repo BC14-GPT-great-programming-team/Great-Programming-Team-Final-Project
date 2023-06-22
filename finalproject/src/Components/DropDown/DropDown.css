@@ -2,7 +2,7 @@
   text-align: left;
   border: 1px solid #ccc;
   position: relative;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .dropdown-input {
@@ -31,7 +31,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   font-family: SonoVariable;
 }
 .dropdown-item .icon {
@@ -54,7 +54,8 @@
 }
 
 .dropdown-tag-item {
-  background-color: #ddd;
+  color: var(--black);
+  background-color: transparent;
   padding: 2px 4px;
   border-radius: 2px;
   display: flex;
@@ -69,7 +70,6 @@
 .search-box {
   padding: 5px;
   background-color: #eee;
-
 }
 
 .search-box input {
@@ -79,12 +79,11 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-family: SonoVariable;
-
 }
 
 .dropdown-input {
-color: #b2b1b1;
-border-radius: 15px;
-text-transform: lowercase;
-font-family: SonoVariable;
+  color: #b2b1b1;
+  border-radius: 15px;
+  text-transform: lowercase;
+  font-family: SonoVariable;
 }

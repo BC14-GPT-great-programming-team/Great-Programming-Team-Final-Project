@@ -1,6 +1,6 @@
 /* CSS for Pre Filter */
 body {
-  background-color: #f6f2e9;
+  background-color: var(--off-white);
 }
 
 .preFilter {
@@ -10,25 +10,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   text-align: center;
-  
 }
 
 .preFilterBtn {
-  margin: 20px;
+  margin: 30px 0 0 0;
   transition: scale 1s ease-in-out;
 }
 
 .preFilterBtn:hover {
-  background-color: #b78ac0;
+  background-color: var(--light-purple-color);
   transform: scale(1.02);
 }
 
 .preFilter h4 {
-  margin-bottom: 10px;
-  color: white;
-  text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+  margin: 20px 0 10px;
+  color: var(--white);
+  text-shadow: -1px 0 var(--black), 0 1px var(--black), 1px 0 var(--black),
+    0 -1px var(--black);
 }
 
 .preFilter p {
@@ -70,19 +70,24 @@ body {
   transform-origin: 84px 93px;
 }
 
-.locationInput{
+.locationInput {
   width: 100%;
   height: 100%;
   font-size: 1.5rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
-  color: #000000;
+  color: var(--black);
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   border: 1px solid rgb(142, 142, 142);
-  border-radius: 15px; 
+  border-radius: 15px;
 }
 
+@media (max-width: 700px) {
+  form {
+    width: 70%;
+  }
+}
