@@ -1,8 +1,8 @@
 import "./PreFilterPage.css";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
-import Dropdown from "../../Components/Button/DropDown/DropDown";
+import ToggleSwitch from "../../Components/Toggle switch/Toggleswitch";
+import Dropdown from "../../Components/DropDown/DropDown";
 import DropdownCost from "../../Components/DropDownCost/DropDownCost";
 import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 import HomeButton from "../../Components/HomeButton/HomeButton";

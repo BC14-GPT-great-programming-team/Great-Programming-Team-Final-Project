@@ -74,6 +74,7 @@ span {
 }
 
 .motto {
+  margin-top: 20px;
   font-family: SonoVariable;
   color: var(--black);
   width: 80%;

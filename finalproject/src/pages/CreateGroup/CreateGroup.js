@@ -122,8 +122,10 @@ function CreateGroup({
 
   return (
     <div className="CreateGroup">
+      <h2>Group Details</h2>
       <form onSubmit={handleGroupSubmit}>
         <input
+          className="createGroupInput"
           onChange={handleUserNameChange}
           type="text"
           name="groupName"
@@ -132,6 +134,7 @@ function CreateGroup({
           required
         />
         <input
+          className="createGroupInput"
           placeholder="Enter group name"
           onChange={handleGroupNameChange}
           type="text"
