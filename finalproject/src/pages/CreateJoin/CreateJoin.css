@@ -13,7 +13,7 @@
   height: 60px;
   width: 250px;
   border-radius: 30px;
-  transition: 1s all ease-in-out;
+  transition: 0.4s all ease-in-out;
 }
 
 .createJoinBtn:hover {
