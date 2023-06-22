@@ -1,9 +1,15 @@
 /* CSS for Vote Screen */
-
+/* 
+/* For some reason this VoteScreen.js is taking its values from App.css not this file */
 .voteScreen {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.voteHeader {
+  padding: 0;
+  margin: 0;
 }

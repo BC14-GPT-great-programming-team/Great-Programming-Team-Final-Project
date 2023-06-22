@@ -1,15 +1,20 @@
-body {
+* {
   box-sizing: border-box;
-  display: flexbox;
+  margin: 0;
+  padding: 0;
+}
+body {
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   margin: 0;
   font-family: Multicolore;
-  ;
+  text-align: center;
 }
 
 .nextBtn {
+  margin-top: 40px;
   background-color: #ea9c90;
 }
 
