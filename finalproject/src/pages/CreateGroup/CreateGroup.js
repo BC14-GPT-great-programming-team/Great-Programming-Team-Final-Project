@@ -1,10 +1,18 @@
 import "./CreateGroup.css";
 
-import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName, setGroupUsernames, groupUsernames}) {
+function CreateGroup({
+  serverURL,
+  setUserId,
+  setGroupId,
+  userid,
+  setGroupName,
+  setGroupUsernames,
+  groupUsernames,
+}) {
   // use navigate
   const navigate = useNavigate();
   const [userNameInput, setUserNameInput] = useState("");
@@ -43,74 +51,73 @@ function CreateGroup({serverURL, setUserId, setGroupId, userid, setGroupName, se
 
     const userRequestBody = {
       type: "createUser",
-      username: userNameInput.trim()
+      username: userNameInput.trim(),
     };
 
     fetch(serverURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userRequestBody),
-    }) 
-    .then((response) => response.json())
-    .then((data) => {
-      const useriddata = data.user_id
-      setUserId(useriddata);
-      console.log(`this is the response user id${data.user_id}`)
-      console.log(`this is the userid usestate ${userid}`)
-      
-
-    const groupRequestBody = {
-      type: "createGroup",
-      group_name: groupNameInput.trim(),
-      user_id: useriddata,
-    };
-    console.log(groupRequestBody)
-    fetch(serverURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(groupRequestBody),
     })
       .then((response) => response.json())
       .then((data) => {
-        setGroupName(data.group_name);
+        const useriddata = data.user_id;
+        setUserId(useriddata);
+        console.log(`this is the response user id${data.user_id}`);
+        console.log(`this is the userid usestate ${userid}`);
 
-    const assignUserRequestBody = {
-      type: "assignUser",
-      user_id: useriddata,
-      group_id: data.group_id,
-    };
-    fetch(serverURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(assignUserRequestBody),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setGroupId(data.group_id);
-        
-        const groupUsernamesRequestBody = {
-          type: "getGroupMembers",
-          group_id: data.group_id,
+        const groupRequestBody = {
+          type: "createGroup",
+          group_name: groupNameInput.trim(),
+          user_id: useriddata,
         };
+        console.log(groupRequestBody);
         fetch(serverURL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(groupUsernamesRequestBody),
+          body: JSON.stringify(groupRequestBody),
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data.usernames);
-            setGroupUsernames(data.usernames);
-            console.log(groupUsernames)
-          });
+            setGroupName(data.group_name);
 
-    if (userValid && groupValid) {
-        navigate("/lobby")
-    }
-  });
-});
-});
+            const assignUserRequestBody = {
+              type: "assignUser",
+              user_id: useriddata,
+              group_id: data.group_id,
+            };
+            fetch(serverURL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(assignUserRequestBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                setGroupId(data.group_id);
+
+                const groupUsernamesRequestBody = {
+                  type: "getGroupMembers",
+                  group_id: data.group_id,
+                };
+                fetch(serverURL, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(groupUsernamesRequestBody),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log(data.usernames);
+                    setGroupUsernames(data.usernames);
+                    console.log(groupUsernames);
+                  });
+
+                if (userValid && groupValid) {
+                  navigate("/lobby");
+                }
+              });
+          });
+      });
   };
 
   return (
