@@ -15,7 +15,7 @@ body {
 }
 
 .preFilterBtn {
-  margin: 20px;
+  margin: 30px 0 0 0;
   transition: scale 1s ease-in-out;
 }
 
@@ -25,9 +25,10 @@ body {
 }
 
 .preFilter h4 {
-  margin-bottom: 10px;
+  margin: 20px 0 10px;
   color: var(--white);
-  text-shadow: -1px 0 var(--black), 0 1px var(--black), 1px 0 var(--black), 0 -1px var(--black);
+  text-shadow: -1px 0 var(--black), 0 1px var(--black), 1px 0 var(--black),
+    0 -1px var(--black);
 }
 
 .preFilter p {

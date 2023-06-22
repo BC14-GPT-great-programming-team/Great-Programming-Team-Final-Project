@@ -101,7 +101,7 @@ export default function VoteScreen({
         onClick={handleVoteResult}
         disabled={isNextDisabled}
         style={{
-          backgroundColor: isNextDisabled ? "#ea9c90" : "#BFC995",
+          backgroundColor: isNextDisabled ? "#ea9c90" : "#969f79",
         }}
       >
         Next

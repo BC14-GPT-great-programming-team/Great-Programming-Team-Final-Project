@@ -7,3 +7,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.createJoinBtn {
+  margin: 20px 0;
+  height: 60px;
+  width: 250px;
+  border-radius: 30px;
+  transition: 1s all ease-in-out;
+}
+
+.createJoinBtn:hover {
+  color: var(--dark-purple-color);
+  transform: scale(1.1);
+  opacity: 0.9;
+}
