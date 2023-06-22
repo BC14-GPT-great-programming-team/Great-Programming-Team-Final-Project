@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./GroupVoteScreen.css";
-import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
+import "./VoteScreen.css";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 
 export default function GroupVoteScreen({
   rounds,

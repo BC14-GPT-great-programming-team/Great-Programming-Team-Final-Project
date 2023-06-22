@@ -7,20 +7,21 @@ test("the button for next on the page", () => {
   render(
     <MemoryRouter>
       <JoinGroup />
+
     </MemoryRouter>
   );
-
-  const nextBtn = screen.getByRole("button", { name: "NEXT" });
+//rendering the 'next' button on the page 
+  const nextBtn = screen.getByRole("button", { name: "Next" });
   expect(nextBtn).toBeInTheDocument();
 });
 
 // Test for input renders
-// test("renders input", () => {
-//   render(
-//     <MemoryRouter>
-//       <JoinGroup />
-//     </MemoryRouter>
-//   );
-//   const codeInput = screen.getByRole("textbox", { name: "Enter Code" });
-//   expect(codeInput).toBeInsTheDocument();
-// });
+test("renders input", () => {
+  render(
+    <MemoryRouter>
+      <JoinGroup />
+    </MemoryRouter>
+  );
+  const codeInput = screen.getByPlaceholderText( "Enter a username");
+  expect(codeInput).toBeInTheDocument();
+});

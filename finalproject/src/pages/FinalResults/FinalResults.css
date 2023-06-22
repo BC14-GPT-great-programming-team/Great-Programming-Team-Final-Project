@@ -1,4 +1,13 @@
-#resultscard {
+
+.finalResultsPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.resultsCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,59 +15,63 @@
   background-color: transparent;
   border: 2px solid rgba(251, 251, 251, 0.781);
   border-radius: 30px;
-
-  margin: 5px auto 5px auto;
-  width: 60%;
-  line-height: 7pt;
-  font-size: 1.9vw;
-  padding: 4%;
+  width: 30%;
   color: rgb(130, 69, 146);
+  margin: 20px 0;
+  color: var(--dark-purple-color);
 }
 
 .enjoy {
-  padding-top: 5%;
+  margin: 10px 0 10px;
   color: white;
-  text-shadow: -2px 0 #a268b0, 0 2px #a268b0, 2px 0 #a268b0, 0 -2px #a268b0;
+  font-family: "Multicolore", sans-serif;
+  text-shadow: -2px 0 var(--medium-purple-color), 0 2px var(--medium-purple-color), 2px 0 var(--medium-purple-color), 0 -2px var(--medium-purple-color);
 }
 
-h1 {
-  margin-bottom: 0;
-  font-size: 2rem;
-}
 
 h2 {
+  margin: 5px 0 0 0;
   padding: 10px;
   font-weight: 600;
 }
 
 .restaurant_image {
-  width: 40%;
-  border-radius: 30px;
+  margin: 0;
+  width: 50%;
+  border-radius: 20px;
   margin-top: 10px;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .finalResultsPage {
   text-align: center;
 }
 
-.textMargin {
-  margin-bottom: 20px;
-  margin-top: 1px;
-  word-spacing: 10%;
-  line-height: 160%;
-}
-
 .resturant {
-  word-spacing: 10%;
-  font-size: x-large;
-  line-height: 130%;
+  font-size: 20px;
 }
 
 .location {
-  width: 10%;
+  margin: 10px 0;
+  width: 20px;
 }
 
 p {
+  margin: 5px 0;
+  color: black;
   font-family: "Inder", sans-serif;
+}
+
+p:nth-child(4) {
+  margin-bottom: 20px;
+}
+
+.finalResultsBtn {
+  margin-top: 30px;
+}
+
+@media (max-width: 700px) {
+  .resultsCard {
+    width: 80%;
+  }
 }
