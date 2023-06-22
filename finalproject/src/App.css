@@ -33,6 +33,10 @@ body {
   background-color: var(--peach-color);
 }
 
+li {
+  list-style: none;
+}
+
 @font-face {
   font-family: Inder;
   src: url(../public/Inder-Regular.ttf);

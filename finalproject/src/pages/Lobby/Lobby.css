@@ -1,32 +1,48 @@
 .lobby {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-  .container {
-    height:40vw;
-    width: 30vw;
-    background-color: var(--light-peach-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--light-peach-color);;
-    border-radius: 20px;
-  }
+.container {
+  height:300px;
+  width: 200px;
+  background-color: var(--light-peach-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--light-peach-color);;
+  border-radius: 20px;
+  text-align: center;
+}
 
-  .startContainer {
-    display:flex ;
-    align-items: center;
-  }
+#welcome-message {
+  margin-top: -70px;
+}
 
-  .startBtn {
-    margin: 0 20px;
-  }
+.startContainer {
+  display:flex ;
+  align-items: center;
+}
 
-  .roomcode {
-    color: var(--light-blue);
-  }
+.startBtn {
+  margin: 0 20px;
+}
+
+.roomcode {
+  color: var(--light-blue);
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 60%;
+}
+
+#lobby-card{
+  margin-top: -30px;
+}
+
+#player-name {
+  margin: 2px 0;
+}

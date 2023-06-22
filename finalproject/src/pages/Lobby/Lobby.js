@@ -1,5 +1,6 @@
 // Component for Button
 import Button from "../../Components/Button/Button";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -26,9 +27,9 @@ function Lobby({ groupName, groupid, groupUsernames, serverURL, setGroupUsername
     };
     fetchGroupUsernames();
 
-    const interval = setInterval(fetchGroupUsernames, 1000);
+    const interval = setInterval(fetchGroupUsernames, 1000000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval);//insert interval here
   }, [groupid, serverURL, setGroupUsernames])
 
   return (
@@ -37,24 +38,23 @@ function Lobby({ groupName, groupid, groupUsernames, serverURL, setGroupUsername
         <HomeButton />
       </Link>
 
-      <h2>Welcome, {groupName}!</h2>
+      <h2 id="welcome-message">Welcome, {groupName}!</h2>
       <p className="roomcode">Your room code is {groupid} - share this with your friends to let them join!</p>
       <div className="container">
-        <p>Players in this room:</p>
+        <p id="lobby-card">Players in this room:</p>
         <ul className="playerList">
           {groupUsernames.map((username) => (
-            <li>{username}</li>
+            <li id="player-name">{username}</li>
           ))}
           </ul>
       </div>
       <br></br>
       <p>Everybody in?</p>
       <div className="startContainer">
-        <p>Press </p>
         <Button className="startBtn" btnText="START" />
-        <p> to begin</p>
       </div>
       <br></br>
+      <PreFilterSVG/>
     </div>
   );
 }
