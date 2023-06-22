@@ -6,7 +6,7 @@ import HomeButton from "../../Components/HomeButton/HomeButton";
 export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult}) {
 
 
-
+// this useEffect is for fetching the votes from the database
     useEffect(() => {
         const fetchVotes = () => {
           const groupUsernamesRequestBody = {

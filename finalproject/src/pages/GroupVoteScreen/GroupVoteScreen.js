@@ -71,6 +71,7 @@ export default function GroupVoteScreen({
       vote_stage: currentRoundID,
       vote_rank: 1,
       vote_choice: currentResult,
+      round_label: currentRound[0].roundLabel,
     };
     fetch(serverURL, {
       method: "POST",

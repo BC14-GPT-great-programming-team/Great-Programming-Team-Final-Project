@@ -178,7 +178,8 @@ exports.handler = async function (event, context) {
              user_id:requestBody.user_id,
             vote_rank:requestBody.vote_rank,
           vote_stage:requestBody.vote_stage,
-        vote_choice:requestBody.vote_choice})
+        vote_choice:requestBody.vote_choice,
+      round_label:requestBody.round_label})
     .single()
     .select();
 
@@ -232,7 +233,8 @@ exports.handler = async function (event, context) {
 
         const responseData = {
           message: 'Group votes retrieved',
-          resultArray:resultArray,
+          resultArray:resultArray
+        
           // usernames:usernames,
         };
 

@@ -75,6 +75,14 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     dining_experience: null,
   });
 
+  const [groupFilters, setGroupFilters] = useState({
+    venue_type: null,
+    cuisine_type: null,
+    atmosphere: null,
+    time: null,
+    dining_experience: null,
+  });
+
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
 
   function setFilter(optionName, value) {
@@ -83,6 +91,14 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
       [optionName]: value,
     }));
   }
+
+  function setGroupFilter(optionName, value) {
+    setGroupFilters((prevFilters) => ({
+      ...prevFilters,
+      [optionName]: value,
+    }));
+  }
+
 
   // function is triggered by Restart button on the final Results page and it resets everything to the initial state.
   function handleRestart() {
