@@ -60,9 +60,10 @@ test("solo link to pre filter", () => {
 
   // Fire User Event
   fireEvent.click(soloBtn);
-  const preFilterPage = screen.getByRole("heading", { name: "Select Filters" });
+  const preFilterPage = screen.getByRole("heading", { name: "Location" });
   expect(preFilterPage).toBeInTheDocument();
 });
+
 
 // Test group mode button links to create join
 test("Group link to create/join", () => {

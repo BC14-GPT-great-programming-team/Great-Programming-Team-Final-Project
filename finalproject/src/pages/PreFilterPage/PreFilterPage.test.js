@@ -11,6 +11,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import PreFilter from "../PreFilterPage/PreFilterPage.js";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import VoteScreen from "../VoteScreen/VoteScreen.js";
+import CreateJoin from "../CreateJoin/CreateJoin";
 
 //testing to see if the page can be rendered for the pre filter
 test("render of page for the pre filter", () => {
@@ -61,7 +62,7 @@ test("input value and button state", () => {
 });
 
 // Test that Link to Vote Screen works
-test("link of pre filter to solo voting", () => {
+test("checking the link of pre filter to solo voting", () => {
   const mockedLocation = "London";
   render(
     <MemoryRouter>
@@ -87,3 +88,26 @@ test("link of pre filter to solo voting", () => {
   const votingPage = screen.getByRole("heading", { name: "Pick" });
   expect(votingPage).toBeInTheDocument();
 });
+test("testing button moves the user from createJoin to the createGroup prefilter page", () => {
+  render(
+    <MemoryRouter>
+  <CreateJoin/>
+  <PreFilter/>
+    </MemoryRouter>
+  );
+  //checking if the render of the button under the name of create group exists on page of createJoin 
+  const createGroupBtn2 = screen.getByRole("button", { name: "Create Group" });
+  expect(createGroupBtn2).toBeInTheDocument();
+
+
+
+  fireEvent.click(createGroupBtn2);
+   const createTheGroup= screen.getByRole("heading", { name: "Location" });
+  // // getByPlaceholderText('Enter group code');
+   expect(createTheGroup).toBeInTheDocument();
+   
+  });
+// test("prefilter moves from then to create group", () => {
+
+
+// })
