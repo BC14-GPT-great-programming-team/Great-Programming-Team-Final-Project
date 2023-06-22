@@ -203,55 +203,43 @@ exports.handler = async function (event, context) {
 }  else if (requestBody.type === "getVotes") {
       
   const {data, error} = await supabase
-  .from('votes')
-  .select('vote_choice', {sum: 'vote_rank'})
-  .eq('group_id', requestBody.group_id)
-  .eq('vote_stage', requestBody.vote_stage)
-  .select();
-
-  if (error) {
-      console.error('Supabase error:', error);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
-      };
-    }
-
-    const result = [];
-
-    for (const row of data) {
-      const {data: sumData, error: sumError} = await supabase
       .from('votes')
-      .select('vote_rank', {sum: 'vote_rank'})
+      .select("vote_rank")
       .eq('group_id', requestBody.group_id)
       .eq('vote_stage', requestBody.vote_stage)
-      .eq('vote_choice', row.vote_choice)
       .select();
 
-      if (sumError) {
-        console.error('Supabase error:', sumError);
-        continue;
-      }
+      if (error) {
+          console.error('Supabase error:', error);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
 
-      const sumValue = sumData[0].sum;
+         const voteranks = data.map((vote) => vote.vote_rank);
+         const votechoices = data.map((vote) => vote.vote_choice);
+         const uniquechoices = [...new Set(votechoices)];
+         const resultArray = uniquechoices.map((choice) => ({
+          choice: choice,
+          count:0,
+        }));
+        data.forEach((vote) => {
+          const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
+          resultArray[index].count++;
+        });
 
-      result.push({
-        vote_choice: row.vote_choice,
-        sum_vote_rank: sumValue,
-      });
-    }
+        const responseData = {
+          message: 'Group votes retrieved',
+          resultArray:resultArray,
+          // usernames:usernames,
+        };
 
-
-    const responseData = {
-      message: 'Heres the votes',
-      result:result,
-    };
-
-  return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify(responseData),
-  };
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
 
 } 
   //paste above here
