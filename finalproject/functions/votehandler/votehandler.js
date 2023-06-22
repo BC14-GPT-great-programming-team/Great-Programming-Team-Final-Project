@@ -227,7 +227,7 @@ exports.handler = async function (event, context) {
         }));
         data.forEach((vote) => {
           const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
-          resultArray[index].count++;
+          resultArray[index].votes++;
         });
 
         const responseData = {

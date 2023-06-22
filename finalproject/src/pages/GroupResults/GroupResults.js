@@ -23,12 +23,17 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
           .then((response) => response.json())
           .then((data) => {
             let resultArray = data.resultArray
-            let resultArraySorted = resultArray.sort((a, b) => a.votes - b.votes)
+            let resultArraySorted = resultArray.sort((a, b) => b.votes - a.votes)
            setCurrentGroupResult(resultArraySorted)
            console.log(currentRoundID)
            console.log(groupid);
+           console.log(`the following is the current CurrentGroupResult usestate:`)
            console.log(CurrentGroupResult)
+            console.log(`the following is the current resultArray:`)
            console.log(data.resultArray)
+           console.log(`the following is the current data:`)
+           console.log(data)
+
           });
         };
         fetchVotes();
@@ -65,10 +70,16 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
         <span style={{"--i": 13 }}>n</span>
         <span style={{"--i": 14 }}>:</span>
         </h2>
-        <h2>{CurrentGroupResult && CurrentGroupResult[0].choice}</h2>
-        {CurrentGroupResult && CurrentGroupResult.map (result => {  
-            return (<h2>{result.choice}:{result.votes}</h2>)
-        })}
+        {CurrentGroupResult && CurrentGroupResult.length > 0 ? (
+          <>
+            <h2>{CurrentGroupResult[0].choice}</h2>
+                {CurrentGroupResult.map((result) => (
+                  <h2>{result.choice}: {result.votes}</h2>
+                  ))}
+                  </>
+        ) : (
+          <h2>Waiting for votes...</h2>
+        )}
 
       </div>
       
