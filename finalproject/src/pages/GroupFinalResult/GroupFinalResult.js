@@ -1,7 +1,7 @@
 import React from "react";
 import "./GroupFinalResult.css";
 import "../../App.css";
-import PreFilterSVG from "../PreFilterPage/PreFilterSVGPeach";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 import locationicon from "../../Assets/locationicon.png";
 
 export default function GroupFinalResults({ venueData, handleRestart }) {
