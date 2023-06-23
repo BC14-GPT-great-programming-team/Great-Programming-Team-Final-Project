@@ -22,12 +22,18 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
           })
           .then((response) => response.json())
           .then((data) => {
-            let roundLabel = data.round_label
+            let roundLabel = data.roundlabel
              let resultArray = data.resultArray
              let resultArraySorted = resultArray.sort((a, b) => b.votes - a.votes)
-            setCurrentRoundLabel(roundLabel)
-           setCurrentGroupResult(resultArraySorted)
+           if (roundLabel) {setCurrentRoundLabel(roundLabel)}
+           if (resultArraySorted) {setCurrentGroupResult(resultArraySorted)}
+
+           console.log(`this is roundLabel:`)
+          console.log(roundLabel)
+           console.log(`this is CurrentGroupResult:`)
           console.log(CurrentGroupResult)
+          console.log(`this is resultArraySorted:`)
+          console.log(resultArraySorted)
           });
         };
         fetchVotes();

@@ -206,9 +206,12 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     } else {
       setGroupFilter(CurrentRoundLabel, CurrentGroupResult[0].choice)
       console.log("LOOK HERE");
+      console.log(`group filters:`)
       console.log(groupFilters)
+      console.log(`filters`)
+      console.log(filters)
       console.log(CurrentRoundLabel)
-      console.log(currentResult[0].choice)
+      console.log(CurrentGroupResult[0].choice)
       setCurrentRoundID(nextRoundID);
       setSelectedOption(null);
       navigate("/groupvotescreen");
