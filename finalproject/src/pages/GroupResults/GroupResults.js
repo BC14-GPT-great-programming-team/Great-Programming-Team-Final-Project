@@ -41,7 +41,7 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
         const interval = setInterval(fetchVotes, 2000);
     
         return () => clearInterval(interval);
-      }, [])
+      }, [CurrentGroupResult, currentRoundID, groupid, serverURL, setCurrentGroupResult])
 
 
 
