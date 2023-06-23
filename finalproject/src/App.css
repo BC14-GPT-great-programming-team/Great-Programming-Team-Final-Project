@@ -1,16 +1,41 @@
-body {
+/* CSS variables: */
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --off-white: #f6f2e9;
+  --peach-color: #ea9c90;
+  --light-peach-color: #f2b7ae;
+  --light-blue-color: #a7c0cb;
+  --light-purple-color: #b78ac0;
+  --medium-purple-color: #a268b0;
+  --dark-purple-color: #824592;
+  --green-color: #bfc995;
+  --darker-green: #969f79;
+}
+
+* {
   box-sizing: border-box;
-  display: flexbox;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   margin: 0;
   font-family: Multicolore;
-  ;
+  text-align: center;
 }
 
 .nextBtn {
-  background-color: #ea9c90;
+  margin-top: 40px;
+  background-color: var(--peach-color);
+}
+
+li {
+  list-style: none;
 }
 
 @font-face {
@@ -30,6 +55,7 @@ body {
   font-family: Sirukota;
   src: url(../public/Sirukota.ttf);
 }
+
 @font-face {
   font-family: SonoVariable;
   src: url(../public/SonoVariable.ttf);

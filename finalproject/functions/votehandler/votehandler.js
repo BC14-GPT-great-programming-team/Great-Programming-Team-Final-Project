@@ -168,7 +168,85 @@ exports.handler = async function (event, context) {
           body: JSON.stringify(responseData),
       };
 
-  } else { 
+  } 
+  //paste below here
+  else if (requestBody.type === "castVote") {
+      
+    const {data, error}= await supabase
+    .from('votes')
+    .insert({group_id:requestBody.group_id, 
+             user_id:requestBody.user_id,
+            vote_rank:requestBody.vote_rank,
+          vote_stage:requestBody.vote_stage,
+        vote_choice:requestBody.vote_choice,
+      round_label:requestBody.round_label})
+    .single()
+    .select();
+
+    if (error) {
+        console.error('Supabase error:', error);
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+        };
+      }
+
+      const responseData = {
+        message: 'vote recieved',
+        voteid:data.id,
+      };
+
+    return {
+        statusCode: 200,
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(responseData),
+    };
+
+}  else if (requestBody.type === "getVotes") {
+      
+  const {data, error} = await supabase
+      .from('votes')
+      .select("vote_rank")
+      .eq('group_id', requestBody.group_id)
+      .eq('vote_stage', requestBody.vote_stage)
+      .select();
+
+      if (error) {
+          console.error('Supabase error:', error);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
+
+        
+         const votechoices = data.map((vote) => vote.vote_choice);
+         const uniquechoices = [...new Set(votechoices)];
+         const resultArray = uniquechoices.map((choice) => ({
+          choice: choice,
+          votes:0,
+        }));
+        data.forEach((vote) => {
+          const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
+          resultArray[index].votes++;
+        });
+
+        const responseData = {
+          message: 'Group votes retrieved',
+          resultArray:resultArray
+        
+          // usernames:usernames,
+        };
+
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
+
+} 
+  //paste above here
+  else { 
       return {
         statusCode: 400,
         headers: { "Content-Type": "application/json"},

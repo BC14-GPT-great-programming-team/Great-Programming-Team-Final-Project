@@ -1,10 +1,10 @@
 import "./PreFilterPage.css";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import ToggleSwitch from "../../Components/Button/Toggle switch/Toggleswitch";
-import Dropdown from "../../Components/Button/DropDown/DropDown";
+import ToggleSwitch from "../../Components/Toggle switch/Toggleswitch";
+import Dropdown from "../../Components/DropDown/DropDown";
 import DropdownCost from "../../Components/DropDownCost/DropDownCost";
-import PreFilterSVG from "./PreFilterSVGGreen";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
 function PreFilter({ setpreFilters, prefilters, groupMode }) {
@@ -24,19 +24,18 @@ function PreFilter({ setpreFilters, prefilters, groupMode }) {
     setUserInput({ location: inputText });
     setInputValid(!!inputText);
   };
-//why is the if clause never satisfied?
+  //why is the if clause never satisfied?
   const handleNameSubmit = (event) => {
     event.preventDefault();
     if (inputValid) {
       if (groupMode) {
-        console.log("group mode")
+        console.log("group mode");
         navigate("/creategroup");
       } else {
-      navigate("/votescreen");
-      console.log("solo mode")
+        navigate("/votescreen");
+        console.log("solo mode");
       }
     }
-   
   };
 
   useEffect(() => {
@@ -65,7 +64,6 @@ function PreFilter({ setpreFilters, prefilters, groupMode }) {
   ];
 
   return (
-    
     <div className="preFilter">
       <Link to="/">
         <HomeButton />
@@ -104,7 +102,7 @@ function PreFilter({ setpreFilters, prefilters, groupMode }) {
 
         <button
           className="preFilterBtn"
-          style={{ backgroundColor: inputValid ? "#c5a7cb" : "#ea9c90" }}
+          style={{ backgroundColor: inputValid ? "#969f79" : "#ea9c90" }}
           disabled={!inputValid}
           type="submit"
         >
@@ -115,7 +113,6 @@ function PreFilter({ setpreFilters, prefilters, groupMode }) {
       {/* Imported Background */}
       <PreFilterSVG />
     </div>
-    
   );
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./VoteScreen.css";
-import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 
 export default function VoteScreen({
   rounds,
@@ -14,13 +14,13 @@ export default function VoteScreen({
   setCurrentResult,
   setTheCurrentResult,
   currentResult,
-  currentRoundID
+  currentRoundID,
 }) {
   const navigate = useNavigate();
-  
+
   // isNextDisabled is a boolean that determines whether the Next button is disabled
   const [isNextDisabled, setIsNextDisabled] = useState(true);
- 
+
   // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
   function handleVote(optionid, optionname, roundLabel) {
     if (selectedOption === optionid) {
@@ -63,49 +63,50 @@ export default function VoteScreen({
   //this is triggered by the Next button on the vote screen and navigates to the results page and sets the current result state to the current result. This is then passed down to the results page and displayed.
   function handleVoteResult() {
     setTheCurrentResult(currentResult);
-      navigate("/results");
+    navigate("/results");
   }
 
   const isOptionSelected = selectedOption !== null;
   return (
     <div className="voteScreen">
       <h1>Pick {currentRoundID}</h1>
-      <br>
-  
-      </br>
+      <br></br>
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
-      */}
-      {currentRound && currentRound.map((option) => (
-        <button
-          key={option.id}
-          onClick={() => handleVote(option.id, option.name, option.roundLabel)}
-          disabled={
-            option.disabled ||
-            (isOptionSelected && option.id !== selectedOption)
-          }
-          style={{
-            color: selectedOption === option.id ? "white" : "",
-            backgroundColor: selectedOption === option.id ? "blueviolet" : "",
-            opacity: selectedOption && selectedOption !== option.id ? 0.5 : 1,
-          }}
-        >
-          {option.name}
-        </button>
-      ))}
+       */}
+      {currentRound &&
+        currentRound.map((option) => (
+          <button
+            key={option.id}
+            onClick={() =>
+              handleVote(option.id, option.name, option.roundLabel)
+            }
+            disabled={
+              option.disabled ||
+              (isOptionSelected && option.id !== selectedOption)
+            }
+            style={{
+              color: selectedOption === option.id ? "white" : "",
+              backgroundColor: selectedOption === option.id ? "blueviolet" : "",
+              opacity: selectedOption && selectedOption !== option.id ? 0.5 : 1,
+            }}
+          >
+            {option.name}
+          </button>
+        ))}
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
-      
-        <button
-          className="nextBtn"
-          onClick={handleVoteResult}
-          disabled={isNextDisabled}
-          style={{
-            backgroundColor: isNextDisabled ? "#ea9c90" : "#BFC995",
-          }}
-        >
-          Next
-        </button>
-      
+
+      <button
+        className="nextBtn"
+        onClick={handleVoteResult}
+        disabled={isNextDisabled}
+        style={{
+          backgroundColor: isNextDisabled ? "#ea9c90" : "#969f79",
+        }}
+      >
+        Next
+      </button>
+
       <PreFilterSVG />
     </div>
   );
