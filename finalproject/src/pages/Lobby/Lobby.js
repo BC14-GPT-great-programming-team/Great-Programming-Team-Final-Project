@@ -32,7 +32,7 @@ function Lobby({
     };
     fetchGroupUsernames();
 
-    const interval = setInterval(fetchGroupUsernames, 1000000);
+    const interval = setInterval(fetchGroupUsernames, 1000);
 
     return () => clearInterval(interval); //insert interval here
   }, [groupid, serverURL, setGroupUsernames]);
