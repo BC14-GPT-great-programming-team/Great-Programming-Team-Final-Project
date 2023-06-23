@@ -8,7 +8,7 @@ button {
   border-radius: 20px;
   border: none;
   background-color: #c5a7cb;
-  color: #fff;
+  color: var(--white);
   font-weight: bold;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   font-family: LilitaOne;

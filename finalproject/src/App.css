@@ -1,6 +1,7 @@
 /* CSS variables: */
 :root {
   --black: #000000;
+  --light-grey: #8E8E8E;
   --white: #ffffff;
   --off-white: #f6f2e9;
   --peach-color: #ea9c90;
@@ -20,10 +21,6 @@
 }
 
 body {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   margin: 0;
   font-family: LilitaOne;
   text-align: center;
