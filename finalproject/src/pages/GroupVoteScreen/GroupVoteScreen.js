@@ -7,7 +7,6 @@ import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 export default function GroupVoteScreen({
   rounds,
   setRounds,
-  setFilter,
   currentRound,
   selectedOption,
   setSelectedOption,

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult}) {
+export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel}) {
 
 
 // this useEffect is for fetching the votes from the database
@@ -22,18 +22,12 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
           })
           .then((response) => response.json())
           .then((data) => {
-            let resultArray = data.resultArray
-            let resultArraySorted = resultArray.sort((a, b) => b.votes - a.votes)
+            let roundLabel = data.round_label
+             let resultArray = data.resultArray
+             let resultArraySorted = resultArray.sort((a, b) => b.votes - a.votes)
+            setCurrentRoundLabel(roundLabel)
            setCurrentGroupResult(resultArraySorted)
-           console.log(currentRoundID)
-           console.log(groupid);
-           console.log(`the following is the current CurrentGroupResult usestate:`)
-           console.log(CurrentGroupResult)
-            console.log(`the following is the current resultArray:`)
-           console.log(data.resultArray)
-           console.log(`the following is the current data:`)
-           console.log(data)
-
+          console.log(CurrentGroupResult)
           });
         };
         fetchVotes();
@@ -41,7 +35,7 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
         const interval = setInterval(fetchVotes, 2000);
     
         return () => clearInterval(interval);
-      }, [CurrentGroupResult, currentRoundID, groupid, serverURL, setCurrentGroupResult])
+      }, [])
 
 
 
