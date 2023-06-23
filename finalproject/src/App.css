@@ -25,7 +25,7 @@ body {
   justify-content: center;
   align-items: center; */
   margin: 0;
-  font-family: Multicolore;
+  font-family: LilitaOne;
   text-align: center;
 }
 
@@ -43,13 +43,13 @@ li {
   src: url(../public/Inder-Regular.ttf);
 }
 @font-face {
-  font-family: DiloWorld;
-  src: url(../public/DiloWorld\ 2.ttf);
+  font-family: LilitaOne;
+  src: url(../public/LilitaOne-Regular.ttf);
 }
 
 @font-face {
-  font-family: Multicolore;
-  src: url(../public/Multicolore\ Pro\ 4.otf);
+  font-family: Caprasimo;
+  src: url(../public/Caprasimo-Regular.ttf);
 }
 @font-face {
   font-family: Sirukota;
