@@ -22,11 +22,11 @@ function App() {
 
 
 
- // const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
 //comment out the below line for deployment
  
-const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+// const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
 
 
@@ -127,6 +127,19 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     setCurrentGroupResult([]);
     navigate("/");
     setRounds(initialRounds);
+    const userRequestBody = {
+      type: "purgeVotes",
+      group_id: groupid,
+    };
+    fetch(serverURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userRequestBody),
+    }) 
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`Return message from purgeVotes path: ${data.message}`)
+    })
   }
 
   //this function is called in the vote screen by the handleVote function which is called by the option buttons on the vote screen. It takes in the option name and sets the current result state to the option name. This is then passed down to the results page and displayed.

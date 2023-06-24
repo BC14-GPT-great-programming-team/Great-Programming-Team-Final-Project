@@ -253,6 +253,35 @@ exports.handler = async function (event, context) {
       };
 
 } 
+
+else if (requestBody.type === "purgeVotes") {
+      
+  const {data, error} = await supabase
+      .from('votes')
+      .delete()
+      .eq('group_id', requestBody.group_id)
+      .select();
+
+      if (error) {
+          console.error('Supabase error:', error);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
+
+       const responseData = {
+         message: 'Group votes deleted',
+         group_id:data.group_id,
+        };
+
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
+
+} 
   //paste above here
   else { 
       return {
