@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel}) {
+export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel, setGroupFilter, CurrentRoundLabel}) {
 
 
 // this useEffect is for fetching the votes from the database
@@ -24,10 +24,10 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
           .then((data) => {
             let roundLabel = data.roundlabel
              let resultArray = data.resultArray
-             let resultArraySorted = resultArray.sort((a, b) => b.votes - a.votes)
+             let resultArraySorted = resultArray && resultArray.sort((a, b) => b.votes - a.votes)
            if (roundLabel) {setCurrentRoundLabel(roundLabel)}
            if (resultArraySorted) {setCurrentGroupResult(resultArraySorted)}
-
+           setGroupFilter(CurrentRoundLabel, CurrentGroupResult[0].choice)
            console.log(`this is roundLabel:`)
           console.log(roundLabel)
            console.log(`this is CurrentGroupResult:`)

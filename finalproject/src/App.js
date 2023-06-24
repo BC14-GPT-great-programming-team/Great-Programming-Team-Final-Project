@@ -204,7 +204,6 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     if (nextRoundID === "") {
       navigate("/groupfinalresult");
     } else {
-      setGroupFilter(CurrentRoundLabel, CurrentGroupResult[0].choice)
       console.log("LOOK HERE");
       console.log(`group filters:`)
       console.log(groupFilters)
@@ -266,6 +265,8 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
             CurrentGroupResult={CurrentGroupResult}
             setCurrentGroupResult={setCurrentGroupResult}
             setCurrentRoundLabel={setCurrentRoundLabel}
+            setGroupFilter={setGroupFilter}
+            CurrentRoundLabel={CurrentRoundLabel}
           />
         }
       />
