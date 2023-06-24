@@ -208,7 +208,7 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
   //handle the GROUP round change and apply filters GROUP
   function handleNextGroupRound() {
     const currentOption = currentRound.find(
-      (option) => option.id === selectedOption
+      (option) => option.name === CurrentGroupResult[0].choice
     );
     const nextRoundID = currentOption.nextRoundID;
     if (nextRoundID === "") {
