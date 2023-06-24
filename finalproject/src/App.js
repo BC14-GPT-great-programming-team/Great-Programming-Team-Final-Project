@@ -109,12 +109,22 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
   function handleRestart() {
     setFilters({
       venue_type: null,
+    cuisine_type: null,
+    atmosphere: null,
+    time: null,
+    dining_experience: null,
+    });
+    setGroupFilters({
+      venue_type: null,
       cuisine_type: null,
-      cost_rating: null,
+      atmosphere: null,
+      time: null,
+      dining_experience: null,
     });
     setSelectedOption(null);
     setCurrentRoundID("An Activity");
     setTheCurrentResult(null);
+    setCurrentGroupResult([]);
     navigate("/");
     setRounds(initialRounds);
   }
@@ -178,7 +188,7 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     };
   
     fetchData();
-  }, [currentRound, filters, fetchError]);
+  }, [currentRound, filters, groupFilters, fetchError]);
 
   //this function is triggered by the next button on the results screen. SOLO
   function handleNextRound() {
@@ -203,13 +213,20 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     const nextRoundID = currentOption.nextRoundID;
     if (nextRoundID === "") {
       navigate("/groupfinalresult");
+      console.log("LOOK HERE");
+      console.log(`group filters:`)
+      console.log(groupFilters)
+      console.log("current round label:")
+      console.log(CurrentRoundLabel)
+      console.log("currentroundchoice");
+      console.log(CurrentGroupResult[0].choice)
     } else {
       console.log("LOOK HERE");
       console.log(`group filters:`)
       console.log(groupFilters)
-      console.log(`filters`)
-      console.log(filters)
+      console.log("current round label:")
       console.log(CurrentRoundLabel)
+      console.log("currentroundchoice");
       console.log(CurrentGroupResult[0].choice)
       setCurrentRoundID(nextRoundID);
       setSelectedOption(null);

@@ -27,13 +27,14 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
              let resultArraySorted = resultArray && resultArray.sort((a, b) => b.votes - a.votes)
            if (roundLabel) {setCurrentRoundLabel(roundLabel)}
            if (resultArraySorted) {setCurrentGroupResult(resultArraySorted)}
-           setGroupFilter(CurrentRoundLabel, CurrentGroupResult[0].choice)
-           console.log(`this is roundLabel:`)
-          console.log(roundLabel)
-           console.log(`this is CurrentGroupResult:`)
-          console.log(CurrentGroupResult)
-          console.log(`this is resultArraySorted:`)
-          console.log(resultArraySorted)
+           if (roundLabel !== undefined && resultArraySorted !== undefined) {setGroupFilter(roundLabel, resultArraySorted[0].choice)}
+        
+          //  console.log(`this is roundLabel:`)
+          // console.log(roundLabel)
+          //  console.log(`this is CurrentGroupResult:`)
+          // console.log(CurrentGroupResult)
+          // console.log(`this is resultArraySorted:`)
+          // console.log(resultArraySorted)
           });
         };
         fetchVotes();
