@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel, setGroupFilter, CurrentRoundLabel}) {
+export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel, setGroupFilter}) {
 
 
 // this useEffect is for fetching the votes from the database

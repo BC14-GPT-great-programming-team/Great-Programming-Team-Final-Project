@@ -283,7 +283,6 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
             setCurrentGroupResult={setCurrentGroupResult}
             setCurrentRoundLabel={setCurrentRoundLabel}
             setGroupFilter={setGroupFilter}
-            CurrentRoundLabel={CurrentRoundLabel}
           />
         }
       />
