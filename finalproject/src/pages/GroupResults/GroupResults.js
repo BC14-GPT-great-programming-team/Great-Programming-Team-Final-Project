@@ -42,6 +42,7 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
         const interval = setInterval(fetchVotes, 2000);
     
         return () => clearInterval(interval);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
 
