@@ -9,7 +9,7 @@ export const RoundsProvider = ({ children }) => {
 const initialRounds = {
     'An Activity': [
       { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "A Time" },
-      { id: 2, name: "Museum", roundLabel: "venue_type", score: 0, nextRoundID: "A Theme" },
+      { id: 2, name: "Museum", roundLabel: "venue_type", score: 0, nextRoundID: "Exhibits" },
       { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "" },
     ],
     
@@ -48,7 +48,13 @@ const initialRounds = {
       { id: 22, name: "All Day Breakfast", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
       { id: 23, name: "Gastropub", roundLabel: "dining_experience", score: 0, nextRoundID: "" },
     ],
-    
+    'Exhibits': [
+      { id: 24, name: "Modern Art", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
+      { id: 25, name: "Historical", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
+      { id: 26, name: "Science", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
+      { id: 27, name: "Nature", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
+      { id: 28, name: "Art", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
+    ],
   };
 
   return (
