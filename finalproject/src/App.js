@@ -22,11 +22,11 @@ function App() {
 
 
 
-//  const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+ const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
 //comment out the below line for deployment
  
-const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+//const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
 
 
@@ -42,9 +42,12 @@ const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandl
   const [currentRoundID, setCurrentRoundID] = useState("An Activity");
   //this is selected option name that is passed down to the results page and displayed.
   const [currentResult, setTheCurrentResult] = useState(null);
+  //everything returned after round voting is stored in the usestate array below
 const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
   // useState for setting the error when fetching data from Supabase
   const [fetchError, setFetchError] = useState(null);
+  //useState for setting the current round label
+  const [CurrentRoundLabel, setCurrentRoundLabel] = useState(null);
   //useState for setting the venues data that is fetched from Supabase
   const [venueData, setVenueData] = useState(null);
 
@@ -75,17 +78,17 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     dining_experience: null,
   });
 
-  //UNCOMMENT BELOW FOR GROUP FILTERS
-  // const [groupFilters, setGroupFilters] = useState({
-  //   venue_type: null,
-  //   cuisine_type: null,
-  //   atmosphere: null,
-  //   time: null,
-  //   dining_experience: null,
-  // });
+ //GROUP
+   const [groupFilters, setGroupFilters] = useState({
+     venue_type: null,
+     cuisine_type: null,
+     atmosphere: null,
+     time: null,
+     dining_experience: null,
+   });
 
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
-
+//SOLO
   function setFilter(optionName, value) {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -93,25 +96,35 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     }));
   }
   
-// UNCOMMENT BELOW FOR GROUP FILTERS
-  // function setGroupFilter(optionName, value) {
-  //   setGroupFilters((prevFilters) => ({
-  //     ...prevFilters,
-  //     [optionName]: value,
-  //   }));
-  // }
+//GROUP
+   function setGroupFilter(optionName, value) {
+     setGroupFilters((prevFilters) => ({
+       ...prevFilters,
+       [optionName]: value,
+     }));
+   }
 
 
   // function is triggered by Restart button on the final Results page and it resets everything to the initial state.
   function handleRestart() {
     setFilters({
       venue_type: null,
+    cuisine_type: null,
+    atmosphere: null,
+    time: null,
+    dining_experience: null,
+    });
+    setGroupFilters({
+      venue_type: null,
       cuisine_type: null,
-      cost_rating: null,
+      atmosphere: null,
+      time: null,
+      dining_experience: null,
     });
     setSelectedOption(null);
     setCurrentRoundID("An Activity");
     setTheCurrentResult(null);
+    setCurrentGroupResult([]);
     navigate("/");
     setRounds(initialRounds);
   }
@@ -126,7 +139,26 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     const fetchData = async () => {
       const query = supabase.from("venues").select();
   //the eq calls need to be wrapped in conditionals because if they are null or undefined they will return an error.
-      if (filters.venue_type !== null && filters.venue_type !== undefined) {
+      //GROUP
+  if (groupFilters.venue_type !== null && groupFilters.venue_type !== undefined) {
+    query.eq("venue_type", groupFilters.venue_type);
+  }
+  if (groupFilters.time !== null && groupFilters.time !== undefined) {
+    query.eq("time", groupFilters.time);
+  }
+  if (groupFilters.cuisine_type !== null && groupFilters.cuisine_type !== undefined) {
+    query.eq("cuisine_type", groupFilters.cuisine_type);
+  }
+  if (groupFilters.atmosphere !== null && groupFilters.atmosphere !== undefined) {
+    query.eq("atmosphere", groupFilters.atmosphere);
+  }
+  if (groupFilters.dining_experience !== null && groupFilters.dining_experience !== undefined) {
+    query.eq("dining_experience", groupFilters.dining_experience);
+  }
+  
+
+  //SOLO
+  if (filters.venue_type !== null && filters.venue_type !== undefined) {
         query.eq("venue_type", filters.venue_type);
       }
       if (filters.time !== null && filters.time !== undefined) {
@@ -156,9 +188,9 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     };
   
     fetchData();
-  }, [currentRound, filters, fetchError]);
+  }, [currentRound, filters, groupFilters, fetchError]);
 
-  //this function is triggered by the next button on the results screen.
+  //this function is triggered by the next button on the results screen. SOLO
   function handleNextRound() {
     const currentOption = currentRound.find(
       (option) => option.id === selectedOption
@@ -173,14 +205,29 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     }
   }
 
+  //handle the GROUP round change and apply filters GROUP
   function handleNextGroupRound() {
     const currentOption = currentRound.find(
-      (option) => option.id === selectedOption
+      (option) => option.name === CurrentGroupResult[0].choice
     );
     const nextRoundID = currentOption.nextRoundID;
     if (nextRoundID === "") {
       navigate("/groupfinalresult");
+      console.log("LOOK HERE");
+      console.log(`group filters:`)
+      console.log(groupFilters)
+      console.log("current round label:")
+      console.log(CurrentRoundLabel)
+      console.log("currentroundchoice");
+      console.log(CurrentGroupResult[0].choice)
     } else {
+      console.log("LOOK HERE");
+      console.log(`group filters:`)
+      console.log(groupFilters)
+      console.log("current round label:")
+      console.log(CurrentRoundLabel)
+      console.log("currentroundchoice");
+      console.log(CurrentGroupResult[0].choice)
       setCurrentRoundID(nextRoundID);
       setSelectedOption(null);
       navigate("/groupvotescreen");
@@ -234,6 +281,8 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
             groupid={groupid}
             CurrentGroupResult={CurrentGroupResult}
             setCurrentGroupResult={setCurrentGroupResult}
+            setCurrentRoundLabel={setCurrentRoundLabel}
+            setGroupFilter={setGroupFilter}
           />
         }
       />

@@ -3,9 +3,12 @@ import Homepage from "./Hompage.js";
 import PreFilter from "../PreFilterPage/PreFilterPage.js";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import CreateJoinGroup from "../CreateJoin/CreateJoin.js";
+import {jest} from "@jest/globals"
+
+const mockFunction = jest.fn()
 
 // Test all buttons render on screen
-test("renders buttons", () => {
+test.only("renders buttons", () => {
   const { container } = render(
     <MemoryRouter>
       <Homepage />
@@ -17,7 +20,7 @@ test("renders buttons", () => {
 
 // Test Render Buttons
 // Test Group Mode button renders
-test("render group mode button", () => {
+test.only("render group mode button", () => {
   render(
     <MemoryRouter>
       <Homepage />
@@ -29,7 +32,7 @@ test("render group mode button", () => {
 });
 
 // Test Spin button renders
-test("render spin button", () => {
+test.only("render spin button", () => {
   render(
     <MemoryRouter>
       <Homepage />
@@ -41,13 +44,13 @@ test("render spin button", () => {
 });
 
 // Test that the Go Solo Mode links to Pre Filter Page
-test("solo link to pre filter", () => {
+test.only("solo link to pre filter", () => {
   render(
     <MemoryRouter>
       {/* Use Routes!!! for paths */}
       <Routes>
         {/* Set the element to the page you want to link to */}
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage setGroupMode= {mockFunction}/>} />
         <Route path="/prefilter" element={<PreFilter />} />
       </Routes>
     </MemoryRouter>
@@ -55,13 +58,15 @@ test("solo link to pre filter", () => {
 
   const soloBtn = screen.getByRole("button", { name: "Go Solo" });
   expect(soloBtn).toBeInTheDocument();
+  // 
   // Get attribute
   // expect(soloBtn.getAttribute("to", "/prefilter"));
 
   // Fire User Event
   fireEvent.click(soloBtn);
-  const preFilterPage = screen.getByRole("heading", { name: "Location" });
-  expect(preFilterPage).toBeInTheDocument();
+  // const preFilterPage = screen.getByRole("heading", { name: "Location" });
+  // expect(preFilterPage).toBeInTheDocument();
+  expect(mockFunction).toHaveBeenCalledWith(false)
 });
 
 

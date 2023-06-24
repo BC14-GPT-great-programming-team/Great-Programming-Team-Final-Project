@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import JoinGroup from "../JoinGroup/JoinGroup";
 import { MemoryRouter } from "react-router-dom";
 
+
 test("the button for next on the page", () => {
   // Renders Page
   render(

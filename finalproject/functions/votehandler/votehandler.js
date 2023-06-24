@@ -220,20 +220,28 @@ exports.handler = async function (event, context) {
         }
 
         
-         const votechoices = data.map((vote) => vote.vote_choice);
-         const uniquechoices = [...new Set(votechoices)];
-         const resultArray = uniquechoices.map((choice) => ({
-          choice: choice,
-          votes:0,
-        }));
-        data.forEach((vote) => {
-          const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
-          resultArray[index].votes++;
-        });
+        const votechoices = data.map((vote) => vote.vote_choice);
+        const roundlabels = data.map((vote) => vote.round_label);
+        const roundlabel = roundlabels[0];
+        const uniquechoices = [...new Set(votechoices)];
+        const resultArray = uniquechoices.map((choice) => ({
+         choice: choice,
+         votes:0,
+       }));
+       data.forEach((vote) => {
+         const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
+         resultArray[index].votes++;
+       });
 
-        const responseData = {
-          message: 'Group votes retrieved',
-          resultArray:resultArray
+       const winningChoice = resultArray.reduce((prev, current) => {
+         return (prev.votes > current.votes) ? prev : current;
+       });
+
+       const responseData = {
+         message: 'Group votes retrieved',
+         resultArray:resultArray,
+         winningChoice:winningChoice,
+         roundlabel:roundlabel,
         
           // usernames:usernames,
         };

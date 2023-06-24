@@ -6,6 +6,7 @@ test if the toggle for accessiblity (wheelchair) is able to be checked or unchec
 test if the next button routes to the solo voting screen start when clicked (the group hasn't been implemented yet)
 
 
+
 */
 import { render, screen, fireEvent } from "@testing-library/react";
 import PreFilter from "../PreFilterPage/PreFilterPage.js";
