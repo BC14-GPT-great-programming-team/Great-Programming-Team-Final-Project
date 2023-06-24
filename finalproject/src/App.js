@@ -127,6 +127,18 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
     setCurrentGroupResult([]);
     navigate("/");
     setRounds(initialRounds);
+    const userRequestBody = {
+      type: "purgeVotes",
+    };
+    fetch(serverURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userRequestBody),
+    }) 
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`Return message from purgeVotes path: ${data.message}`)
+    })
   }
 
   //this function is called in the vote screen by the handleVote function which is called by the option buttons on the vote screen. It takes in the option name and sets the current result state to the option name. This is then passed down to the results page and displayed.
