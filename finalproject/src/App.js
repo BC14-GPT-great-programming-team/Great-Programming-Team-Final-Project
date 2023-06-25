@@ -321,7 +321,7 @@ function App() {
     };
   
     fetchData();
-  }, [currentRound, filters, groupFilters, fetchError, venueData]);
+  }, [currentRound, filters, groupFilters, fetchError]);
 
   //this function is triggered by the next button on the results screen. SOLO
   function handleNextRound() {
