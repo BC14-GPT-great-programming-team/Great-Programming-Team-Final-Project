@@ -57,3 +57,24 @@ li {
   font-family: SonoVariable;
   src: url(../public/SonoVariable.ttf);
 }
+
+@font-face {
+  font-family: SimplyRounded;
+  src: url(../public/Simply-Rounded.ttf);
+}
+
+@font-face {
+  font-family: PoetsenOne;
+  src: url(../public/PoetsenOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: Comfortaa-Bold;
+  src: url(../public/Comfortaa-Bold.ttf);
+}
+
+@font-face {
+  font-family: Comfortaa-Regular;
+  src: url(../public/Comfortaa-Regular.ttf);
+}
+
