@@ -57,3 +57,34 @@ li {
   font-family: SonoVariable;
   src: url(../public/SonoVariable.ttf);
 }
+
+@font-face {
+  font-family: SimplyRounded;
+  src: url(../public/Simply-Rounded.ttf);
+}
+
+@font-face {
+  font-family: PoetsenOne;
+  src: url(../public/PoetsenOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: Comfortaa-Bold;
+  src: url(../public/Comfortaa-Bold.ttf);
+}
+
+@font-face {
+  font-family: Comfortaa-Regular;
+  src: url(../public/Comfortaa-Regular.ttf);
+}
+
+@font-face {
+  font-family: Antipasto-ExtraBold;
+  src: url(../public/Antipasto-Pro-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: Antipasto-Regular;
+  src: url(../public/Antipasto-Pro-Regular.ttf);
+}
+
