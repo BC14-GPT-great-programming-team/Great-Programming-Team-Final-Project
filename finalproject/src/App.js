@@ -217,6 +217,7 @@ function App() {
     time: null,
     dining_experience: null,
     museum_exhibits: null,
+    music_type: null,
     });
     setGroupFilters({
       venue_type: null,
@@ -225,6 +226,7 @@ function App() {
       time: null,
       dining_experience: null,
       museum_exhibits: null,
+      music_type: null,
     });
     setSelectedOption(null);
     setCurrentRoundID("An Activity");
@@ -276,6 +278,9 @@ function App() {
   if (groupFilters.museum_exhibits !== null && groupFilters.museum_exhibits !== undefined) {
     query.eq("museum_exhibits", groupFilters.museum_exhibits);
   }
+  if (groupFilters.music_type !== null && groupFilters.music_type !== undefined) {
+    query.eq("music_type", groupFilters.music_type);
+  }
   
 
   //SOLO
@@ -296,6 +301,9 @@ function App() {
       }
       if (filters.musueum_exhibits !== null && filters.musueum_exhibits !== undefined) {
         query.eq("musueum_exhibits", filters.musueum_exhibits);
+      }
+      if (filters.music_type !== null && filters.music_type !== undefined) {
+        query.eq("music_type", filters.music_type);
       }
   
       const { data, error } = await query;
