@@ -383,6 +383,7 @@ function App() {
             userid={userid}
             groupid={groupid}
             serverURL={serverURL}
+            venueData={venueData}
           />
         }
       />
