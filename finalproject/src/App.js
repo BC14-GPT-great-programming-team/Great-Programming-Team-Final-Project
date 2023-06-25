@@ -327,11 +327,11 @@ function App() {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRound, filters, groupFilters, fetchError]);
 
-  useEffect(() => {
-    if (venueData.length === 0) {
-      initialVenueData.current = null;
-    }
-  }, [venueData]);
+  // useEffect(() => {
+  //   if (venueData.length === 0) {
+  //     initialVenueData.current = null;
+  //   }
+  // }, [venueData]);
 
   //this function is triggered by the next button on the results screen. SOLO
   function handleNextRound() {
