@@ -3,7 +3,7 @@ import { RoundsProvider, useRounds } from "./roundData";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Homepage from "./pages/Homepage/Hompage.js";
 import CreateJoinGroup from "./pages/CreateJoin/CreateJoin.js";
 import JoinGroup from "./pages/JoinGroup/JoinGroup";
@@ -255,6 +255,9 @@ function App() {
   }
 
   //this is the call to supabase
+
+  const initialVenueData = useRef([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const query = supabase.from("venues").select();
@@ -312,7 +315,7 @@ function App() {
         setFetchError("Could not fetch venues");
         console.log(fetchError);
       }
-      if (data) {
+      if (data && data !== initialVenueData.current) {
         setVenueData(data);
         setFetchError(null);
         console.log(data);
@@ -321,7 +324,14 @@ function App() {
     };
   
     fetchData();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRound, filters, groupFilters, fetchError]);
+
+  useEffect(() => {
+    if (venueData.length === 0) {
+      initialVenueData.current = null;
+    }
+  }, [venueData]);
 
   //this function is triggered by the next button on the results screen. SOLO
   function handleNextRound() {
