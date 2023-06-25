@@ -78,3 +78,13 @@ li {
   src: url(../public/Comfortaa-Regular.ttf);
 }
 
+@font-face {
+  font-family: Antipasto-ExtraBold;
+  src: url(../public/Antipasto-Pro-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: Antipasto-Regular;
+  src: url(../public/Antipasto-Pro-Regular.ttf);
+}
+

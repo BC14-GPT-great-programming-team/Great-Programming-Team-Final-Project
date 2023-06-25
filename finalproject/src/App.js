@@ -102,12 +102,82 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         const activeUserCount = data.usernames.length;
-
+        //if there is more than one user left in the group when the user leaves, delete the user's votes from the votes table
+        //then do a second server call to delete the user from the users table
         if (activeUserCount > 1) {
-        //delete user and user votes
+          const votePurgeBody = {
+            type: "purgeUserVotes",
+            user_id: userid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(votePurgeBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message);
+          })
+          
+          const purgeUserBody = {
+            type: "purgeUser",
+            user_id: userid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeUserBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message);
+          })
         }
+        //else if the user leaving is the last one in the group, first delete all the group's votes, then delete the group, then delete the user
         else if (activeUserCount === 1) {
-          //delete user and group, and all group votes
+          const purgeGroupVotesBody = {
+            type: "purgeGroupVotes",
+            group_id: groupid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeGroupVotesBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(`Return message from purgeGroupVotes path: ${data.message}`)
+          })
+
+          const purgeGroupBody = {
+            type: "purgeGroup",
+            group_id: groupid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeGroupBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(`Return message from purgeGroup path: ${data.message}`)
+          })
+
+          const purgeUserBody = {
+            type: "purgeUser",
+            user_id: userid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeUserBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(`Return message from purgeUser path: ${data.message}`)
+          })
+
+
         }
       })
       .catch(error => {
@@ -117,7 +187,7 @@ function App() {
 
     window.addEventListener("beforeunload", handleUnload);
     return () => window.removeEventListener("beforeunload", handleUnload);
-  }, [groupid]);
+  }, [groupid, userid]);
 
 
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
@@ -160,14 +230,14 @@ function App() {
     setCurrentGroupResult([]);
     navigate("/");
     setRounds(initialRounds);
-    const userRequestBody = {
+    const purgeGroupVotesBody = {
       type: "purgeGroupVotes",
       group_id: groupid,
     };
     fetch(serverURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userRequestBody),
+      body: JSON.stringify(purgeGroupVotesBody),
     }) 
     .then((response) => response.json())
     .then((data) => {
@@ -230,6 +300,7 @@ function App() {
         setVenueData(data);
         setFetchError(null);
         console.log(data);
+        console.log(`this is venueData: ${venueData}`)
       }
     };
   
