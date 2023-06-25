@@ -88,6 +88,38 @@ function App() {
      dining_experience: null,
    });
 
+   useEffect(() => {
+    const handleUnload = () => {
+      const userRequestBody = {
+        type: "getGroupMembers",
+        group_id: groupid,
+      };
+      fetch(serverURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userRequestBody),
+      }) 
+      .then((response) => response.json())
+      .then((data) => {
+        const activeUserCount = data.usernames.length;
+
+        if (activeUserCount > 1) {
+        //delete user and user votes
+        }
+        else if (activeUserCount === 1) {
+          //delete user and group, and all group votes
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
+
+    window.addEventListener("beforeunload", handleUnload);
+    return () => window.removeEventListener("beforeunload", handleUnload);
+  }, [groupid]);
+
+
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
 //SOLO
   function setFilter(optionName, value) {
@@ -129,7 +161,7 @@ function App() {
     navigate("/");
     setRounds(initialRounds);
     const userRequestBody = {
-      type: "purgeVotes",
+      type: "purgeGroupVotes",
       group_id: groupid,
     };
     fetch(serverURL, {
@@ -139,7 +171,7 @@ function App() {
     }) 
     .then((response) => response.json())
     .then((data) => {
-      console.log(`Return message from purgeVotes path: ${data.message}`)
+      console.log(`Return message from purgeGroupVotes path: ${data.message}`)
     })
   }
 
