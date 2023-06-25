@@ -20,45 +20,46 @@ import GroupFinalResults from "./pages/GroupFinalResult/GroupFinalResult";
 function App() {
 
 
+  //below is the server address when testing with netlify dev - uncomment this while testing, and comment out before merging to main for deployment
 
+  const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
- const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
-
-//comment out the below line for deployment
+  //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
  
-// const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
-
-
+  // const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
+  //this is the user id that is passed down to the vote screen and used to identify the user.
   const [userid, setUserId] = useState(null);
+  //this is the group id that is passed down to the vote screen and used to identify the group.
   const [groupid, setGroupId] = useState(null);
+  //this is the group name that is passed down to the vote screen and used to identify the group.
   const [groupName, setGroupName] = useState("");
+  //this is the list of group usernames that is passed down to the vote screen and used to render the usernames in the lobby screen
   const [groupUsernames, setGroupUsernames] = useState([]);
+  //this is the navigate function that is used to navigate between pages.
   const navigate = useNavigate();
   //selectedOption gets set to the id of the option that the user has selected.
   const [selectedOption, setSelectedOption] = useState(null);
+  //this is the current round id that is passed down to the vote screen and used to display the options.
   const [currentRoundID, setCurrentRoundID] = useState("An Activity");
   //this is selected option name that is passed down to the results page and displayed.
   const [currentResult, setTheCurrentResult] = useState(null);
   //everything returned after round voting is stored in the usestate array below
-const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
+  const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
   // useState for setting the error when fetching data from Supabase
   const [fetchError, setFetchError] = useState(null);
   //useState for setting the current round label
   const [CurrentRoundLabel, setCurrentRoundLabel] = useState(null);
   //useState for setting the venues data that is fetched from Supabase
   const [venueData, setVenueData] = useState(null);
-
-  //REMEMBER FOR LATER - FILTER FOR OUTDOOR/INDOOR?
   //this is the array of rounds that is used to display the options on the vote screen. The score is used to determine which option has been selected. The roundLabel is used to determine which filter to apply to the data from supabase.
   const [rounds, setRounds] = useState(initialRounds);
-  //usestate for storing wether in group or solo mixBlendMode: 
+  //usestate for storing whether in group or solo mode - true means group mode, false is solo
   const [groupMode, setGroupMode] = useState(false);
-
+  //this is the current round that is used to display the options on the vote screen.
   const currentRound = rounds[currentRoundID];
-
   //filters to be interpolated into the query - prefilters are set from the prefilter page and filters are set from the vote screen
   const [prefilters, setpreFilters] = useState({
     halal_options: null,
