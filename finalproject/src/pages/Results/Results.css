@@ -17,146 +17,156 @@
 }
 
 .bubblesContainer {
-  
   position: relative;
   width: 400px;
-  height: 100vh;
+  height: 80%;
+  border: 2px solid red;
 }
 
 .mainBubble {
   position: absolute;
-  top: 50px;
+  top: 2%;
   left: 40px;
   background-color: var(--light-peach-color);
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   z-index: 1;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in 1.9s ease-in, gelatine 1s 2s ease-in-out 2 ;
-  
-  
+  animation: fade-in 1.9s ease-in, gelatine 1s 2s ease-in-out 2;
 }
 
 .secondBubble {
   position: absolute;
-  top: 160px;
-  left: 180px;
+  top: 20%;
+  left: 190px;
   background-color: var(--light-purple-color);
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in 1.8s ease-in ;
-  
+  animation: fade-in 1.8s ease-in;
 }
 
 .thirdBubble {
   position: absolute;
-  top: 255px;
-  left: 50px;
+  top: 35%;
+  left: 100px;
   background-color: var(--darker-green);
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in 1.6s ease-in ;
- 
+  animation: fade-in 1.6s ease-in;
 }
 
 .bubble {
   position: absolute;
-  width: 100px;
-  height: 100px;
   border-radius: 50%;
-  top: 360px;
-  left: 200px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in 2s ease-in ;
+  animation: fade-in 2s ease-in;
   /* animation-delay: calc(0.9s * var(--i)) */
 }
 .one {
   background-color: var(--light-blue-color);
-  width: 100px;
-  height: 100px;
-  top: 340px;
+  width: 80px;
+  height: 80px;
+  top: 50%;
   left: 200px;
-  animation: fade-in 1.4s ease-in ;
+  animation: fade-in 1.4s ease-in;
 }
 
 .two {
   background-color: var(--medium-purple-color);
-  width: 90px;
-  height: 90px;
-  top: 410px;
-  left: 135px;
-  animation: fade-in 1.2s ease-in ;
+  width: 70px;
+  height: 70px;
+  top: 63%;
+  left: 168px;
+  animation: fade-in 1.2s ease-in;
 }
 
 .three {
   background-color: var(--light-purple-color);
-  width: 80px;
-  height: 80px;
-  top: 470px;
-  left: 70px;
-  animation: fade-in 1s ease-in ;
+  width: 60px;
+  height: 60px;
+  top: 72%;
+  left: 120px;
+  animation: fade-in 1s ease-in;
 }
 
 .four {
   background-color: var(--peach-color);
-  width: 70px;
-  height: 70px;
-  top: 500px;
-  left: 150px;
-  animation: fade-in .8s ease-in ;
+  width: 50px;
+  height: 50px;
+  top: 80%;
+  left: 160px;
+  animation: fade-in 0.8s ease-in;
 }
 
 .five {
   background-color: var(--light-peach-color);
-  width: 60px;
-  height: 60px;
-  top: 550px;
-  left: 90px;
-  animation: fade-in .6s ease-in ;
+  width: 40px;
+  height: 40px;
+  top: 86%;
+  left: 120px;
+  animation: fade-in 0.6s ease-in;
 }
 
 .six {
   background-color: var(--light-blue-color);
-  width: 50px;
-  height: 50px;
-  top: 590px;
-  left: 140px;
-  animation: fade-in .4s ease-in ;
-}
-
-.seven {  
-  background-color: var(--green-color);
-  width: 40px;
-  height: 40px;
-  top: 620px;
-  left: 100px;
-  animation: fade-in .2s ease-in ;
-}
-
-.eight {  
-  background-color: var(--darker-green);
   width: 30px;
   height: 30px;
-  top: 655px;
-  left: 80px;
+  top: 90%;
+  left: 90px;
+  animation: fade-in 0.4s ease-in;
+}
+
+.seven {
+  background-color: var(--green-color);
+  width: 20px;
+  height: 20px;
+  top: 95%;
+  left: 70px;
+  animation: fade-in 0.2s ease-in;
+}
+
+.eight {
+  background-color: var(--darker-green);
+  width: 10px;
+  height: 10px;
+  top: 100%;
+  left: 65px;
 }
 
 @keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-
 @keyframes gelatine {
-  from, to { transform: scale(1, 1); }
-  25% { transform: scale(0.9, 1.1); }
-  50% { transform: scale(1.1, 0.9); }
-  75% { transform: scale(0.95, 1.05); }
+  from,
+  to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+@media (max-width: 700px) {
+  .bubblesContainer {
+    height: 65vh;
+  }
 }
 
 /* .wavy {
