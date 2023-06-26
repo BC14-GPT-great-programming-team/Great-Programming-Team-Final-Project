@@ -16,6 +16,7 @@ export default function GroupResults({
   groupUsernames
 }) {
    const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
+   const [totalVotes, setTotalVotes] = useState(0);
   // this useEffect is for fetching the votes from the database
   useEffect(() => {
     const fetchVotes = () => {
@@ -47,14 +48,14 @@ export default function GroupResults({
           if (roundLabel !== undefined && resultArraySorted !== undefined) {
             setGroupFilter(roundLabel, resultArraySorted[0].choice);
           }
-          //  console.log(`this is roundLabel:`)
-          // console.log(roundLabel)
-           console.log(`this is CurrentGroupResult:`)
+          console.log(`this is CurrentGroupResult:`)
           console.log(CurrentGroupResult)
-          // console.log(`this is resultArraySorted:`)
-          // console.log(resultArraySorted)
-        
-          });
+          let totalVotes = resultArray.reduce((total, result) => total + result.votes, 0);
+          console.log(totalVotes); // Output: 5
+          setTotalVotes(totalVotes);
+
+          console.log(resultArray)
+        });
         };
         fetchVotes();
        
@@ -65,21 +66,24 @@ export default function GroupResults({
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
-      useEffect(() => {
-        console.log("this is CurrentGroupResult:");
-        console.log(CurrentGroupResult);
       
+      //this useeffect prevents a user from progressing to the next vote round until
+      //all users in the group have voted
+      useEffect(() => {
+        console.log('vote number:', totalVotes)
+        console.log('group size:', groupUsernames.length)
+
         if (
           CurrentGroupResult &&
           groupUsernames &&
-          CurrentGroupResult.length !== undefined &&
-          CurrentGroupResult.length !== groupUsernames.length
+          totalVotes !== undefined &&
+          totalVotes === groupUsernames.length
         ) {
-          setIsNextBtnDisabled(true);
-        } else {
           setIsNextBtnDisabled(false);
+        } else {
+          setIsNextBtnDisabled(true);
         }
-      }, [CurrentGroupResult, groupUsernames]);
+      }, [CurrentGroupResult, groupUsernames, totalVotes]);
       
 
   return (
