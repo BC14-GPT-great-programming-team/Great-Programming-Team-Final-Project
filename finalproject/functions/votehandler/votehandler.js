@@ -220,22 +220,142 @@ exports.handler = async function (event, context) {
         }
 
         
-         const votechoices = data.map((vote) => vote.vote_choice);
-         const uniquechoices = [...new Set(votechoices)];
-         const resultArray = uniquechoices.map((choice) => ({
-          choice: choice,
-          votes:0,
-        }));
-        data.forEach((vote) => {
-          const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
-          resultArray[index].votes++;
-        });
+        const votechoices = data.map((vote) => vote.vote_choice);
+        const roundlabels = data.map((vote) => vote.round_label);
+        const roundlabel = roundlabels[0];
+        const uniquechoices = [...new Set(votechoices)];
+        const resultArray = uniquechoices.map((choice) => ({
+         choice: choice,
+         votes:0,
+       }));
+       data.forEach((vote) => {
+         const index = resultArray.findIndex((result) => result.choice === vote.vote_choice);
+         resultArray[index].votes++;
+       });
 
-        const responseData = {
-          message: 'Group votes retrieved',
-          resultArray:resultArray
+       const winningChoice = resultArray.reduce((prev, current) => {
+         return (prev.votes > current.votes) ? prev : current;
+       });
+
+       const responseData = {
+         message: 'Group votes retrieved',
+         resultArray:resultArray,
+         winningChoice:winningChoice,
+         roundlabel:roundlabel,
         
           // usernames:usernames,
+        };
+
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
+
+} 
+
+else if (requestBody.type === "purgeGroupVotes") {
+      
+  const {data, error} = await supabase
+      .from('votes')
+      .delete()
+      .eq('group_id', requestBody.group_id)
+      .select();
+
+      if (error) {
+          console.error('Supabase error:', error);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
+
+       const responseData = {
+         message: 'Group votes deleted',
+         group_id:data.group_id,
+        };
+
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
+
+} 
+else if (requestBody.type === "purgeUserVotes") {
+      
+  const {data, error} = await supabase
+      .from('votes')
+      .delete()
+      .eq('user_id', requestBody.user_id)
+      .select();
+
+      if (error) {
+          console.error('Supabase error:', error);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
+
+       const responseData = {
+         message: 'User votes deleted',
+         user_id:data.group_id,
+        };
+
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
+
+} 
+
+else if (requestBody.type === "purgeUser") {
+      
+  const {data:userData, error:userError} = await supabase
+      .from('users')
+      .delete()
+      .eq('user_id', requestBody.user_id)
+
+      if (userError) {
+          console.error('Supabase error:', userError);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
+
+       const responseData = {
+         message: 'User deleted',
+         user_id:userData.user_id,
+        };
+
+      return {
+          statusCode: 200,
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify(responseData),
+      };
+
+} 
+else if (requestBody.type === "purgeGroup") {
+      
+  const {data:groupData, error:groupError} = await supabase
+      .from('groups')
+      .delete()
+      .eq('group_id', requestBody.group_id)
+
+      if (groupError) {
+          console.error('Supabase error:', groupError);
+          return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Something went wrong with Supabase' }),
+          };
+        }
+
+       const responseData = {
+         message: 'Group deleted',
+         group_id:groupData.group_id,
         };
 
       return {

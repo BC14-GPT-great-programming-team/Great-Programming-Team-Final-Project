@@ -80,3 +80,12 @@ span {
   width: 80%;
   text-align: center;
 }
+
+/* If user has reduced motion set this meadia query runs*/
+@media (prefers-reduced-motion: reduce) {
+  .bounceOne,
+  .bounceTwo,
+  .bounceThree {
+    animation: none;
+  }
+}

@@ -32,7 +32,7 @@ function Lobby({
     };
     fetchGroupUsernames();
 
-    const interval = setInterval(fetchGroupUsernames, 1000000);
+    const interval = setInterval(fetchGroupUsernames, 1000);
 
     return () => clearInterval(interval); //insert interval here
   }, [groupid, serverURL, setGroupUsernames]);
@@ -43,12 +43,8 @@ function Lobby({
         <HomeButton />
       </Link>
 
-      <h2 id="welcome-message">Welcome, {groupName}!</h2>
-      <p className="roomcode">
-        Your room code is {groupid} - share this with your friends to let them
-        join!
-      </p>
-      <div className="container">
+      <h2 className="welcome-message">Welcome, {groupName}!</h2>
+      <div className="lobbyContainer">
         <h6 id="lobby-card">Players in this room:</h6>
         <ul className="playerList">
           {groupUsernames.map((username) => (
@@ -56,18 +52,17 @@ function Lobby({
           ))}
         </ul>
       </div>
-      <br></br>
+
       <p>Everybody in?</p>
-      <div className="startContainer">
 
-        <p>Press </p>
-        <Link to="/groupvotescreen">
+      <Link to="/groupvotescreen">
         <Button className="startBtn" btnText="START" />
-        </Link>
-        <p> to begin</p>
+      </Link>
+      <p className="roomcode">
+        Your room code is <span className="groupID">{groupid}</span> - share
+        this with your friends to let them join!
+      </p>
 
-      </div>
-      <br></br>
       <PreFilterSVG className="lobbySVG" />
     </div>
   );

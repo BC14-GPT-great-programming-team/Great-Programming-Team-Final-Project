@@ -7,7 +7,6 @@ import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 export default function GroupVoteScreen({
   rounds,
   setRounds,
-  setFilter,
   currentRound,
   selectedOption,
   setSelectedOption,
@@ -17,7 +16,8 @@ export default function GroupVoteScreen({
   currentRoundID,
   userid,
   groupid,
-  serverURL
+  serverURL,
+  venueData
 }) {
   const navigate = useNavigate();
   
@@ -92,7 +92,15 @@ export default function GroupVoteScreen({
       <h1>Pick {currentRoundID}</h1>
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
       */}
-      {currentRound && currentRound.map((option) => (
+      {currentRound && currentRound.map((option) => {
+        const count = venueData.reduce((acc, obj) => {
+          if (obj[option.roundLabel] === option.name) {
+            return acc + 1;
+          } 
+          return acc;
+        }, 0);
+
+        return (
         <button
           key={option.id}
           onClick={() => handleVote(option.id, option.name, option.roundLabel)}
@@ -106,9 +114,10 @@ export default function GroupVoteScreen({
             opacity: selectedOption && selectedOption !== option.id ? 0.5 : 1,
           }}
         >
-          {option.name}
+          {option.name} ({count})
         </button>
-      ))}
+      );
+      })}
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
       

@@ -5,11 +5,186 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   text-align: center;
+  background: radial-gradient(var(--off-white), #f4d5d1);
 }
 
-.wavy {
+.topResult {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bubblesContainer {
+  position: relative;
+  width: 400px;
+  height: 80%;
+}
+
+.mainBubble {
+  position: absolute;
+  top: 2%;
+  left: 40px;
+  background-color: var(--light-peach-color);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  animation: fade-in 1.9s ease-in, gelatine 1s 2s ease-in-out 2;
+}
+
+.secondBubble {
+  position: absolute;
+  top: 20%;
+  left: 190px;
+  background-color: var(--light-purple-color);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  animation: fade-in 1.8s ease-in, shake 1s 1.5s ease-in-out 7;
+}
+
+.thirdBubble {
+  position: absolute;
+  top: 35%;
+  left: 100px;
+  background-color: var(--darker-green);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  animation: fade-in 1.6s ease-in, shake 1s 1.4s ease-in-out 7;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  animation: fade-in 2s ease-in, shake 1s 0.1s ease-in-out 7;
+  /* animation-delay: calc(0.9s * var(--i)) */
+}
+.one {
+  background-color: var(--light-blue-color);
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 200px;
+  animation: fade-in 1.4s ease-in, shake 1s 1.3s ease-in-out 7;
+}
+
+.two {
+  background-color: var(--medium-purple-color);
+  width: 70px;
+  height: 70px;
+  top: 63%;
+  left: 168px;
+  animation: fade-in 1.2s ease-in, shake 1s 1.2s ease-in-out 7;
+}
+
+.three {
+  background-color: var(--light-purple-color);
+  width: 60px;
+  height: 60px;
+  top: 72%;
+  left: 120px;
+  animation: fade-in 1s ease-in, shake 1s 1s ease-in-out 7;
+}
+
+.four {
+  background-color: var(--peach-color);
+  width: 50px;
+  height: 50px;
+  top: 80%;
+  left: 160px;
+  animation: fade-in 0.8s ease-in, shake 1s 0.9s ease-in-out 7;
+}
+
+.five {
+  background-color: var(--light-peach-color);
+  width: 40px;
+  height: 40px;
+  top: 86%;
+  left: 120px;
+  animation: fade-in 0.6s ease-in, shake 1s 0.7s ease-in-out 7;
+}
+
+.six {
+  background-color: var(--light-blue-color);
+  width: 30px;
+  height: 30px;
+  top: 90%;
+  left: 90px;
+  animation: fade-in 0.4s ease-in, shake 1s 0.6s ease-in-out 7;
+}
+
+.seven {
+  background-color: var(--green-color);
+  width: 20px;
+  height: 20px;
+  top: 95%;
+  left: 70px;
+  animation: fade-in 0.2s ease-in, shake 1s 0.4s ease-in-out 7;
+}
+
+.eight {
+  background-color: var(--darker-green);
+  width: 10px;
+  height: 10px;
+  top: 100%;
+  left: 65px;
+}
+
+/* Animations for bubbles */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes gelatine {
+  from,
+  to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 700px) {
+  .bubblesContainer {
+    height: 65vh;
+  }
+}
+
+/* .wavy {
 
   display: flex;
   justify-content: center;
@@ -39,4 +214,4 @@
     transform: translateY(0);
   }
 
-}
+} */

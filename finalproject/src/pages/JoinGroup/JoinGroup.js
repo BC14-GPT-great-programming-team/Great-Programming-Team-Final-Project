@@ -40,6 +40,28 @@ function JoinGroup({
     setuserValid(!!inputText);
   };
 
+  const checkGroupExists = (event) => {
+    event.preventDefault();
+    const checkGroupExistsBody = {
+      type: "getGroupName",
+      group_id: groupIdInput
+    }
+
+    fetch(serverURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(checkGroupExistsBody),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.group_name) {
+          alert("Group does not exist");
+        } else {
+          handleJoinSubmit(event);
+        }
+      });
+        }
+
   const handleJoinSubmit = (event) => {
     event.preventDefault();
 
@@ -132,7 +154,7 @@ function JoinGroup({
         <HomeButton />
       </Link>
       <h2>Enter Details</h2>
-      <form onSubmit={handleJoinSubmit}>
+      <form onSubmit={checkGroupExists}>
         <input
           className="joinGroupInput"
           placeholder="Enter group code"

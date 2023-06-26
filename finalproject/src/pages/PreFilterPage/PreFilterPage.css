@@ -82,12 +82,21 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 1px solid rgb(142, 142, 142);
+  border: 1px solid var(--light-grey);
   border-radius: 15px;
 }
 
 @media (max-width: 700px) {
   form {
     width: 70%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .out-bottom,
+  .out-top,
+  .in-bottom,
+  .in-top {
+    animation: none;
   }
 }

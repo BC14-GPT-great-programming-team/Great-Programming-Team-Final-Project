@@ -25,7 +25,7 @@ function Homepage({ setGroupMode }) {
           }}
           className="topHomeBtn homepageBtn bounceOne"
         >
-          Go Solo
+          GO SOLO
         </button>
       </Link>
 
@@ -36,14 +36,14 @@ function Homepage({ setGroupMode }) {
           }}
           className="homepageBtn bounceTwo"
         >
-          Group Mode
+          GROUP MODE
         </button>
       </Link>
 
       {/* <div className="spinBtnContainer">
         <Button
           className="homepageBtn bounceThree"
-          btnText="Spin The Wheel   "
+          btnText="SPIN THE WHEEL   "
           // icon={<FaDharmachakra />}
         />
       </div> */}

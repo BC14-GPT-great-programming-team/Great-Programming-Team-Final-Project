@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult}) {
+export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel, setGroupFilter}) {
 
 
 // this useEffect is for fetching the votes from the database
@@ -22,18 +22,19 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
           })
           .then((response) => response.json())
           .then((data) => {
-            let resultArray = data.resultArray
-            let resultArraySorted = resultArray.sort((a, b) => b.votes - a.votes)
-           setCurrentGroupResult(resultArraySorted)
-           console.log(currentRoundID)
-           console.log(groupid);
-           console.log(`the following is the current CurrentGroupResult usestate:`)
-           console.log(CurrentGroupResult)
-            console.log(`the following is the current resultArray:`)
-           console.log(data.resultArray)
-           console.log(`the following is the current data:`)
-           console.log(data)
-
+            let roundLabel = data.roundlabel
+             let resultArray = data.resultArray
+             let resultArraySorted = resultArray && resultArray.sort((a, b) => b.votes - a.votes)
+           if (roundLabel) {setCurrentRoundLabel(roundLabel)}
+           if (resultArraySorted) {setCurrentGroupResult(resultArraySorted)}
+           if (roundLabel !== undefined && resultArraySorted !== undefined) {setGroupFilter(roundLabel, resultArraySorted[0].choice)}
+        
+          //  console.log(`this is roundLabel:`)
+          // console.log(roundLabel)
+          //  console.log(`this is CurrentGroupResult:`)
+          // console.log(CurrentGroupResult)
+          // console.log(`this is resultArraySorted:`)
+          // console.log(resultArraySorted)
           });
         };
         fetchVotes();
@@ -41,6 +42,7 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
         const interval = setInterval(fetchVotes, 2000);
     
         return () => clearInterval(interval);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
 
