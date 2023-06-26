@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  background: radial-gradient(var(--off-white), #f4d5d1);
 }
 
 .topResult {
@@ -20,7 +21,6 @@
   position: relative;
   width: 400px;
   height: 80%;
-  border: 2px solid red;
 }
 
 .mainBubble {
@@ -45,7 +45,7 @@
   height: 140px;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in 1.8s ease-in;
+  animation: fade-in 1.8s ease-in, shake 1s 1.5s ease-in-out 7;
 }
 
 .thirdBubble {
@@ -57,14 +57,14 @@
   height: 120px;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in 1.6s ease-in;
+  animation: fade-in 1.6s ease-in, shake 1s 1.4s ease-in-out 7;
 }
 
 .bubble {
   position: absolute;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in 2s ease-in;
+  animation: fade-in 2s ease-in, shake 1s 0.1s ease-in-out 7;
   /* animation-delay: calc(0.9s * var(--i)) */
 }
 .one {
@@ -73,7 +73,7 @@
   height: 80px;
   top: 50%;
   left: 200px;
-  animation: fade-in 1.4s ease-in;
+  animation: fade-in 1.4s ease-in, shake 1s 1.3s ease-in-out 7;
 }
 
 .two {
@@ -82,7 +82,7 @@
   height: 70px;
   top: 63%;
   left: 168px;
-  animation: fade-in 1.2s ease-in;
+  animation: fade-in 1.2s ease-in, shake 1s 1.2s ease-in-out 7;
 }
 
 .three {
@@ -91,7 +91,7 @@
   height: 60px;
   top: 72%;
   left: 120px;
-  animation: fade-in 1s ease-in;
+  animation: fade-in 1s ease-in, shake 1s 1s ease-in-out 7;
 }
 
 .four {
@@ -100,7 +100,7 @@
   height: 50px;
   top: 80%;
   left: 160px;
-  animation: fade-in 0.8s ease-in;
+  animation: fade-in 0.8s ease-in, shake 1s 0.9s ease-in-out 7;
 }
 
 .five {
@@ -109,7 +109,7 @@
   height: 40px;
   top: 86%;
   left: 120px;
-  animation: fade-in 0.6s ease-in;
+  animation: fade-in 0.6s ease-in, shake 1s 0.7s ease-in-out 7;
 }
 
 .six {
@@ -118,7 +118,7 @@
   height: 30px;
   top: 90%;
   left: 90px;
-  animation: fade-in 0.4s ease-in;
+  animation: fade-in 0.4s ease-in, shake 1s 0.6s ease-in-out 7;
 }
 
 .seven {
@@ -127,7 +127,7 @@
   height: 20px;
   top: 95%;
   left: 70px;
-  animation: fade-in 0.2s ease-in;
+  animation: fade-in 0.2s ease-in, shake 1s 0.4s ease-in-out 7;
 }
 
 .eight {
@@ -138,6 +138,7 @@
   left: 65px;
 }
 
+/* Animations for bubbles */
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -160,6 +161,20 @@
   }
   75% {
     transform: scale(0.95, 1.05);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
   }
 }
 

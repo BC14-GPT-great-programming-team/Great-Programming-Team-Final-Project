@@ -1,7 +1,7 @@
 /* CSS variables: */
 :root {
   --black: #000000;
-  --light-grey: #8E8E8E;
+  --light-grey: #8e8e8e;
   --white: #ffffff;
   --off-white: #f6f2e9;
   --peach-color: #ea9c90;
@@ -22,7 +22,7 @@
 
 body {
   margin: 0;
-  font-family: LilitaOne;
+  font-family: "Varela Round", sans-serif;
   text-align: center;
 }
 
@@ -78,3 +78,12 @@ li {
   src: url(../public/Comfortaa-Regular.ttf);
 }
 
+/* Fade in keyframe for use on all pages */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
