@@ -69,17 +69,48 @@ export default function GroupResults({
       <div className="bubblesContainer">
         <div className="mainBubble ">
           <h3 className="topResult">
-          {CurrentGroupResult && CurrentGroupResult[0] && CurrentGroupResult[0].choice ? CurrentGroupResult[0].choice : null}&nbsp;
-          {CurrentGroupResult && CurrentGroupResult[0] && CurrentGroupResult[0].votes ? CurrentGroupResult[0].votes : null}
+            {CurrentGroupResult &&
+            CurrentGroupResult[0] &&
+            CurrentGroupResult[0].choice
+              ? CurrentGroupResult[0].choice
+              : null}
+            &nbsp;
+            {CurrentGroupResult &&
+            CurrentGroupResult[0] &&
+            CurrentGroupResult[0].votes
+              ? CurrentGroupResult[0].votes
+              : null}
           </h3>
         </div>
         <div className="secondBubble">
-        {CurrentGroupResult && CurrentGroupResult[1] && CurrentGroupResult[1].choice ? CurrentGroupResult[1].choice : null}&nbsp;
-          {CurrentGroupResult && CurrentGroupResult[1] && CurrentGroupResult[1].votes ? CurrentGroupResult[1].votes : null}
+          <h4 className="topResult">
+            {CurrentGroupResult &&
+            CurrentGroupResult[1] &&
+            CurrentGroupResult[1].choice
+              ? CurrentGroupResult[1].choice
+              : null}
+            &nbsp;
+            {CurrentGroupResult &&
+            CurrentGroupResult[1] &&
+            CurrentGroupResult[1].votes
+              ? CurrentGroupResult[1].votes
+              : null}
+          </h4>
         </div>
         <div className="thirdBubble">
-        {CurrentGroupResult && CurrentGroupResult[2] && CurrentGroupResult[2].choice ? CurrentGroupResult[2].choice : null}&nbsp;
-          {CurrentGroupResult && CurrentGroupResult[2] && CurrentGroupResult[2].votes ? CurrentGroupResult[2].votes : null}
+          <h5 className="topResult">
+            {CurrentGroupResult &&
+            CurrentGroupResult[2] &&
+            CurrentGroupResult[2].choice
+              ? CurrentGroupResult[2].choice
+              : null}
+            &nbsp;
+            {CurrentGroupResult &&
+            CurrentGroupResult[2] &&
+            CurrentGroupResult[2].votes
+              ? CurrentGroupResult[2].votes
+              : null}
+          </h5>
         </div>
         <div className="bubble one"></div>
         <div className="bubble two"></div>
