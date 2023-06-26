@@ -1,8 +1,12 @@
+
 .help {
-  background-color: #dcb7e4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 50px;
+    background-color: #dcb7e4;
+    line-height: 50px;
+    flex-direction: column;
+    display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
 }
+

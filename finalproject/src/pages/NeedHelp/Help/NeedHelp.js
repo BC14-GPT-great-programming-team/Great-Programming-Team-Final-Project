@@ -3,9 +3,10 @@ import HomeButton from "../../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
 
 function NeedHelp() {
-  return (
-    <div className="help">
-      <Link to="/">
+
+    return (
+<div className="help">
+<Link to="/">
         <HomeButton />
       </Link>
       <h1>ABOUT CONSENSUS</h1>
