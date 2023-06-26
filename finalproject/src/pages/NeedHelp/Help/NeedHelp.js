@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function NeedHelp() {
     return (
-<div>
+<div className="help">
 <Link to="/">
         <HomeButton />
       </Link>
