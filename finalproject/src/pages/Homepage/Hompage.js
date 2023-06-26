@@ -10,7 +10,9 @@ import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 
 function Homepage({ setGroupMode }) {
   return (
+  
     <div className="homepage">
+      <h1 className="h1">concensus, the ultimate decision-maker for indecisive folk</h1>
       <img className="logo" src={officialLogo} alt="logo" />
       {/* <h1>
         Consens<span>U</span>s
