@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({
+export default function GroupResults({
   handleNextGroupRound,
   serverURL,
   groupid,
@@ -39,6 +39,8 @@ export default function Results({
           if (resultArraySorted) {
             setCurrentGroupResult(resultArraySorted);
           }
+          console.log(`this is CurrentGroupResults`);
+          console.log(CurrentGroupResult);
           if (roundLabel !== undefined && resultArraySorted !== undefined) {
             setGroupFilter(roundLabel, resultArraySorted[0].choice);
           }
@@ -67,14 +69,17 @@ export default function Results({
       <div className="bubblesContainer">
         <div className="mainBubble ">
           <h3 className="topResult">
-            {CurrentGroupResult[0].choice}: {CurrentGroupResult[0].votes}
+          {CurrentGroupResult && CurrentGroupResult[0] && CurrentGroupResult[0].choice ? CurrentGroupResult[0].choice : null}&nbsp;
+          {CurrentGroupResult && CurrentGroupResult[0] && CurrentGroupResult[0].votes ? CurrentGroupResult[0].votes : null}
           </h3>
         </div>
         <div className="secondBubble">
-          {CurrentGroupResult[1].choice}: {CurrentGroupResult[1].votes}
+        {CurrentGroupResult && CurrentGroupResult[1] && CurrentGroupResult[1].choice ? CurrentGroupResult[1].choice : null}&nbsp;
+          {CurrentGroupResult && CurrentGroupResult[1] && CurrentGroupResult[1].votes ? CurrentGroupResult[1].votes : null}
         </div>
         <div className="thirdBubble">
-          {CurrentGroupResult[2].choice}: {CurrentGroupResult[2].votes}
+        {CurrentGroupResult && CurrentGroupResult[2] && CurrentGroupResult[2].choice ? CurrentGroupResult[2].choice : null}&nbsp;
+          {CurrentGroupResult && CurrentGroupResult[2] && CurrentGroupResult[2].votes ? CurrentGroupResult[2].votes : null}
         </div>
         <div className="bubble one"></div>
         <div className="bubble two"></div>
@@ -85,17 +90,6 @@ export default function Results({
         <div className="bubble seven"></div>
         <div className="bubble eight"></div>
       </div>
-      {CurrentGroupResult && CurrentGroupResult.length > 0 ? (
-        <>
-          {CurrentGroupResult.map((result) => (
-            <h2>
-              {result.choice}: {result.votes}
-            </h2>
-          ))}
-        </>
-      ) : (
-        <h2>Waiting for votes...</h2>
-      )}
 
       <button className="nextBtn" onClick={handleNextGroupRound}>
         Next

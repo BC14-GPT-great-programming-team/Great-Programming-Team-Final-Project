@@ -440,6 +440,7 @@ function App() {
             groupid={groupid}
             serverURL={serverURL}
             venueData={venueData}
+            CurrentGroupResult={CurrentGroupResult}
           />
         }
       />
