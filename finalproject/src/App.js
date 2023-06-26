@@ -305,6 +305,7 @@ function App() {
     };
   
     fetchData();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRound, filters, groupFilters, fetchError]);
 
   //this function is triggered by the next button on the results screen. SOLO
