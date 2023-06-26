@@ -419,6 +419,7 @@ function App() {
             currentResult={currentResult}
             setTheCurrentResult={setTheCurrentResult}
             currentRoundID={currentRoundID}
+            venueData={venueData}
           />
         }
       />
