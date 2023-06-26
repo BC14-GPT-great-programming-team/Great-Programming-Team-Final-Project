@@ -31,8 +31,8 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
         
           //  console.log(`this is roundLabel:`)
           // console.log(roundLabel)
-          //  console.log(`this is CurrentGroupResult:`)
-          // console.log(CurrentGroupResult)
+           console.log(`this is CurrentGroupResult:`)
+          console.log(CurrentGroupResult)
           // console.log(`this is resultArraySorted:`)
           // console.log(resultArraySorted)
         
@@ -47,7 +47,15 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
       }, [])
 
       useEffect(() => {
-        if (CurrentGroupResult.length !== groupUsernames.length) {
+        console.log("this is CurrentGroupResult:");
+        console.log(CurrentGroupResult);
+      
+        if (
+          CurrentGroupResult &&
+          groupUsernames &&
+          CurrentGroupResult.length !== undefined &&
+          CurrentGroupResult.length !== groupUsernames.length
+        ) {
           setIsNextBtnDisabled(true);
         } else {
           setIsNextBtnDisabled(false);
