@@ -40,13 +40,13 @@ function Homepage({ setGroupMode }) {
         </button>
       </Link>
 
-      <div className="spinBtnContainer">
+      {/* <div className="spinBtnContainer">
         <Button
           className="homepageBtn bounceThree"
           btnText="Spin The Wheel   "
           // icon={<FaDharmachakra />}
         />
-      </div>
+      </div> */}
 
 
       <Link to="/needHelp">
