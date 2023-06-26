@@ -2,14 +2,14 @@ import "./NeedHelp.css";
 import HomeButton from "../../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
 
-
-
 function NeedHelp() {
+
     return (
 <div className="help">
 <Link to="/">
         <HomeButton />
       </Link>
+
 <h1>ABOUT CONSENSUS</h1>
 
 <p className="intro">We're here to help you make those all important decisions when you're out with your mates. Can't decide what to eat or where to go? 

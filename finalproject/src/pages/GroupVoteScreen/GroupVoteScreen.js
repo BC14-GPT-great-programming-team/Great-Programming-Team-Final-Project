@@ -17,7 +17,8 @@ export default function GroupVoteScreen({
   userid,
   groupid,
   serverURL,
-  venueData
+  venueData,
+  CurrentGroupResult
 }) {
   const navigate = useNavigate();
   
@@ -81,7 +82,8 @@ export default function GroupVoteScreen({
     .then((response) => response.json())
     .then((data) => {
       console.log(`this is the response ${data.message}`)
-    
+      console.log(`this is CurrentGroupResults`);
+      console.log(CurrentGroupResult);
       navigate("/groupresults");
     });}
 
