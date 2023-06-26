@@ -304,7 +304,14 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
               setGroupUsernames = {setGroupUsernames}
               serverURL = {serverURL}
             />}  />
+
+<Route path="/needHelp" element={<needHelp/>}
+      />
+            
     </Routes>
+
+    
+    
   );
 }
 

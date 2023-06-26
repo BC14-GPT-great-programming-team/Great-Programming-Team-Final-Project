@@ -25,7 +25,7 @@ body {
   justify-content: center;
   align-items: center; */
   margin: 0;
-  font-family: Multicolore;
+  font-family: Porkys;
   text-align: center;
 }
 
@@ -48,8 +48,8 @@ li {
 }
 
 @font-face {
-  font-family: Multicolore;
-  src: url(../public/Multicolore\ Pro\ 4.otf);
+  font-family: Porkys;
+  src: url(../public/PORKYS_.TTF);
 }
 @font-face {
   font-family: Sirukota;
