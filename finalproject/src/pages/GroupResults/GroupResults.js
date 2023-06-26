@@ -13,6 +13,7 @@ export default function GroupResults({
   CurrentGroupResult,
   setCurrentRoundLabel,
   setGroupFilter,
+  groupUsernames
 }) {
    const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
   // this useEffect is for fetching the votes from the database
