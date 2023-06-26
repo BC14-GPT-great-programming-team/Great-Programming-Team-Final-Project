@@ -40,15 +40,27 @@ function Homepage({ setGroupMode }) {
         </button>
       </Link>
 
-      <div className="spinBtnContainer">
+      {/* <div className="spinBtnContainer">
         <Button
           className="homepageBtn bounceThree"
           btnText="SPIN THE WHEEL   "
           // icon={<FaDharmachakra />}
         />
-      </div>
+      </div> */}
+
+
+      <Link to="/needHelp">
+        <Button
+          className="needHelpBtn"
+          btnText="Need help?"
+        />
+        </Link>
+      
+
+      <div>
       <p className="motto">"Saving your friendships one decision at a time!"</p>
       <PreFilterSVG />
+    </div>
     </div>
   );
 }

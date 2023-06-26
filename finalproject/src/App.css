@@ -22,7 +22,11 @@
 
 body {
   margin: 0;
+
+
+
   font-family: "Varela Round", sans-serif;
+
   text-align: center;
 }
 
@@ -45,8 +49,13 @@ li {
 }
 
 @font-face {
+
+  font-family: Porkys;
+  src: url(../public/PORKYS_.TTF);
+
   font-family: Caprasimo;
   src: url(../public/Caprasimo-Regular.ttf);
+
 }
 @font-face {
   font-family: Sirukota;
