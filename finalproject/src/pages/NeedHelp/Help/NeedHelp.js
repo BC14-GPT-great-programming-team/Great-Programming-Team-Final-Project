@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 
-function needHelp() {
+function NeedHelp() {
     return (
 <div>
 <Link to="/">
@@ -31,4 +31,4 @@ What if my city is not available?
 </div>
 )}
 
-export default needHelp;
+export default NeedHelp;

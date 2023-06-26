@@ -15,6 +15,7 @@ import Lobby from "./pages/Lobby/Lobby";
 import GroupVoteScreen from "./pages/GroupVoteScreen/GroupVoteScreen";
 import GroupResults from "./pages/GroupResults/GroupResults";
 import GroupFinalResults from "./pages/GroupFinalResult/GroupFinalResult";
+import NeedHelp from "./pages/NeedHelp/Help/NeedHelp";
 // Green dynamic background can be applied to every page with below
 
 function App() {
@@ -305,7 +306,7 @@ const [CurrentGroupResult, setCurrentGroupResult] = useState([]);
               serverURL = {serverURL}
             />}  />
 
-<Route path="/needHelp" element={<needHelp/>}
+<Route path="/needHelp" element={<NeedHelp/>}
       />
             
     </Routes>
