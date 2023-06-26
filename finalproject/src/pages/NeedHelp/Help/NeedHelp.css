@@ -1,13 +1,11 @@
-body {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-
-}
 
 .help {
     background-color: #dcb7e4;
     line-height: 50px;
     flex-direction: column;
+    display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
 }
