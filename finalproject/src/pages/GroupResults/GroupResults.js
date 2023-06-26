@@ -1,11 +1,11 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel, setGroupFilter}) {
+export default function Results({ handleNextGroupRound, serverURL, groupid, currentRoundID, setCurrentGroupResult, CurrentGroupResult, setCurrentRoundLabel, setGroupFilter, groupUsernames}) {
 
-
+  const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
 // this useEffect is for fetching the votes from the database
     useEffect(() => {
         const fetchVotes = () => {
@@ -35,18 +35,25 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
           // console.log(CurrentGroupResult)
           // console.log(`this is resultArraySorted:`)
           // console.log(resultArraySorted)
+        
           });
         };
         fetchVotes();
-    
+       
         const interval = setInterval(fetchVotes, 2000);
     
         return () => clearInterval(interval);
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
-
-
+      useEffect(() => {
+        if (CurrentGroupResult.length !== groupUsernames.length) {
+          setIsNextBtnDisabled(true);
+        } else {
+          setIsNextBtnDisabled(false);
+        }
+      }, [CurrentGroupResult, groupUsernames]);
+      
   return (
     <div className="resultsPage">
       <Link to="/">
@@ -83,9 +90,10 @@ export default function Results({ handleNextGroupRound, serverURL, groupid, curr
           <h2>Waiting for votes...</h2>
         )}
 
+
       </div>
       
-      <button className="nextBtn" onClick={handleNextGroupRound}>
+      <button className="nextBtn" onClick={handleNextGroupRound} disabled={isNextBtnDisabled} style={{ backgroundColor: isNextBtnDisabled ? "#e9d1ce" :"#ea9c90"}}>
         Next
       </button>
     </div>
