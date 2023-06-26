@@ -1,7 +1,8 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./GroupResults.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
+
 
 export default function GroupResults({
   handleNextGroupRound,
@@ -13,6 +14,7 @@ export default function GroupResults({
   setCurrentRoundLabel,
   setGroupFilter,
 }) {
+   const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
   // this useEffect is for fetching the votes from the database
   useEffect(() => {
     const fetchVotes = () => {
@@ -44,28 +46,48 @@ export default function GroupResults({
           if (roundLabel !== undefined && resultArraySorted !== undefined) {
             setGroupFilter(roundLabel, resultArraySorted[0].choice);
           }
-
           //  console.log(`this is roundLabel:`)
           // console.log(roundLabel)
-          //  console.log(`this is CurrentGroupResult:`)
-          // console.log(CurrentGroupResult)
+           console.log(`this is CurrentGroupResult:`)
+          console.log(CurrentGroupResult)
           // console.log(`this is resultArraySorted:`)
           // console.log(resultArraySorted)
-        });
-    };
-    fetchVotes();
+        
+          });
+        };
+        fetchVotes();
+       
+        const interval = setInterval(fetchVotes, 2000);
+    
+        return () => clearInterval(interval);
+    
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [])
 
-    const interval = setInterval(fetchVotes, 2000);
-
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      useEffect(() => {
+        console.log("this is CurrentGroupResult:");
+        console.log(CurrentGroupResult);
+      
+        if (
+          CurrentGroupResult &&
+          groupUsernames &&
+          CurrentGroupResult.length !== undefined &&
+          CurrentGroupResult.length !== groupUsernames.length
+        ) {
+          setIsNextBtnDisabled(true);
+        } else {
+          setIsNextBtnDisabled(false);
+        }
+      }, [CurrentGroupResult, groupUsernames]);
+      
 
   return (
     <div className="resultsPage">
       <Link to="/">
         <HomeButton />
       </Link>
+
+      
       <div className="bubblesContainer">
         <div className="mainBubble ">
           <h3 className="topResult">
@@ -122,7 +144,8 @@ export default function GroupResults({
         <div className="bubble eight"></div>
       </div>
 
-      <button className="nextBtn" onClick={handleNextGroupRound}>
+           <button className="nextBtn" onClick={handleNextGroupRound} 
+disabled={isNextBtnDisabled} style={{ backgroundColor: isNextBtnDisabled ? "#e9d1ce" :"#ea9c90"}}>
         Next
       </button>
     </div>
