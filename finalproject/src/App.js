@@ -185,8 +185,8 @@ function App() {
       })
     }
 
-    window.addEventListener("beforeunload", handleUnload);
-    return () => window.removeEventListener("beforeunload", handleUnload);
+    window.addEventListener("unload", handleUnload);
+    return () => window.removeEventListener("unload", handleUnload);
   }, [groupid, userid]);
 
 
