@@ -300,7 +300,7 @@ else if (requestBody.type === "purgeUserVotes") {
 
        const responseData = {
          message: 'User votes deleted',
-         group_id:data.group_id,
+         user_id:data.group_id,
         };
 
       return {
@@ -317,7 +317,6 @@ else if (requestBody.type === "purgeUser") {
       .from('users')
       .delete()
       .eq('user_id', requestBody.user_id)
-      .select();
 
       if (userError) {
           console.error('Supabase error:', userError);
@@ -345,7 +344,6 @@ else if (requestBody.type === "purgeGroup") {
       .from('groups')
       .delete()
       .eq('group_id', requestBody.group_id)
-      .select();
 
       if (groupError) {
           console.error('Supabase error:', groupError);

@@ -10,7 +10,7 @@ const initialRounds = {
     'An Activity': [
       { id: 1, name: "Restaurant", roundLabel: "venue_type", score: 0, nextRoundID: "A Time" },
       { id: 2, name: "Museum", roundLabel: "venue_type", score: 0, nextRoundID: "Exhibits" },
-      { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "" },
+      { id: 3, name: "Bar", roundLabel: "venue_type", score: 0, nextRoundID: "Music" },
     ],
     
     'A Time': [
@@ -54,6 +54,14 @@ const initialRounds = {
       { id: 26, name: "Science", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
       { id: 27, name: "Nature", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
       { id: 28, name: "Art", roundLabel: "museum_exhibits", score: 0, nextRoundID: "" },
+    ],
+    'Music': [
+      { id: 29, name: "Rock", roundLabel: "music_type", score: 0, nextRoundID: "" },
+      { id: 30, name: "Pop", roundLabel: "music_type", score: 0, nextRoundID: "" },
+      { id: 26, name: "Indie", roundLabel: "music_type", score: 0, nextRoundID: "" },
+      { id: 31, name: "Jazz", roundLabel: "music_type", score: 0, nextRoundID: "" },
+      { id: 32, name: "Blues", roundLabel: "music_type", score: 0, nextRoundID: "" },
+      { id: 33, name: "RNB", roundLabel: "music_type", score: 0, nextRoundID: "" },
     ],
   };
 

@@ -3,7 +3,7 @@ import { RoundsProvider, useRounds } from "./roundData";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Homepage from "./pages/Homepage/Hompage.js";
 import CreateJoinGroup from "./pages/CreateJoin/CreateJoin.js";
 import JoinGroup from "./pages/JoinGroup/JoinGroup";
@@ -22,11 +22,11 @@ function App() {
 
   //below is the server address when testing with netlify dev - uncomment this while testing, and comment out before merging to main for deployment
 
-  const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+  // const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
   //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
  
-  // const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
@@ -102,12 +102,82 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         const activeUserCount = data.usernames.length;
-
+        //if there is more than one user left in the group when the user leaves, delete the user's votes from the votes table
+        //then do a second server call to delete the user from the users table
         if (activeUserCount > 1) {
-        //delete user and user votes
+          const votePurgeBody = {
+            type: "purgeUserVotes",
+            user_id: userid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(votePurgeBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message);
+          })
+          
+          const purgeUserBody = {
+            type: "purgeUser",
+            user_id: userid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeUserBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message);
+          })
         }
+        //else if the user leaving is the last one in the group, first delete all the group's votes, then delete the group, then delete the user
         else if (activeUserCount === 1) {
-          //delete user and group, and all group votes
+          const purgeGroupVotesBody = {
+            type: "purgeGroupVotes",
+            group_id: groupid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeGroupVotesBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(`Return message from purgeGroupVotes path: ${data.message}`)
+          })
+
+          const purgeGroupBody = {
+            type: "purgeGroup",
+            group_id: groupid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeGroupBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(`Return message from purgeGroup path: ${data.message}`)
+          })
+
+          const purgeUserBody = {
+            type: "purgeUser",
+            user_id: userid,
+          };
+          fetch(serverURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(purgeUserBody),
+          }) 
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(`Return message from purgeUser path: ${data.message}`)
+          })
+
+
         }
       })
       .catch(error => {
@@ -117,7 +187,7 @@ function App() {
 
     window.addEventListener("beforeunload", handleUnload);
     return () => window.removeEventListener("beforeunload", handleUnload);
-  }, [groupid]);
+  }, [groupid, userid]);
 
 
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
@@ -146,6 +216,8 @@ function App() {
     atmosphere: null,
     time: null,
     dining_experience: null,
+    museum_exhibits: null,
+    music_type: null,
     });
     setGroupFilters({
       venue_type: null,
@@ -153,6 +225,8 @@ function App() {
       atmosphere: null,
       time: null,
       dining_experience: null,
+      museum_exhibits: null,
+      music_type: null,
     });
     setSelectedOption(null);
     setCurrentRoundID("An Activity");
@@ -160,14 +234,14 @@ function App() {
     setCurrentGroupResult([]);
     navigate("/");
     setRounds(initialRounds);
-    const userRequestBody = {
+    const purgeGroupVotesBody = {
       type: "purgeGroupVotes",
       group_id: groupid,
     };
     fetch(serverURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userRequestBody),
+      body: JSON.stringify(purgeGroupVotesBody),
     }) 
     .then((response) => response.json())
     .then((data) => {
@@ -181,6 +255,9 @@ function App() {
   }
 
   //this is the call to supabase
+
+  const initialVenueData = useRef([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const query = supabase.from("venues").select();
@@ -201,6 +278,12 @@ function App() {
   if (groupFilters.dining_experience !== null && groupFilters.dining_experience !== undefined) {
     query.eq("dining_experience", groupFilters.dining_experience);
   }
+  if (groupFilters.museum_exhibits !== null && groupFilters.museum_exhibits !== undefined) {
+    query.eq("museum_exhibits", groupFilters.museum_exhibits);
+  }
+  if (groupFilters.music_type !== null && groupFilters.music_type !== undefined) {
+    query.eq("music_type", groupFilters.music_type);
+  }
   
 
   //SOLO
@@ -219,6 +302,12 @@ function App() {
       if (filters.dining_experience !== null && filters.dining_experience !== undefined) {
         query.eq("dining_experience", filters.dining_experience);
       }
+      if (filters.musueum_exhibits !== null && filters.musueum_exhibits !== undefined) {
+        query.eq("musueum_exhibits", filters.musueum_exhibits);
+      }
+      if (filters.music_type !== null && filters.music_type !== undefined) {
+        query.eq("music_type", filters.music_type);
+      }
   
       const { data, error } = await query;
   
@@ -226,15 +315,23 @@ function App() {
         setFetchError("Could not fetch venues");
         console.log(fetchError);
       }
-      if (data) {
+      if (data && data !== initialVenueData.current) {
         setVenueData(data);
         setFetchError(null);
         console.log(data);
+        console.log(`this is venueData: ${venueData}`)
       }
     };
   
     fetchData();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRound, filters, groupFilters, fetchError]);
+
+  // useEffect(() => {
+  //   if (venueData.length === 0) {
+  //     initialVenueData.current = null;
+  //   }
+  // }, [venueData]);
 
   //this function is triggered by the next button on the results screen. SOLO
   function handleNextRound() {
@@ -312,6 +409,7 @@ function App() {
             userid={userid}
             groupid={groupid}
             serverURL={serverURL}
+            venueData={venueData}
           />
         }
       />
