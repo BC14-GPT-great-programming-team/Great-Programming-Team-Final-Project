@@ -91,3 +91,12 @@ body {
     width: 70%;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .out-bottom,
+  .out-top,
+  .in-bottom,
+  .in-top {
+    animation: none;
+  }
+}
