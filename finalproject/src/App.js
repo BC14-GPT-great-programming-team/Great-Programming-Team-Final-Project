@@ -186,8 +186,8 @@ function App() {
         });
     };
 
-    window.addEventListener("beforeunload", handleUnload);
-    return () => window.removeEventListener("beforeunload", handleUnload);
+    window.addEventListener("unload", handleUnload);
+    return () => window.removeEventListener("unload", handleUnload);
   }, [groupid, userid]);
 
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
@@ -477,6 +477,7 @@ function App() {
             currentResult={currentResult}
             setTheCurrentResult={setTheCurrentResult}
             currentRoundID={currentRoundID}
+            venueData={venueData}
           />
         }
       />

@@ -15,6 +15,7 @@ export default function VoteScreen({
   setTheCurrentResult,
   currentResult,
   currentRoundID,
+  venueData
 }) {
   const navigate = useNavigate();
 
@@ -74,7 +75,15 @@ export default function VoteScreen({
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
        */}
       {currentRound &&
-        currentRound.map((option) => (
+        currentRound.map((option) => {
+          const count = venueData.reduce((acc, obj) => {
+          if (obj[option.roundLabel] === option.name) {
+            return acc + 1;
+          } 
+          return acc;
+        }, 0);
+
+        return (
           <button
             key={option.id}
             onClick={() =>
@@ -90,9 +99,10 @@ export default function VoteScreen({
               opacity: selectedOption && selectedOption !== option.id ? 0.5 : 1,
             }}
           >
-            {option.name}
+            {option.name} ({count})
           </button>
-        ))}
+        );
+        })}
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
 
