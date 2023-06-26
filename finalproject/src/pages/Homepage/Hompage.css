@@ -100,4 +100,5 @@ span {
 .h1 {
   font-size: 0.1px;
   opacity: 0;
+  padding: 0;
 }

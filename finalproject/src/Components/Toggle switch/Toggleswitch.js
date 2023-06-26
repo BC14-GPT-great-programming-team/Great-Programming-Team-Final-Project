@@ -10,7 +10,7 @@ function ToggleSwitch() {
 
   return (
     <div className="toggleSwitch">
-      <h4>Wheelchair accessible</h4>
+      <h4>Wheelchair Accessible</h4>
       <ReactSwitch
         className="switch"
         checked={checked}
