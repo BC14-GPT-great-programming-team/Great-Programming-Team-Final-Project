@@ -7,44 +7,47 @@ import {jest} from "@jest/globals"
 
 const mockFunction = jest.fn()
 
+//STOP CAPITALIZING one minute and not capitalizing everything the next ,its such a nuisance on tests
+
+
 // Test all buttons render on screen
-test.only("renders buttons", () => {
+test("renders buttons", () => {
   const { container } = render(
     <MemoryRouter>
       <Homepage />
     </MemoryRouter>
   );
 
-  expect(container.textContent).toMatch("Go SoloGroup ModeSpin The Wheel");
+  expect(container.textContent).toMatch("GO SOLOGROUP MODESPIN THE WHEEL");
 });
 
 // Test Render Buttons
 // Test Group Mode button renders
-test.only("render group mode button", () => {
+test("render group mode button", () => {
   render(
     <MemoryRouter>
       <Homepage />
     </MemoryRouter>
   );
 
-  const groupModeBtn = screen.getByRole("button", { name: "Group Mode" });
+  const groupModeBtn = screen.getByRole("button", { name: "GROUP MODE" });
   expect(groupModeBtn).toBeInTheDocument();
 });
 
-// Test Spin button renders
-test.only("render spin button", () => {
-  render(
-    <MemoryRouter>
-      <Homepage />
-    </MemoryRouter>
-  );
+// Test Spin button renders(this test was for the random choice button for spin the wheel)
+// test("render spin button", () => {
+//   render(
+//     <MemoryRouter>
+//       <Homepage />
+//     </MemoryRouter>
+//   );
 
-  const spinBtn = screen.getByRole("button", { name: "Spin The Wheel" });
-  expect(spinBtn).toBeInTheDocument();
-});
+//   const spinBtn = screen.getByRole("button", { name: "SPIN THE WHEEL" });
+//   expect(spinBtn).toBeInTheDocument();
+// });
 
 // Test that the Go Solo Mode links to Pre Filter Page
-test.only("solo link to pre filter", () => {
+test("solo link to pre filter", () => {
   render(
     <MemoryRouter>
       {/* Use Routes!!! for paths */}
@@ -56,7 +59,7 @@ test.only("solo link to pre filter", () => {
     </MemoryRouter>
   );
 
-  const soloBtn = screen.getByRole("button", { name: "Go Solo" });
+  const soloBtn = screen.getByRole("button", { name: "GO SOLO" });
   expect(soloBtn).toBeInTheDocument();
   // 
   // Get attribute
@@ -77,15 +80,15 @@ test("Group link to create/join", () => {
       {/* Use Routes!!! for paths */}
       <Routes>
         {/* Set the element to the page you want to link to */}
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage setGroupMode={mockFunction}/>} />
         <Route path="/create-join" element={<CreateJoinGroup />} />
       </Routes>
     </MemoryRouter>
   );
-  const GroupBtn = screen.getByRole("button", { name: "Group Mode" });
+  const GroupBtn = screen.getByRole("button", { name: "GROUP MODE" });
   expect(GroupBtn).toBeInTheDocument();
 
   fireEvent.click(GroupBtn);
-  const createGroupPage = screen.getByRole("button", { name: "Create Group" });
-  expect(createGroupPage).toBeInTheDocument();
+  // const createGroupPage = screen.getByRole("button", { name: "Create Group" });
+  expect(mockFunction).toHaveBeenCalledWith(true);
 });
