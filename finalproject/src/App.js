@@ -19,15 +19,15 @@ import NeedHelp from "./pages/NeedHelp/Help/NeedHelp";
 // Green dynamic background can be applied to every page with below
 
 function App() {
-
-
   //below is the server address when testing with netlify dev - uncomment this while testing, and comment out before merging to main for deployment
+
 
    //const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
+
   //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
- 
-  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+
+   const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
@@ -80,16 +80,16 @@ function App() {
     dining_experience: null,
   });
 
- //GROUP
-   const [groupFilters, setGroupFilters] = useState({
-     venue_type: null,
-     cuisine_type: null,
-     atmosphere: null,
-     time: null,
-     dining_experience: null,
-   });
+  //GROUP
+  const [groupFilters, setGroupFilters] = useState({
+    venue_type: null,
+    cuisine_type: null,
+    atmosphere: null,
+    time: null,
+    dining_experience: null,
+  });
 
-   useEffect(() => {
+  useEffect(() => {
     const handleUnload = () => {
       const userRequestBody = {
         type: "getGroupMembers",
@@ -99,126 +99,128 @@ function App() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userRequestBody),
-      }) 
-      .then((response) => response.json())
-      .then((data) => {
-        const activeUserCount = data.usernames.length;
-        //if there is more than one user left in the group when the user leaves, delete the user's votes from the votes table
-        //then do a second server call to delete the user from the users table
-        if (activeUserCount > 1) {
-          const votePurgeBody = {
-            type: "purgeUserVotes",
-            user_id: userid,
-          };
-          fetch(serverURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(votePurgeBody),
-          }) 
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data.message);
-          })
-          
-          const purgeUserBody = {
-            type: "purgeUser",
-            user_id: userid,
-          };
-          fetch(serverURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(purgeUserBody),
-          }) 
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data.message);
-          })
-        }
-        //else if the user leaving is the last one in the group, first delete all the group's votes, then delete the group, then delete the user
-        else if (activeUserCount === 1) {
-          const purgeGroupVotesBody = {
-            type: "purgeGroupVotes",
-            group_id: groupid,
-          };
-          fetch(serverURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(purgeGroupVotesBody),
-          }) 
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(`Return message from purgeGroupVotes path: ${data.message}`)
-          })
-
-          const purgeGroupBody = {
-            type: "purgeGroup",
-            group_id: groupid,
-          };
-          fetch(serverURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(purgeGroupBody),
-          }) 
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(`Return message from purgeGroup path: ${data.message}`)
-          })
-
-          const purgeUserBody = {
-            type: "purgeUser",
-            user_id: userid,
-          };
-          fetch(serverURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(purgeUserBody),
-          }) 
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(`Return message from purgeUser path: ${data.message}`)
-          })
-
-
-        }
       })
-      .catch(error => {
-        console.log(error);
-      })
-    }
+        .then((response) => response.json())
+        .then((data) => {
+          const activeUserCount = data.usernames.length;
+          //if there is more than one user left in the group when the user leaves, delete the user's votes from the votes table
+          //then do a second server call to delete the user from the users table
+          if (activeUserCount > 1) {
+            const votePurgeBody = {
+              type: "purgeUserVotes",
+              user_id: userid,
+            };
+            fetch(serverURL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(votePurgeBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data.message);
+              });
+
+            const purgeUserBody = {
+              type: "purgeUser",
+              user_id: userid,
+            };
+            fetch(serverURL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(purgeUserBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data.message);
+              });
+          }
+          //else if the user leaving is the last one in the group, first delete all the group's votes, then delete the group, then delete the user
+          else if (activeUserCount === 1) {
+            const purgeGroupVotesBody = {
+              type: "purgeGroupVotes",
+              group_id: groupid,
+            };
+            fetch(serverURL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(purgeGroupVotesBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(
+                  `Return message from purgeGroupVotes path: ${data.message}`
+                );
+              });
+
+            const purgeGroupBody = {
+              type: "purgeGroup",
+              group_id: groupid,
+            };
+            fetch(serverURL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(purgeGroupBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(
+                  `Return message from purgeGroup path: ${data.message}`
+                );
+              });
+
+            const purgeUserBody = {
+              type: "purgeUser",
+              user_id: userid,
+            };
+            fetch(serverURL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(purgeUserBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(
+                  `Return message from purgeUser path: ${data.message}`
+                );
+              });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
 
     window.addEventListener("beforeunload", handleUnload);
     return () => window.removeEventListener("beforeunload", handleUnload);
   }, [groupid, userid]);
 
-
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
-//SOLO
+  //SOLO
   function setFilter(optionName, value) {
     setFilters((prevFilters) => ({
       ...prevFilters,
       [optionName]: value,
     }));
   }
-  
-//GROUP
-   function setGroupFilter(optionName, value) {
-     setGroupFilters((prevFilters) => ({
-       ...prevFilters,
-       [optionName]: value,
-     }));
-   }
 
+  //GROUP
+  function setGroupFilter(optionName, value) {
+    setGroupFilters((prevFilters) => ({
+      ...prevFilters,
+      [optionName]: value,
+    }));
+  }
 
   // function is triggered by Restart button on the final Results page and it resets everything to the initial state.
   function handleRestart() {
     setFilters({
       venue_type: null,
-    cuisine_type: null,
-    atmosphere: null,
-    time: null,
-    dining_experience: null,
-    museum_exhibits: null,
-    music_type: null,
+      cuisine_type: null,
+      atmosphere: null,
+      time: null,
+      dining_experience: null,
+      museum_exhibits: null,
+      music_type: null,
     });
     setGroupFilters({
       venue_type: null,
@@ -243,11 +245,13 @@ function App() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(purgeGroupVotesBody),
-    }) 
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(`Return message from purgeGroupVotes path: ${data.message}`)
     })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(
+          `Return message from purgeGroupVotes path: ${data.message}`
+        );
+      });
   }
 
   //this function is called in the vote screen by the handleVote function which is called by the option buttons on the vote screen. It takes in the option name and sets the current result state to the option name. This is then passed down to the results page and displayed.
@@ -262,33 +266,50 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const query = supabase.from("venues").select();
-  //the eq calls need to be wrapped in conditionals because if they are null or undefined they will return an error.
+      //the eq calls need to be wrapped in conditionals because if they are null or undefined they will return an error.
       //GROUP
-  if (groupFilters.venue_type !== null && groupFilters.venue_type !== undefined) {
-    query.eq("venue_type", groupFilters.venue_type);
-  }
-  if (groupFilters.time !== null && groupFilters.time !== undefined) {
-    query.eq("time", groupFilters.time);
-  }
-  if (groupFilters.cuisine_type !== null && groupFilters.cuisine_type !== undefined) {
-    query.eq("cuisine_type", groupFilters.cuisine_type);
-  }
-  if (groupFilters.atmosphere !== null && groupFilters.atmosphere !== undefined) {
-    query.eq("atmosphere", groupFilters.atmosphere);
-  }
-  if (groupFilters.dining_experience !== null && groupFilters.dining_experience !== undefined) {
-    query.eq("dining_experience", groupFilters.dining_experience);
-  }
-  if (groupFilters.museum_exhibits !== null && groupFilters.museum_exhibits !== undefined) {
-    query.eq("museum_exhibits", groupFilters.museum_exhibits);
-  }
-  if (groupFilters.music_type !== null && groupFilters.music_type !== undefined) {
-    query.eq("music_type", groupFilters.music_type);
-  }
-  
+      if (
+        groupFilters.venue_type !== null &&
+        groupFilters.venue_type !== undefined
+      ) {
+        query.eq("venue_type", groupFilters.venue_type);
+      }
+      if (groupFilters.time !== null && groupFilters.time !== undefined) {
+        query.eq("time", groupFilters.time);
+      }
+      if (
+        groupFilters.cuisine_type !== null &&
+        groupFilters.cuisine_type !== undefined
+      ) {
+        query.eq("cuisine_type", groupFilters.cuisine_type);
+      }
+      if (
+        groupFilters.atmosphere !== null &&
+        groupFilters.atmosphere !== undefined
+      ) {
+        query.eq("atmosphere", groupFilters.atmosphere);
+      }
+      if (
+        groupFilters.dining_experience !== null &&
+        groupFilters.dining_experience !== undefined
+      ) {
+        query.eq("dining_experience", groupFilters.dining_experience);
+      }
+      if (
+        groupFilters.museum_exhibits !== null &&
+        groupFilters.museum_exhibits !== undefined
+      ) {
+        query.eq("museum_exhibits", groupFilters.museum_exhibits);
+      }
+      if (
+        groupFilters.music_type !== null &&
+        groupFilters.music_type !== undefined
+      ) {
+        query.eq("music_type", groupFilters.music_type);
+      }
 
-  //SOLO
-  if (filters.venue_type !== null && filters.venue_type !== undefined) {
+      //SOLO
+      if (filters.venue_type !== null && filters.venue_type !== undefined) {
         query.eq("venue_type", filters.venue_type);
       }
       if (filters.time !== null && filters.time !== undefined) {
@@ -300,18 +321,24 @@ function App() {
       if (filters.atmosphere !== null && filters.atmosphere !== undefined) {
         query.eq("atmosphere", filters.atmosphere);
       }
-      if (filters.dining_experience !== null && filters.dining_experience !== undefined) {
+      if (
+        filters.dining_experience !== null &&
+        filters.dining_experience !== undefined
+      ) {
         query.eq("dining_experience", filters.dining_experience);
       }
-      if (filters.musueum_exhibits !== null && filters.musueum_exhibits !== undefined) {
+      if (
+        filters.musueum_exhibits !== null &&
+        filters.musueum_exhibits !== undefined
+      ) {
         query.eq("musueum_exhibits", filters.musueum_exhibits);
       }
       if (filters.music_type !== null && filters.music_type !== undefined) {
         query.eq("music_type", filters.music_type);
       }
-  
+
       const { data, error } = await query;
-  
+
       if (error) {
         setFetchError("Could not fetch venues");
         console.log(fetchError);
@@ -320,10 +347,12 @@ function App() {
         setVenueData(data);
         setFetchError(null);
         console.log(data);
+
         // console.log(`this is venueData: ${venueData}`)
+
       }
     };
-  
+
     fetchData();
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRound, filters, groupFilters, fetchError]);
@@ -358,20 +387,20 @@ function App() {
     if (nextRoundID === "") {
       navigate("/groupfinalresult");
       console.log("LOOK HERE");
-      console.log(`group filters:`)
-      console.log(groupFilters)
-      console.log("current round label:")
-      console.log(CurrentRoundLabel)
+      console.log(`group filters:`);
+      console.log(groupFilters);
+      console.log("current round label:");
+      console.log(CurrentRoundLabel);
       console.log("currentroundchoice");
-      console.log(CurrentGroupResult[0].choice)
+      console.log(CurrentGroupResult[0].choice);
     } else {
       console.log("LOOK HERE");
-      console.log(`group filters:`)
-      console.log(groupFilters)
-      console.log("current round label:")
-      console.log(CurrentRoundLabel)
+      console.log(`group filters:`);
+      console.log(groupFilters);
+      console.log("current round label:");
+      console.log(CurrentRoundLabel);
       console.log("currentroundchoice");
-      console.log(CurrentGroupResult[0].choice)
+      console.log(CurrentGroupResult[0].choice);
       setCurrentRoundID(nextRoundID);
       setSelectedOption(null);
       navigate("/groupvotescreen");
@@ -382,18 +411,22 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage setGroupMode={setGroupMode} />} />
       <Route path="/create-join" element={<CreateJoinGroup />} />
-      <Route path="/join-group" element={<JoinGroup serverURL={serverURL} 
-      setUserId={setUserId} 
-      setGroupId={setGroupId}
-      userid={userid}
-      setGroupName={setGroupName}
-      setGroupUsernames={setGroupUsernames}
-      groupUsernames={groupUsernames}
+      <Route
+        path="/join-group"
+        element={
+          <JoinGroup
+            serverURL={serverURL}
+            setUserId={setUserId}
+            setGroupId={setGroupId}
+            userid={userid}
+            setGroupName={setGroupName}
+            setGroupUsernames={setGroupUsernames}
+            groupUsernames={groupUsernames}
+          />
+        }
       />
-      } 
-    />
 
-<Route
+      <Route
         path="/groupvotescreen"
         element={
           <GroupVoteScreen
@@ -411,10 +444,11 @@ function App() {
             groupid={groupid}
             serverURL={serverURL}
             venueData={venueData}
+            CurrentGroupResult={CurrentGroupResult}
           />
         }
       />
-<Route
+      <Route
         path="/groupresults"
         element={
           <GroupResults
@@ -467,47 +501,57 @@ function App() {
         }
       />
 
-<Route
+      <Route
         path="/groupfinalresult"
         element={
-          <GroupFinalResults venueData={venueData} handleRestart={handleRestart} />
+          <GroupFinalResults
+            venueData={venueData}
+            handleRestart={handleRestart}
+          />
         }
       />
-
-
 
       <Route
         path="/prefilter"
         element={
-          <PreFilter prefilters={prefilters} setpreFilters={setpreFilters} groupMode={groupMode} />
+          <PreFilter
+            prefilters={prefilters}
+            setpreFilters={setpreFilters}
+            groupMode={groupMode}
+          />
         }
       />
-     
-      <Route path="/creategroup" element={
-      <CreateGroup serverURL={serverURL} 
-                  userid={userid} 
-                  setUserId={setUserId} 
-                  setGroupId={setGroupId}
-                  setGroupName={setGroupName}
-                  groupUsernames={groupUsernames}   
-                  setGroupUsernames={setGroupUsernames}
-                  />} />
 
-      <Route path="/lobby" element={
-      <Lobby groupid={groupid} 
-            groupName={groupName}
-              groupUsernames={groupUsernames}
-              setGroupUsernames = {setGroupUsernames}
-              serverURL = {serverURL}
-            />}  />
-
-<Route path="/needHelp" element={<NeedHelp/>}
+      <Route
+        path="/creategroup"
+        element={
+          <CreateGroup
+            serverURL={serverURL}
+            userid={userid}
+            setUserId={setUserId}
+            setGroupId={setGroupId}
+            setGroupName={setGroupName}
+            groupUsernames={groupUsernames}
+            setGroupUsernames={setGroupUsernames}
+          />
+        }
       />
-            
-    </Routes>
 
-    
-    
+      <Route
+        path="/lobby"
+        element={
+          <Lobby
+            groupid={groupid}
+            groupName={groupName}
+            groupUsernames={groupUsernames}
+            setGroupUsernames={setGroupUsernames}
+            serverURL={serverURL}
+          />
+        }
+      />
+
+      <Route path="/needHelp" element={<NeedHelp />} />
+    </Routes>
   );
 }
 
