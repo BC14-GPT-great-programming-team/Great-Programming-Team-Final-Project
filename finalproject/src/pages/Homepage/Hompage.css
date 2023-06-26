@@ -37,6 +37,12 @@ img {
   background-color: var(--light-blue-color);
 }
 
+.needHelpBtn {
+background-color: #a7c0cb;
+margin-top: 40px;
+width: 15vh;
+}
+
 @keyframes bounce {
   70% {
     transform: translateY(0%);
@@ -75,10 +81,11 @@ span {
 
 .motto {
   margin-top: 20px;
-  font-family: SonoVariable;
   color: var(--black);
-  width: 80%;
+  width: 100%;
   text-align: center;
+  font-family: "Comfortaa-Regular", sans-serif;
+  font-size: 13px;
 }
 
 /* If user has reduced motion set this meadia query runs*/
@@ -88,4 +95,9 @@ span {
   .bounceThree {
     animation: none;
   }
+}
+
+.h1 {
+  font-size: 0.1px;
+  opacity: 0;
 }
