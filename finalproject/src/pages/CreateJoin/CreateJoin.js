@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 
-function CreateJoinGroup() {
+function CreateJoinGroup({handleHome}) {
   return (
     <div className="createJoinGroup">
       <Link to="/">
-        <HomeButton />
+        <HomeButton handleHome={handleHome}/>
       </Link>
 
       <Link to="/prefilter">

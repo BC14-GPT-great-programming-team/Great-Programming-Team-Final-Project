@@ -13,7 +13,8 @@ export default function GroupResults({
   CurrentGroupResult,
   setCurrentRoundLabel,
   setGroupFilter,
-  groupUsernames
+  groupUsernames,
+  handleHome
 }) {
    const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
    const [totalVotes, setTotalVotes] = useState(0);
@@ -89,7 +90,7 @@ export default function GroupResults({
   return (
     <div className="resultsPage">
       <Link to="/">
-        <HomeButton />
+        <HomeButton handleHome={handleHome}/>
       </Link>
 
       

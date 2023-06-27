@@ -12,6 +12,7 @@ function Lobby({
   groupUsernames,
   serverURL,
   setGroupUsernames,
+  handleHome
 }) {
   useEffect(() => {
     const fetchGroupUsernames = () => {
@@ -40,7 +41,7 @@ function Lobby({
   return (
     <div className="lobby">
       <Link to="/">
-        <HomeButton />
+        <HomeButton handleHome={handleHome}/>
       </Link>
 
       <h2 className="welcome-message">Welcome, {groupName}!</h2>
