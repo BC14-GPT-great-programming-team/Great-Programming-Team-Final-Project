@@ -31,7 +31,6 @@ function Homepage({ setGroupMode }) {
             setGroupMode(false);
           }}
           className="topHomeBtn homepageBtn bounceOne"
-          role="button"
         >
           GO SOLO
         </button>
@@ -43,7 +42,6 @@ function Homepage({ setGroupMode }) {
             setGroupMode(true);
           }}
           className="homepageBtn bounceTwo"
-          role="button"
         >
           GROUP MODE
         </button>
