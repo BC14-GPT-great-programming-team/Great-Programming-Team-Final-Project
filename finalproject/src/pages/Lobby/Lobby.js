@@ -54,14 +54,15 @@ function Lobby({
         </ul>
       </div>
 
-      <p>Everybody in?</p>
+      <p className="everybody">Everybody in?</p>
 
       <Link to="/groupvotescreen">
         <Button className="startBtn" btnText="START" />
       </Link>
       <p className="roomcode">
-        Your room code is <span className="groupID">{groupid}</span> - share
-        this with your friends to let them join!
+        Your room code is <span className="groupID">{groupid}</span>
+        <br />
+        Share this with your friends
       </p>
 
       <PreFilterSVG className="lobbySVG" />

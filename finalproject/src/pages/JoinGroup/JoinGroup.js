@@ -16,6 +16,8 @@ function JoinGroup({
   groupUsernames,
   handleHome
 }) {
+
+  const [buttonClicked, setButtonClicked] = useState(false);
   // use navigate
   const navigate = useNavigate();
   //use location for the functionality to have group id prefilled when user clicks a share link
@@ -77,7 +79,7 @@ function JoinGroup({
 
   const handleJoinSubmit = (event) => {
     event.preventDefault();
-
+   
     //put the username and group name into local storage
     //put username into a request body variable
     //http request to create a new user
@@ -159,6 +161,8 @@ function JoinGroup({
             }
           });
       });
+
+      setButtonClicked(true);
   };
 
   return (
@@ -191,7 +195,7 @@ function JoinGroup({
           style={{
             backgroundColor: userValid && groupValid ? "#c5a7cb" : "#ea9c90",
           }}
-          disabled={!userValid && !groupValid}
+          disabled={(!userValid && !groupValid) || buttonClicked}
           type="submit"
         >
           Next

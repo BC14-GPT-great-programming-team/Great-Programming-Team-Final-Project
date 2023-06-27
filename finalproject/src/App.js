@@ -21,9 +21,11 @@ import HomeButton from "./Components/HomeButton/HomeButton";
 
 function App() {
   //below is the server address when testing with netlify dev - uncomment this while testing, and comment out before merging to main for deployment
+
   // const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
   //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
    const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
@@ -397,7 +399,6 @@ function App() {
         console.log(data);
 
         // console.log(`this is venueData: ${venueData}`)
-
       }
     };
 
@@ -532,6 +533,7 @@ function App() {
             setTheCurrentResult={setTheCurrentResult}
             currentRoundID={currentRoundID}
             venueData={venueData}
+            setCurrentRoundID={setCurrentRoundID}
           />
         }
       />
