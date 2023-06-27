@@ -1,5 +1,5 @@
 .help {
-    background-color: #dcb7e4;
+    background-color: #d5b5dc;
     line-height: 40px;
     flex-direction: column;
     display: flex;
@@ -8,10 +8,10 @@ align-items: center;
 justify-content: center;
 font-family: SimplyRounded;
 font-size: 14px;
-height: 100vh;
-
-
-
+height: auto;
+width: auto;
+text-align: center;
+margin: 0;
 
 }
 
@@ -21,26 +21,38 @@ p {
 
 h2, h3, h4 {
     color: white;
+    font-size: 25px;
 }
 
 .intro {
-    width: 60vh;
+    
+    width: 55vw;
     line-height: 25px;
+    padding-bottom: 8%
 }
 
 .contact {
-    padding-top: 3%;
+    padding-top: 10%;
 }
 
 .twitter {
     font-size: 10px;
     line-height: 0px;
+    padding-bottom: 20px;
 }
 
 .howto {
     line-height: 32px;
-    
+    text-align: left;
+    padding-left: 55px;
+    /* width: 90vw; */
 }
 
+.answer {
+    color: white;
+    line-height: 19px;
+    margin: 0;
+    padding: 0;
 
+}
 
