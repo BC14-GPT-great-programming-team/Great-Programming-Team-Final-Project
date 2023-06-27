@@ -22,13 +22,16 @@
 }
 
 .lobbyContainer {
-  height: 55vh;
+  height: 45vh;
+  margin: 40px 0;
   width: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .startBtn {
@@ -50,6 +53,10 @@
   border-bottom: 2px solid var(--peach-color);
 }
 
+.everybody {
+  margin-bottom: 10px;
+}
+
 .playerList {
   margin-top: 10px;
 }
@@ -60,4 +67,27 @@ p:nth-child(1) {
 
 .groupID {
   font-weight: 900;
+  font-size: 24px;
+}
+
+/* Styling the vertical scroll bar (WebKit browsers) */
+.lobbyContainer::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scroll bar */
+}
+
+.lobbyContainer::-webkit-scrollbar-track {
+  background-color: transparent; /* Set the background color of the track */
+}
+
+.lobbyContainer::-webkit-scrollbar-thumb {
+  background-color: var(
+    --light-purple-color
+  ); /* Set the color of the scroll thumb */
+  border-radius: 10px;
+}
+
+.lobbyContainer::-webkit-scrollbar-thumb:hover {
+  background-color: var(
+    --medium-purple-color
+  ); /* Set the color of the scroll thumb on hover */
 }
