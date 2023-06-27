@@ -34,13 +34,13 @@ img {
 .bounceThree {
   animation: bounce 2s ease-in infinite;
   animation-delay: 1.4s;
-  background-color: var(--light-blue-color);
+  background-color: #547a8c;
 }
 
 .needHelpBtn {
-background-color: #a7c0cb;
-margin-top: 40px;
-width: 15vh;
+  background-color: #547a8c;
+  margin-top: 40px;
+  width: 15vh;
 }
 
 @keyframes bounce {

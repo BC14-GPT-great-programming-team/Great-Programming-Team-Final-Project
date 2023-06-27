@@ -9,6 +9,8 @@
 }
 
 .createJoinBtn {
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin: 20px 0;
   height: 60px;
   width: 250px;
@@ -18,7 +20,6 @@
 }
 
 .createJoinBtn:hover {
-  color: var(--dark-purple-color);
   transform: scale(1.1);
   opacity: 0.9;
 }

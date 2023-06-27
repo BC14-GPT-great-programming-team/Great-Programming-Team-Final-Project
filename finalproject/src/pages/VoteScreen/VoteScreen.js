@@ -75,7 +75,7 @@ export default function VoteScreen({
       setTheCurrentResult(currentResult);
       setCurrentRoundID(nextRoundID);
       setSelectedOption(null);
-      // navigate("/votescreen");
+      navigate("/votescreen");
     }
   }
 
@@ -125,7 +125,7 @@ export default function VoteScreen({
         onClick={handleVoteResult}
         disabled={isNextDisabled}
         style={{
-          backgroundColor: isNextDisabled ? "#ea9c90" : "#969f79",
+          backgroundColor: isNextDisabled ? "#ea9c90" : "#547a8c",
         }}
       >
         Next

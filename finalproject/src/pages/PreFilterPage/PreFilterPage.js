@@ -102,7 +102,7 @@ function PreFilter({ setpreFilters, prefilters, groupMode, handleHome }) {
 
         <button
           className="preFilterBtn"
-          style={{ backgroundColor: inputValid ? "#969f79" : "#ea9c90" }}
+          style={{ backgroundColor: inputValid ? "#8c5799" : "#ea9c90" }}
           disabled={!inputValid}
           type="submit"
         >

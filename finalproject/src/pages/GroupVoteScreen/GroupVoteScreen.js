@@ -18,13 +18,13 @@ export default function GroupVoteScreen({
   groupid,
   serverURL,
   venueData,
-  CurrentGroupResult
+  CurrentGroupResult,
 }) {
   const navigate = useNavigate();
-  
+
   // isNextDisabled is a boolean that determines whether the Next button is disabled
   const [isNextDisabled, setIsNextDisabled] = useState(true);
- 
+
   // in handleVote we take in the id of the option that the user has selected and the name of the option that the user has selected
   function handleVote(optionid, optionname) {
     if (selectedOption === optionid) {
@@ -78,62 +78,68 @@ export default function GroupVoteScreen({
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userRequestBody),
-    }) 
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(`this is the response ${data.message}`)
-      console.log(`this is CurrentGroupResults`);
-      console.log(CurrentGroupResult);
-      navigate("/groupresults");
-    });}
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(`this is the response ${data.message}`);
+        console.log(`this is CurrentGroupResults`);
+        console.log(CurrentGroupResult);
+        navigate("/groupresults");
+      });
+  }
 
   const isOptionSelected = selectedOption !== null;
-  
+
   return (
     <div className="voteScreen">
       <h1>Pick {currentRoundID}</h1>
       {/* The below button-map maps through the currentRound Array and renders a button for each of the option objects inside that array.
-      */}
-      {currentRound && currentRound.map((option) => {
-        const count = venueData.reduce((acc, obj) => {
-          if (obj[option.roundLabel] === option.name) {
-            return acc + 1;
-          } 
-          return acc;
-        }, 0);
+       */}
+      {currentRound &&
+        currentRound.map((option) => {
+          const count = venueData.reduce((acc, obj) => {
+            if (obj[option.roundLabel] === option.name) {
+              return acc + 1;
+            }
+            return acc;
+          }, 0);
 
-        return (
-        <button
-          key={option.id}
-          onClick={() => handleVote(option.id, option.name, option.roundLabel)}
-          disabled={
-            option.disabled ||
-            (isOptionSelected && option.id !== selectedOption)
-          }
-          style={{
-            color: selectedOption === option.id ? "white" : "",
-            backgroundColor: selectedOption === option.id ? "blueviolet" : "",
-            opacity: selectedOption && selectedOption !== option.id ? 0.5 : 1,
-          }}
-        >
-          {option.name} ({count})
-        </button>
-      );
-      })}
+          return (
+            <button
+              key={option.id}
+              onClick={() =>
+                handleVote(option.id, option.name, option.roundLabel)
+              }
+              disabled={
+                option.disabled ||
+                (isOptionSelected && option.id !== selectedOption)
+              }
+              style={{
+                color: selectedOption === option.id ? "white" : "",
+                backgroundColor:
+                  selectedOption === option.id ? "blueviolet" : "",
+                opacity:
+                  selectedOption && selectedOption !== option.id ? 0.5 : 1,
+              }}
+            >
+              {option.name} ({count})
+            </button>
+          );
+        })}
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
-      
-        <button
-          className="nextBtn"
-          onClick={handleVoteResult}
-          disabled={isNextDisabled}
-          style={{
-            backgroundColor: isNextDisabled ? "#ea9c90" : "#BFC995",
-          }}
-        >
-          Next
-        </button>
-      
+
+      <button
+        className="nextBtn"
+        onClick={handleVoteResult}
+        disabled={isNextDisabled}
+        style={{
+          backgroundColor: isNextDisabled ? "#ea9c90" : "#8c5799",
+        }}
+      >
+        Next
+      </button>
+
       <PreFilterSVG />
     </div>
   );

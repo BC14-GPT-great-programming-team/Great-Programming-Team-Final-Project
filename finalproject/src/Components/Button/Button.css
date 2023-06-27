@@ -7,10 +7,11 @@ button {
   height: 40px;
   border-radius: 20px;
   border: none;
-  background-color: #c5a7cb;
+  background-color: #8c5799;
   color: var(--white);
   font-weight: bold;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   font-family: "Varela Round", sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
 }

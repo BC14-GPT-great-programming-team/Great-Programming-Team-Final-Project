@@ -16,7 +16,6 @@ function JoinGroup({
   groupUsernames,
   handleHome
 }) {
-
   const [buttonClicked, setButtonClicked] = useState(false);
   // use navigate
   const navigate = useNavigate();
@@ -31,15 +30,14 @@ function JoinGroup({
 
   // Funtions for inputs
 
-  useEffect (() => {
+  useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     if (urlParams.has("groupcode")) {
       const groupcode = urlParams.get("groupcode");
       setGroupIdInput(groupcode);
-      console.log(`this is groupcode ${groupcode}`)
+      console.log(`this is groupcode ${groupcode}`);
     }
   }, [location.search]);
-
 
   const handleGroupIdChange = (event) => {
     const inputText = event.target.value;
@@ -59,8 +57,8 @@ function JoinGroup({
     event.preventDefault();
     const checkGroupExistsBody = {
       type: "getGroupName",
-      group_id: groupIdInput
-    }
+      group_id: groupIdInput,
+    };
 
     fetch(serverURL, {
       method: "POST",
@@ -75,11 +73,11 @@ function JoinGroup({
           handleJoinSubmit(event);
         }
       });
-        }
+  };
 
   const handleJoinSubmit = (event) => {
     event.preventDefault();
-   
+
     //put the username and group name into local storage
     //put username into a request body variable
     //http request to create a new user
@@ -162,7 +160,7 @@ function JoinGroup({
           });
       });
 
-      setButtonClicked(true);
+    setButtonClicked(true);
   };
 
   return (
@@ -193,7 +191,7 @@ function JoinGroup({
         <button
           className="joinGroupBtn"
           style={{
-            backgroundColor: userValid && groupValid ? "#c5a7cb" : "#ea9c90",
+            backgroundColor: userValid && groupValid ? "#8c5799" : "#ea9c90",
           }}
           disabled={(!userValid && !groupValid) || buttonClicked}
           type="submit"
