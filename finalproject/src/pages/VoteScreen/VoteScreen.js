@@ -15,7 +15,8 @@ export default function VoteScreen({
   setTheCurrentResult,
   currentResult,
   currentRoundID,
-  venueData
+  venueData,
+  setCurrentRoundID,
 }) {
   const navigate = useNavigate();
 
@@ -63,8 +64,19 @@ export default function VoteScreen({
 
   //this is triggered by the Next button on the vote screen and navigates to the results page and sets the current result state to the current result. This is then passed down to the results page and displayed.
   function handleVoteResult() {
-    setTheCurrentResult(currentResult);
-    navigate("/results");
+    const currentOption = currentRound.find(
+      (option) => option.id === selectedOption
+    );
+    const nextRoundID = currentOption.nextRoundID;
+    if (nextRoundID === "") {
+      setTheCurrentResult(currentResult);
+      navigate("/finalresult");
+    } else {
+      setTheCurrentResult(currentResult);
+      setCurrentRoundID(nextRoundID);
+      setSelectedOption(null);
+      // navigate("/votescreen");
+    }
   }
 
   const isOptionSelected = selectedOption !== null;
@@ -77,31 +89,33 @@ export default function VoteScreen({
       {currentRound &&
         currentRound.map((option) => {
           const count = venueData.reduce((acc, obj) => {
-          if (obj[option.roundLabel] === option.name) {
-            return acc + 1;
-          } 
-          return acc;
-        }, 0);
+            if (obj[option.roundLabel] === option.name) {
+              return acc + 1;
+            }
+            return acc;
+          }, 0);
 
-        return (
-          <button
-            key={option.id}
-            onClick={() =>
-              handleVote(option.id, option.name, option.roundLabel)
-            }
-            disabled={
-              option.disabled ||
-              (isOptionSelected && option.id !== selectedOption)
-            }
-            style={{
-              color: selectedOption === option.id ? "white" : "",
-              backgroundColor: selectedOption === option.id ? "blueviolet" : "",
-              opacity: selectedOption && selectedOption !== option.id ? 0.5 : 1,
-            }}
-          >
-            {option.name} ({count})
-          </button>
-        );
+          return (
+            <button
+              key={option.id}
+              onClick={() =>
+                handleVote(option.id, option.name, option.roundLabel)
+              }
+              disabled={
+                option.disabled ||
+                (isOptionSelected && option.id !== selectedOption)
+              }
+              style={{
+                color: selectedOption === option.id ? "white" : "",
+                backgroundColor:
+                  selectedOption === option.id ? "blueviolet" : "",
+                opacity:
+                  selectedOption && selectedOption !== option.id ? 0.5 : 1,
+              }}
+            >
+              {option.name} ({count})
+            </button>
+          );
         })}
 
       {/* The below button is disabled until an option is selected and will link to the results page*/}
