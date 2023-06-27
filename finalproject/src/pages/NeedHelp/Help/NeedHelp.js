@@ -2,6 +2,7 @@ import "./NeedHelp.css";
 import HomeButton from "../../../Components/HomeButton/HomeButton";
 import { Link } from "react-router-dom";
 
+
 function NeedHelp() {
 
     return (
@@ -30,25 +31,33 @@ We'll do it for you!
 </div>
 
 <h3>FAQ</h3>
-<p>Can I add my own options?
-<br></br>
+<div>
+Can I add my own options?
+<p className="answer">Customizable features are currently in the works! We are excited to get these out to you soon!</p>
+
 
 How many people can join a group? 
-<br></br>
+<p className="answer">Unlimited numbers! Whether its just a few of your mates or an entire work department, we cater to all! </p>
+
 
 Can I save my favourite places?
-<br></br>
+<p className="answer"> This is a feature we're working on!</p>
+
 
 Can I promote my business here?
-<br></br>
+<p className="answer"> Please do contact us on workwithus@consensus.com for opportunities! </p>
+
 
 What if my city is not available?
-<br></br>
-</p>
+<p className="answer">Please bear with us while we expand our area range. We appreciate your patience!</p>
+
+</div>
 
 <h4 className="contact">CONTACT US </h4>
 <p className="twitter">TWITTER @Consensus</p>
+
 </div>
+
 )}
 
 export default NeedHelp;
