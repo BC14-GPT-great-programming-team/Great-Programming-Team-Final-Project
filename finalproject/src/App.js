@@ -21,14 +21,9 @@ import HomeButton from "./Components/HomeButton/HomeButton";
 
 function App() {
   //below is the server address when testing with netlify dev - uncomment this while testing, and comment out before merging to main for deployment
-
-
-   const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
-
-
+  // const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
   //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
-
-  //  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+   const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
@@ -191,8 +186,8 @@ function App() {
         });
     };
 
-    window.addEventListener("beforeunload", handleUnload);
-    return () => window.removeEventListener("beforeunload", handleUnload);
+    window.addEventListener("unload", handleUnload);
+    return () => window.removeEventListener("unload", handleUnload);
   }, [groupid, userid]);
 
   //When you click on a button the function below is triggered. It takes in the option name and the value of the option. It then sets the filters state to the option name and value. This is then passed down to the vote screen and used to filter the data from supabase.
@@ -517,6 +512,7 @@ function App() {
             setCurrentRoundLabel={setCurrentRoundLabel}
             setGroupFilter={setGroupFilter}
             handleHome={handleHome}
+            groupUsernames={groupUsernames}
           />
         }
       />
@@ -535,6 +531,7 @@ function App() {
             currentResult={currentResult}
             setTheCurrentResult={setTheCurrentResult}
             currentRoundID={currentRoundID}
+            venueData={venueData}
           />
         }
       />

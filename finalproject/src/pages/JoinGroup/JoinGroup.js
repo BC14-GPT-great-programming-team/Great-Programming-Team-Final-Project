@@ -1,9 +1,9 @@
 import "./JoinGroup.css";
 import HomeButton from "../../Components/HomeButton/HomeButton";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 //import PreFilterSVG from "../PreFilterPage/PreFilterSVGGreen";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 
 function JoinGroup({
@@ -18,6 +18,8 @@ function JoinGroup({
 }) {
   // use navigate
   const navigate = useNavigate();
+  //use location for the functionality to have group id prefilled when user clicks a share link
+  const location = useLocation();
   const [userNameInput, setUserNameInput] = useState("");
   // States
   // const [userNameInput, setUserNameInput] = useState("");
@@ -26,6 +28,16 @@ function JoinGroup({
   const [groupValid, setGroupValid] = useState(false);
 
   // Funtions for inputs
+
+  useEffect (() => {
+    const urlParams = new URLSearchParams(location.search);
+    if (urlParams.has("groupcode")) {
+      const groupcode = urlParams.get("groupcode");
+      setGroupIdInput(groupcode);
+      console.log(`this is groupcode ${groupcode}`)
+    }
+  }, [location.search]);
+
 
   const handleGroupIdChange = (event) => {
     const inputText = event.target.value;

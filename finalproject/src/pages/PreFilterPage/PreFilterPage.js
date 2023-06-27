@@ -70,7 +70,7 @@ function PreFilter({ setpreFilters, prefilters, groupMode, handleHome }) {
       </Link>
       {/* <h2>Select Filters</h2> */}
       {/* <p>If no filters needed, press Next</p> */}
-      <h4> Location</h4>
+      <h4> Enter Location</h4>
       <form onSubmit={handleNameSubmit}>
         <div>
           <input
@@ -90,7 +90,7 @@ function PreFilter({ setpreFilters, prefilters, groupMode, handleHome }) {
           options={budgetOptions}
           onChange={(value) => console.log(value)}
         />
-        <h4>Dietary requirements</h4>
+        <h4>Dietary Requirements</h4>
         <Dropdown
           setpreFilter={setThepreFilter}
           isMulti
