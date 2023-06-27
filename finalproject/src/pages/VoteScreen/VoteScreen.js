@@ -72,6 +72,7 @@ export default function VoteScreen({
       setTheCurrentResult(currentResult);
       navigate("/finalresult");
     } else {
+      setIsNextDisabled(true);
       setTheCurrentResult(currentResult);
       setCurrentRoundID(nextRoundID);
       setSelectedOption(null);
