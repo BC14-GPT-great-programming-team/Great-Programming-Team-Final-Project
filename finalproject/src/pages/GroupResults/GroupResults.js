@@ -13,7 +13,8 @@ export default function GroupResults({
   CurrentGroupResult,
   setCurrentRoundLabel,
   setGroupFilter,
-  groupUsernames
+  groupUsernames,
+  handleHome
 }) {
    const [isNextBtnDisabled, setIsNextBtnDisabled] = useState(true);
   // this useEffect is for fetching the votes from the database
@@ -85,7 +86,7 @@ export default function GroupResults({
   return (
     <div className="resultsPage">
       <Link to="/">
-        <HomeButton />
+        <HomeButton handleHome={handleHome}/>
       </Link>
 
       

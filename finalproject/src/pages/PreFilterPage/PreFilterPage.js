@@ -7,7 +7,7 @@ import DropdownCost from "../../Components/DropDownCost/DropDownCost";
 import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 import HomeButton from "../../Components/HomeButton/HomeButton";
 
-function PreFilter({ setpreFilters, prefilters, groupMode }) {
+function PreFilter({ setpreFilters, prefilters, groupMode, handleHome }) {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({ location: "" });
   const [inputValid, setInputValid] = useState(false);
@@ -66,7 +66,7 @@ function PreFilter({ setpreFilters, prefilters, groupMode }) {
   return (
     <div className="preFilter">
       <Link to="/">
-        <HomeButton />
+        <HomeButton handleHome = {handleHome} />
       </Link>
       {/* <h2>Select Filters</h2> */}
       {/* <p>If no filters needed, press Next</p> */}

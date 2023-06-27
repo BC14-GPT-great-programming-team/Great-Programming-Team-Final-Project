@@ -16,18 +16,19 @@ import GroupVoteScreen from "./pages/GroupVoteScreen/GroupVoteScreen";
 import GroupResults from "./pages/GroupResults/GroupResults";
 import GroupFinalResults from "./pages/GroupFinalResult/GroupFinalResult";
 import NeedHelp from "./pages/NeedHelp/Help/NeedHelp";
+import HomeButton from "./Components/HomeButton/HomeButton";
 // Green dynamic background can be applied to every page with below
 
 function App() {
   //below is the server address when testing with netlify dev - uncomment this while testing, and comment out before merging to main for deployment
 
 
-   //const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+   const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
 
   //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
 
-   const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+  //  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
@@ -254,6 +255,58 @@ function App() {
       });
   }
 
+  //this is a copy of the restart function but only affects the current user, in the case of them clicking the Home button
+
+  function handleHome() {
+    console.log("home button clicked - handleHome function called")
+    setFilters({
+      venue_type: null,
+      cuisine_type: null,
+      atmosphere: null,
+      time: null,
+      dining_experience: null,
+      museum_exhibits: null,
+      music_type: null,
+    });
+    
+    setSelectedOption(null);
+    setCurrentRoundID("An Activity");
+    setTheCurrentResult(null);
+    navigate("/");
+    setRounds(initialRounds);
+    const purgeUserVotesBody = {
+      type: "purgeUserVotes",
+      user_id: userid,
+    };
+    fetch(serverURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(purgeUserVotesBody),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(
+          `Return message from purgeUserVotes path: ${data.message}`
+        );
+      });
+
+      const purgeUserBody = {
+        type: "purgeUser",
+        user_id: userid,
+      };
+      fetch(serverURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(purgeUserBody),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(
+            `Return message from purgeUser path: ${data.message}`
+          );
+        });
+  }
+
   //this function is called in the vote screen by the handleVote function which is called by the option buttons on the vote screen. It takes in the option name and sets the current result state to the option name. This is then passed down to the results page and displayed.
   function setCurrentResult(optionname) {
     setTheCurrentResult(optionname);
@@ -410,7 +463,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Homepage setGroupMode={setGroupMode} />} />
-      <Route path="/create-join" element={<CreateJoinGroup />} />
+      <Route path="/create-join" element={<CreateJoinGroup handleHome={handleHome}/>} />
       <Route
         path="/join-group"
         element={
@@ -422,6 +475,7 @@ function App() {
             setGroupName={setGroupName}
             setGroupUsernames={setGroupUsernames}
             groupUsernames={groupUsernames}
+            handleHome={handleHome}
           />
         }
       />
@@ -462,6 +516,7 @@ function App() {
             setCurrentGroupResult={setCurrentGroupResult}
             setCurrentRoundLabel={setCurrentRoundLabel}
             setGroupFilter={setGroupFilter}
+            handleHome={handleHome}
           />
         }
       />
@@ -518,6 +573,7 @@ function App() {
             prefilters={prefilters}
             setpreFilters={setpreFilters}
             groupMode={groupMode}
+            handleHome={handleHome}
           />
         }
       />
@@ -546,6 +602,18 @@ function App() {
             groupUsernames={groupUsernames}
             setGroupUsernames={setGroupUsernames}
             serverURL={serverURL}
+            handleHome={handleHome}
+          />
+        }
+      />
+
+      <Route path="/needHelp" element={<NeedHelp />} />
+
+      <Route
+        path="/homebutton"
+        element={
+          <HomeButton
+            handleHome={handleHome}
           />
         }
       />

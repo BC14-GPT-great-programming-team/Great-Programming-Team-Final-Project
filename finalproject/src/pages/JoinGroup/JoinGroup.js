@@ -14,6 +14,7 @@ function JoinGroup({
   setGroupName,
   setGroupUsernames,
   groupUsernames,
+  handleHome
 }) {
   // use navigate
   const navigate = useNavigate();
@@ -151,7 +152,7 @@ function JoinGroup({
   return (
     <div className="JoinGroup">
       <Link to="/">
-        <HomeButton />
+        <HomeButton handleHome={handleHome}/>
       </Link>
       <h2>Enter Details</h2>
       <form onSubmit={checkGroupExists}>
