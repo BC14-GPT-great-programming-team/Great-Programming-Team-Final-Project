@@ -61,10 +61,6 @@
   margin-top: 10px;
 }
 
-p:nth-child(1) {
-  /* margin: 30px 0 10px; */
-}
-
 .groupID {
   font-weight: 900;
   font-size: 24px;

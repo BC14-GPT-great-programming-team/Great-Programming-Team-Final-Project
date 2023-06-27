@@ -145,7 +145,7 @@ function CreateGroup({
         <button
           className="createGroupBtn"
           style={{
-            backgroundColor: userValid && groupValid ? "#c5a7cb" : "#ea9c90",
+            backgroundColor: userValid && groupValid ? "#8c5799" : "#ea9c90",
           }}
           disabled={!userValid && !groupValid}
           type="submit"

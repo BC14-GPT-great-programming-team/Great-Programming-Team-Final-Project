@@ -22,18 +22,20 @@
 }
 
 .enjoy {
-  color: white;
-  font-size: 2rem;
-  text-shadow: -2px 0 var(--medium-purple-color),
+  color: var(--dark-purple-color);
+  font-size: 3rem;
+  /* text-shadow: -2px 0 var(--medium-purple-color),
     0 2px var(--medium-purple-color), 2px 0 var(--medium-purple-color),
-    0 -2px var(--medium-purple-color);
+    0 -2px var(--medium-purple-color); */
   margin: 5px 0 0 0;
   padding: 10px;
   font-weight: 600;
 }
 
 .restaurantName {
-  margin-top: 5px;
+  font-size: 36px;
+  color: #301934;
+  margin-bottom: 20px;
 }
 
 img.restaurant_image {
@@ -49,11 +51,14 @@ img.restaurant_image {
 }
 
 .textMargin {
-  margin: 0;
+  color: var(--black);
+  font-size: 20px;
+  margin: 30px 10px 20px;
   padding: 0;
 }
 
 .venueIcon {
+  margin: 10px 0;
   color: var(--light-grey);
 }
 
