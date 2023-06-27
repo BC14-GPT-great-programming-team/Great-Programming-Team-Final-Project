@@ -11,13 +11,13 @@ import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 function Homepage({ setGroupMode }) {
   return (
     <div className="homepage">
-      <h1 className="h1" class="sr-only">
+      <h1 className="h1">
         concensus, the ultimate decision-maker for indecisive folk
       </h1>
       <img
         className="logo"
         src={officialLogo}
-        alt="this is the logo for consensUs, a tangle of arms meeting together"
+        alt="ConsensUs Logo: a tangle of arms meeting together"
       />
       {/* <h1>
         Consens<span>U</span>s
@@ -25,7 +25,7 @@ function Homepage({ setGroupMode }) {
       {/* <FaUsers className="icon" /> */}
       {/* <h4>The Ultimate Decision Maker</h4>  */}
 
-      <Link to="/prefilter" aria-label="opens pre filter page" role="link">
+      <Link to="/prefilter" aria-label="Switch to Pre Filter Page">
         <button
           onClick={() => {
             setGroupMode(false);
@@ -36,7 +36,7 @@ function Homepage({ setGroupMode }) {
         </button>
       </Link>
 
-      <Link to="/create-join" aria-label="opens create join page" role="link">
+      <Link to="/create-join" aria-label="Swicth to Create Join Page">
         <button
           onClick={() => {
             setGroupMode(true);
@@ -47,12 +47,12 @@ function Homepage({ setGroupMode }) {
         </button>
       </Link>
 
-      <Link to="/needHelp" aria-label="opens need help page" role="link">
-        <Button className="needHelpBtn" btnText="Need help?" role="button" />
+      <Link to="/needHelp" aria-label="Swicth to Need Help Page">
+        <Button className="needHelpBtn" btnText="Need help?" />
       </Link>
 
       <div>
-        <p className="motto" aria-label="tagline">
+        <p className="motto" aria-label="Tagline">
           "Saving your friendships one decision at a time!"
         </p>
         <PreFilterSVG />
