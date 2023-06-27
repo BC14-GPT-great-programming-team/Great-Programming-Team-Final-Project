@@ -21,12 +21,12 @@
   color: var(--dark-purple-color);
 }
 
-.enjoy {
-  color: white;
-  font-size: 2rem;
-  text-shadow: -2px 0 var(--medium-purple-color),
+.enjoy h2 {
+  color: var(--dark-purple-color);
+  font-size: 3rem;
+  /* text-shadow: -2px 0 var(--medium-purple-color),
     0 2px var(--medium-purple-color), 2px 0 var(--medium-purple-color),
-    0 -2px var(--medium-purple-color);
+    0 -2px var(--medium-purple-color); */
   margin: 5px 0 0 0;
   padding: 10px;
   font-weight: 600;

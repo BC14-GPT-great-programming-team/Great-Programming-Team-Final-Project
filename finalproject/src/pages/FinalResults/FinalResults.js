@@ -7,7 +7,7 @@ import { FaLocationArrow } from "react-icons/fa";
 export default function FinalResults({ venueData, handleRestart }) {
   return (
     <div className="finalResultsPage">
-      <h2 className="enjoy">Enjoy your night out!</h2>
+      <h2 className="enjoy">Enjoy!</h2>
       <div className="resultsCard">
         <h2 className="restaurantName">
           {venueData && venueData[0].venue_name}

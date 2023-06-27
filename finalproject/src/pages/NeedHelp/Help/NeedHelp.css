@@ -1,46 +1,38 @@
 .help {
-    background-color: #dcb7e4;
-    line-height: 40px;
-    flex-direction: column;
-    display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-family: SimplyRounded;
-font-size: 14px;
-height: 100vh;
-
-
-
-
+  background-color: #dcb7e4;
+  line-height: 40px;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: SimplyRounded;
+  font-size: 14px;
+  height: 100vh;
 }
 
 p {
-    font-family: "Comfortaa-Regular", sans-serif;
+  font-family: "Comfortaa-Regular", sans-serif;
 }
 
-h2, h3, h4 {
+/* h2, h3, h4 {
     color: white;
-}
+} */
 
 .intro {
-    width: 60vh;
-    line-height: 25px;
+  width: 60vh;
+  line-height: 25px;
 }
 
 .contact {
-    padding-top: 3%;
+  padding-top: 3%;
 }
 
 .twitter {
-    font-size: 10px;
-    line-height: 0px;
+  font-size: 10px;
+  line-height: 0px;
 }
 
 .howto {
-    line-height: 32px;
-    
+  line-height: 32px;
 }
-
-
-
