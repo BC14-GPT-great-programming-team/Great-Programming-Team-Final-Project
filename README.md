@@ -1,6 +1,6 @@
 # BC14_Great Programming Team - Final Project
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/02c7c6bd-d99f-47ee-9758-26a8b738283a/deploy-status)](https://app.netlify.com/sites/georgeussherportfolio/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/02c7c6bd-d99f-47ee-9758-26a8b738283a/deploy-status)]([https://app.netlify.com/sites/georgeussherportfolio/deploys](https://consensusgpt.netlify.app/))
 
 ❗WIP❗
 
