@@ -5,14 +5,17 @@
 ❗WIP❗
 
 
-  This is the repository for our School of Code full-stack final project. 
+This is the repository for our School of Code full-stack final project. 
 
 ❓About the project:
-  Do you and your friends ever struggle to decide on what to do on a friday evening? Well, our app "Consensus" aims to adress that.
-  We are building a web-app that aids groups of people to make a decision on what social activity they would like to do, for example, which resturant they would 
-  like to go to. It is a real-time voting app that filters results based on user votes. The end-result is a single suggestion made by the app for example, a 
-  specific resturant. 
-  We aim to launch the product by the start of July.
+Do you and your friends ever struggle to decide on what to do on a friday evening? Well, our app "Consensus" aims to adress that.
+We are building a web-app that aids groups of people to make a decision on what social activity they would like to do, for example, which resturant they would 
+like to go to. It is a real-time voting app that filters results based on user votes. The end-result is a single suggestion made by the app for example, a 
+specific resturant. 
+We aim to launch the product by the start of July.
+
+🌐Visit: 
+https://consensusgpt.netlify.app/
 
 💻Tech-stack:
 - React.js
