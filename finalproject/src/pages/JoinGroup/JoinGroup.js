@@ -14,6 +14,7 @@ function JoinGroup({
   setGroupName,
   setGroupUsernames,
   groupUsernames,
+  handleHome
 }) {
 
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -167,7 +168,7 @@ function JoinGroup({
   return (
     <div className="JoinGroup">
       <Link to="/">
-        <HomeButton />
+        <HomeButton handleHome={handleHome}/>
       </Link>
       <h2>Enter Details</h2>
       <form onSubmit={checkGroupExists}>
