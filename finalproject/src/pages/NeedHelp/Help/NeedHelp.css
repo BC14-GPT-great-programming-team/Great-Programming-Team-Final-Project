@@ -24,14 +24,38 @@ h4 {
   color: white;
 }
 
+.howto p {
+  position: relative;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.howto p::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 37.5%; /* 50% of the width */
+  width: 25%; /* 50% of the width */
+  border-bottom: 1px solid var(--white);
+}
+
+.howto p:last-child::after {
+  border-bottom: none;
+}
+
+.aboutHeader {
+  padding: 0;
+  margin: 20px 0;
+}
+
 .intro {
-  width: 55vw;
+  width: 400px;
   line-height: 25px;
-  padding-bottom: 8%;
+  margin-bottom: 10px;
 }
 
 .contact {
-  padding-top: 10%;
+  margin-top: 30px;
 }
 
 .twitter {
@@ -40,16 +64,23 @@ h4 {
   padding-bottom: 20px;
 }
 
-.howto {
-  line-height: 32px;
-  text-align: left;
-  padding-left: 55px;
-  /* width: 90vw; */
-}
-
 .answer {
-  color: white;
+  /* color: white; */
   line-height: 19px;
   margin: 0;
   padding: 0;
+}
+
+@media (max-width: 700px) {
+  .intro {
+    width: 80vw;
+  }
+
+  .howto {
+    width: 80%;
+  }
+
+  .answer {
+    margin: 0 20px;
+  }
 }

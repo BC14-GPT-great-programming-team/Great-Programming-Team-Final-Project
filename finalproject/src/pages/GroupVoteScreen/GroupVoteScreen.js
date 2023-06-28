@@ -134,7 +134,7 @@ export default function GroupVoteScreen({
         onClick={handleVoteResult}
         disabled={isNextDisabled}
         style={{
-          backgroundColor: isNextDisabled ? "#ea9c90" : "#8c5799",
+          backgroundColor: isNextDisabled ? "#ea9c90" : "#547a8c",
         }}
       >
         Next

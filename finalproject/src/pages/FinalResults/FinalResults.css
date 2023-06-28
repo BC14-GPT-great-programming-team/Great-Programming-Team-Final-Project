@@ -21,7 +21,7 @@
   color: var(--dark-purple-color);
 }
 
-.enjoy h2 {
+.enjoy {
   color: var(--dark-purple-color);
   font-size: 3rem;
   /* text-shadow: -2px 0 var(--medium-purple-color),
@@ -34,6 +34,8 @@
 
 .restaurantName {
   margin-top: 5px;
+  color: #301934;
+  margin-bottom: 20px;
 }
 
 img.restaurant_image {
