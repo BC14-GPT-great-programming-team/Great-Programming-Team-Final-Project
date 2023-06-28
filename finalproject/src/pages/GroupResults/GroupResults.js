@@ -56,13 +56,32 @@ export default function GroupResults({
           setTotalVotes(totalVotes);
 
           console.log(resultArray)
+
+          if (totalVotes === groupUsernames.length) {
+            setIsNextBtnDisabled(false);
+            clearInterval(interval);
+            clearTimeout(timer);
+          }
+        
         });
         };
         fetchVotes();
        
+        // sets an interval to fetch the votes every 2 seconds
         const interval = setInterval(fetchVotes, 2000);
     
-        return () => clearInterval(interval);
+        // sets a timeout to clear the interval after 3 minutes and stop refreshing
+        const timer = setTimeout(() => {
+          clearInterval(interval);
+          setIsNextBtnDisabled(false);
+        }, 3 * 60 * 1000);
+
+        //clears the interval and timeout when the component unmounts
+        return () => {
+          clearInterval(interval);
+          clearTimeout(timer);
+        };
+
     
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
