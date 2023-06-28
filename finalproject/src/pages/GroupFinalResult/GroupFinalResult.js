@@ -1,13 +1,13 @@
 import React from "react";
 import "./GroupFinalResult.css";
 import "../../App.css";
-import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
+import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGPeach";
 import { FaLocationArrow } from "react-icons/fa";
 
 export default function GroupFinalResults({ venueData, handleRestart }) {
   return (
     <div className="finalResultsPage">
-      <h2 className="enjoy">Enjoy your night out!</h2>
+      <h2 className="enjoy">Enjoy!</h2>
       <div className="resultsCard">
         <h2 className="restaurantName">
           {venueData && venueData[0].venue_name}

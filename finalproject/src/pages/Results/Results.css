@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(var(--off-white), #f4d5d1);
+  background-color: var(--off-white);
 }
 
 .topResult {
@@ -15,6 +15,7 @@
   top: 44%;
   left: 50%;
   transform: translateX(-50%);
+  color: var(--white);
 }
 
 .bubblesContainer {
@@ -50,6 +51,7 @@
 
 .thirdBubble {
   position: absolute;
+  color: var(--white);
   top: 35%;
   left: 100px;
   background-color: var(--darker-green);
