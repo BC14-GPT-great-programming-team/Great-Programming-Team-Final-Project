@@ -33,9 +33,19 @@ function Lobby({
     };
     fetchGroupUsernames();
 
+    // sets an interval to fetch the usernames every second
     const interval = setInterval(fetchGroupUsernames, 1000);
 
-    return () => clearInterval(interval); //insert interval here
+    // sets a timeout to clear the interval after 3 minutes and stop refreshing
+    const timer = setTimeout(() => {
+      clearInterval(interval);
+    }, 3 * 60 * 1000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
+      
   }, [groupid, serverURL, setGroupUsernames]);
 
   return (
