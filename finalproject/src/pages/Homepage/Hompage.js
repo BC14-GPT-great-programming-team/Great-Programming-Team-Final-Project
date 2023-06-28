@@ -3,7 +3,7 @@
 import "./Hompage.css";
 import { Link } from "react-router-dom";
 import Button from "../../Components/Button/Button";
-import officialLogo from "../../Assets/officialLogo.png";
+import officialLogo from "../../Assets/consensuslogo28.06.png";
 import PreFilterSVG from "../../Components/BackgroundSVG/PreFilterSVGGreen";
 
 // import { FaUsers, FaDharmachakra } from "react-icons/fa";

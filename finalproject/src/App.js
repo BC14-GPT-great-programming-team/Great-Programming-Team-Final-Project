@@ -1,6 +1,8 @@
 //import rounds to use useContext
 import { RoundsProvider, useRounds } from "./roundData";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+
+// imported components
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
 import { useEffect, useState, useRef } from "react";
@@ -24,7 +26,8 @@ function App() {
   //const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
   //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
-  const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
+  const serverURL =
+    "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
 
   //this is the initial state of the rounds. It is passed down to the vote screen and used to display the options.
   const initialRounds = useRounds();
