@@ -70,11 +70,11 @@ export default function GroupResults({
         // sets an interval to fetch the votes every 2 seconds
         const interval = setInterval(fetchVotes, 2000);
     
-        // sets a timeout to clear the interval after 5 minutes and stop refreshing
+        // sets a timeout to clear the interval after 3 minutes and stop refreshing
         const timer = setTimeout(() => {
           clearInterval(interval);
           setIsNextBtnDisabled(false);
-        }, 5 * 60 * 1000);
+        }, 3 * 60 * 1000);
 
         //clears the interval and timeout when the component unmounts
         return () => {
