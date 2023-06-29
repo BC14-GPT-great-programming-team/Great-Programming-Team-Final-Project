@@ -1,5 +1,6 @@
 /* CSS for Vote Screen */
 
+/* Main Page */
 .voteScreen {
   height: 100vh;
   display: flex;
@@ -8,11 +9,13 @@
   justify-content: center;
 }
 
+/* Header */
 h1 {
   padding: 5%;
   color: var(--dark-purple-color);
 }
 
+/* Button */
 .voteScreen button {
   animation: fade-in 1s ease-in-out;
 }

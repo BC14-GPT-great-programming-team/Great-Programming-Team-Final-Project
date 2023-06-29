@@ -1,5 +1,6 @@
 /* CSS for Homepage */
 
+/* Main Page */
 .homepage {
   height: 100vh;
   display: flex;
@@ -8,20 +9,23 @@
   justify-content: center;
 }
 
+/* Header thats unseen */
 .homepage h1 {
   margin: 0;
 }
+.h1 {
+  font-size: 0.1px;
+  opacity: 0;
+  padding: 0;
+}
 
+/* Image(LOGO) */
 img {
   width: 300px;
   margin-bottom: 30px;
 }
 
-.icon {
-  font-size: 80px;
-  color: var(--peach-color);
-}
-
+/* Buttons */
 .bounceOne {
   animation: bounce 2s ease-in infinite;
 }
@@ -40,9 +44,24 @@ img {
 .needHelpBtn {
   background-color: #547a8c;
   margin-top: 40px;
-  width: 15vh;
+  width: 110px;
 }
 
+.topHomeBtn {
+  margin-top: 20px;
+}
+
+/* Motto at foot of page */
+.motto {
+  margin-top: 20px;
+  color: var(--black);
+  width: 100%;
+  text-align: center;
+  font-family: "Comfortaa-Regular", sans-serif;
+  font-size: 13px;
+}
+
+/* Animations for buttons */
 @keyframes bounce {
   70% {
     transform: translateY(0%);
@@ -67,27 +86,6 @@ img {
   }
 }
 
-.topHomeBtn {
-  margin-top: 20px;
-}
-
-span {
-  color: var(--peach-color);
-}
-
-.spinBtnContainer {
-  margin-top: 30px;
-}
-
-.motto {
-  margin-top: 20px;
-  color: var(--black);
-  width: 100%;
-  text-align: center;
-  font-family: "Comfortaa-Regular", sans-serif;
-  font-size: 13px;
-}
-
 /* If user has reduced motion set this meadia query runs*/
 @media (prefers-reduced-motion: reduce) {
   .bounceOne,
@@ -95,10 +93,4 @@ span {
   .bounceThree {
     animation: none;
   }
-}
-
-.h1 {
-  font-size: 0.1px;
-  opacity: 0;
-  padding: 0;
 }

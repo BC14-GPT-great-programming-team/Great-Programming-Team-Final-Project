@@ -1,7 +1,6 @@
-/* body {
-  background: linear-gradient(to bottom, #f6f2e9, ea9c90);
-} */
+/* CSS for Lobby Page */
 
+/* Main Page */
 .lobby {
   height: 100vh;
   display: flex;
@@ -10,6 +9,7 @@
   justify-content: center;
 }
 
+/* Header */
 .lobby h2 {
   font-size: 3rem;
   margin-top: 20px;
@@ -17,11 +17,13 @@
   text-transform: capitalize;
 }
 
+/* Sub Header */
 .lobby h6 {
   font-size: 1.3rem;
   margin-top: 20px;
 }
 
+/* Lobby Card/Container */
 .lobbyContainer {
   height: 45vh;
   margin: 40px 0;
@@ -35,10 +37,12 @@
   overflow-x: hidden;
 }
 
+/* Buttons */
 .startBtn {
   margin: 0 20px;
 }
 
+/* Lobby general content */
 .roomcode {
   color: var(--black);
   margin-top: 20px;
@@ -90,6 +94,7 @@
   ); /* Set the color of the scroll thumb on hover */
 }
 
+/* Smartphone */
 @media (max-width: 700px) {
   .welcome-message {
     width: 80%;

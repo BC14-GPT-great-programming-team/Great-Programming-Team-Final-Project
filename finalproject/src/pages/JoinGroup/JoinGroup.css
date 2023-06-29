@@ -1,3 +1,6 @@
+/* Join Group CSS */
+
+/* Main Page */
 .JoinGroup {
   height: 100vh;
   display: flex;
@@ -6,15 +9,18 @@
   justify-content: center;
 }
 
+/* Header */
 .JoinGroup h2 {
   margin-bottom: 10px;
   color: var(--medium-purple-color);
 }
 
+/* Form */
 form {
   width: 300px;
 }
 
+/* Inputs */
 .joinGroupInput {
   margin: 10px 0;
   width: 100%;
@@ -33,6 +39,7 @@ form {
   outline: 2px solid var(--light-blue-color);
 }
 
+/* Button */
 .joinGroupBtn {
   margin-top: 30px;
 }

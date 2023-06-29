@@ -19,11 +19,6 @@ function Homepage({ setGroupMode }) {
         src={officialLogo}
         alt="ConsensUs Logo: a tangle of arms meeting together"
       />
-      {/* <h1>
-        Consens<span>U</span>s
-      </h1>
-      {/* <FaUsers className="icon" /> */}
-      {/* <h4>The Ultimate Decision Maker</h4>  */}
 
       <Link to="/prefilter" aria-label="Switch to Pre Filter Page">
         <button
