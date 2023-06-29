@@ -1,4 +1,6 @@
 /* CSS for Results Page */
+
+/* Main Page */
 .resultsPage {
   height: 100vh;
   display: flex;
@@ -9,6 +11,7 @@
   background-color: var(--off-white);
 }
 
+/* Top Result of Votes */
 .topResult {
   position: absolute;
   top: 50%;
@@ -18,12 +21,14 @@
   color: var(--white);
 }
 
+/* Bubbles Card/Container */
 .bubblesContainer {
   position: relative;
   width: 400px;
   height: 80%;
 }
 
+/* Biggest Top Bubble */
 .mainBubble {
   position: absolute;
   top: 2%;
@@ -37,6 +42,7 @@
   animation: fade-in 1.9s ease-in, gelatine 1s 2s ease-in-out 2;
 }
 
+/* Second place bubble */
 .secondBubble {
   position: absolute;
   top: 20%;
@@ -49,6 +55,7 @@
   animation: fade-in 1.8s ease-in, shake 1s 1.5s ease-in-out 7;
 }
 
+/* Third place bubble */
 .thirdBubble {
   position: absolute;
   top: 35%;
@@ -61,13 +68,15 @@
   animation: fade-in 1.6s ease-in, shake 1s 1.4s ease-in-out 7;
 }
 
+/* General styles for all other bubbles */
 .bubble {
   position: absolute;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   animation: fade-in 2s ease-in, shake 1s 0.1s ease-in-out 7;
-  /* animation-delay: calc(0.9s * var(--i)) */
 }
+
+/* Individual bubble styles */
 .one {
   background-color: var(--light-blue-color);
   width: 80px;
@@ -179,8 +188,34 @@
   }
 }
 
+/* Smartphone */
 @media (max-width: 700px) {
   .bubblesContainer {
     height: 65vh;
+  }
+}
+
+/* Portrait Ipad */
+@media (max-width: 1150px) and (min-width: 710px) {
+  .bubblesContainer {
+    height: 60vh;
+  }
+}
+
+/* If user has reduced motion set this meadia query runs*/
+@media (prefers-reduced-motion: reduce) {
+  .bubble,
+  .mainBubble,
+  .secondBubble,
+  .thirdBubble,
+  .one,
+  .two,
+  .three,
+  .four,
+  .five,
+  .six,
+  .seven,
+  .eight {
+    animation: none;
   }
 }

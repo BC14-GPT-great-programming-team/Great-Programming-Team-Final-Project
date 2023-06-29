@@ -1,11 +1,16 @@
+/* CSS for final results page */
+
+/* Main Page */
 .finalResultsPage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: center;
 }
 
+/* Results Card/Container */
 .resultsCard {
   display: flex;
   flex-direction: column;
@@ -21,44 +26,44 @@
   color: var(--dark-purple-color);
 }
 
+/* Header */
 .enjoy {
   color: var(--dark-purple-color);
   font-size: 3rem;
-  /* text-shadow: -2px 0 var(--medium-purple-color),
-    0 2px var(--medium-purple-color), 2px 0 var(--medium-purple-color),
-    0 -2px var(--medium-purple-color); */
   margin: 5px 0 0 0;
   padding: 10px;
   font-weight: 600;
 }
 
+/* Inner Name */
 .restaurantName {
   margin-top: 5px;
   color: #301934;
   margin-bottom: 20px;
 }
 
+/* Image */
 img.restaurant_image {
   margin: 0;
   width: 50%;
   border-radius: 10px;
-
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   opacity: 0.8;
 }
 
-.finalResultsPage {
-  text-align: center;
-}
-
+/* Restaurant Details Container */
 .textMargin {
   margin: 0;
   padding: 0;
 }
 
+/* Directions Icon */
 .venueIcon {
   color: var(--light-grey);
 }
 
+/* Media Queries */
+/* Smartphone */
 @media (max-width: 700px) {
   .resultsCard {
     width: 80%;
@@ -70,5 +75,12 @@ img.restaurant_image {
 
   .finalResultsBtn {
     margin-top: 30px;
+  }
+}
+
+/* Ipad */
+@media (max-width: 1200px) and (min-width: 710px) {
+  .resultsCard {
+    width: 60%;
   }
 }

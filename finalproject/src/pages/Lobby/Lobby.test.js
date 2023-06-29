@@ -1,6 +1,0 @@
-/*plan of testing 
-look for plan of the container
-
-
-
-*/

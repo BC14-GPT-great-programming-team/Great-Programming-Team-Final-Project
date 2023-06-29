@@ -1,5 +1,6 @@
 /* CSS for Results Page */
 
+/* Main Page */
 .resultsPage {
   height: 100vh;
   display: flex;
@@ -10,6 +11,7 @@
   background-color: var(--off-white);
 }
 
+/* Top result from votes */
 .topResult {
   position: absolute;
   top: 50%;
@@ -19,12 +21,14 @@
   color: var(--white);
 }
 
+/* Bubbles Card/Container */
 .bubblesContainer {
   position: relative;
   width: 400px;
   height: 80%;
 }
 
+/* Top biggest bubble */
 .mainBubble {
   position: absolute;
   top: 2%;
@@ -38,6 +42,7 @@
   animation: fade-in 1.9s ease-in, gelatine 1s 2s ease-in-out 2;
 }
 
+/* Second biggest bubble */
 .secondBubble {
   position: absolute;
   top: 20%;
@@ -50,6 +55,7 @@
   animation: fade-in 1.8s ease-in, shake 1s 1.5s ease-in-out 7;
 }
 
+/* Third biggest bubble */
 .thirdBubble {
   position: absolute;
   color: var(--white);
@@ -63,6 +69,7 @@
   animation: fade-in 1.6s ease-in, shake 1s 1.4s ease-in-out 7;
 }
 
+/* General styles for all other bubbles */
 .bubble {
   position: absolute;
   border-radius: 50%;
@@ -181,6 +188,7 @@
   }
 }
 
+/* Smartphone */
 @media (max-width: 700px) {
   .bubblesContainer {
     height: 65vh;
