@@ -49,8 +49,8 @@ function JoinGroup({
   };
 
   const handleUserNameChange = (event) => {
-    const inputText = event.target.value.trim();
-    setUserNameInput(inputText);
+    const inputText = event.target.value;
+    setUserNameInput(inputText.trim());
     console.log(userNameInput);
     setuserValid(!!inputText);
   };
