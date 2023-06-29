@@ -184,3 +184,21 @@
     height: 65vh;
   }
 }
+
+/* If user has reduced motion set this meadia query runs*/
+@media (prefers-reduced-motion: reduce) {
+  .bubble,
+  .mainBubble,
+  .secondBubble,
+  .thirdBubble,
+  .one,
+  .two,
+  .three,
+  .four,
+  .five,
+  .six,
+  .seven,
+  .eight {
+    animation: none;
+  }
+}

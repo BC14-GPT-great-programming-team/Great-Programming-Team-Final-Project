@@ -23,3 +23,10 @@
   transform: scale(1.1);
   opacity: 0.9;
 }
+
+/* If user has reduced motion set this meadia query runs*/
+@media (prefers-reduced-motion: reduce) {
+  .createJoinBtn {
+    animation: none;
+  }
+}

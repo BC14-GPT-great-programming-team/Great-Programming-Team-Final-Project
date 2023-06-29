@@ -17,5 +17,9 @@ h1 {
   animation: fade-in 1s ease-in-out;
 }
 
-@media (max-width: 700px) {
+/* If user has reduced motion set this meadia query runs*/
+@media (prefers-reduced-motion: reduce) {
+  .voteScreen button {
+    animation: none;
+  }
 }

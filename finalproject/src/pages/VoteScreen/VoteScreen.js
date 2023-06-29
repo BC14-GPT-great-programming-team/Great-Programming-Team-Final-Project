@@ -115,7 +115,7 @@ export default function VoteScreen({
                   selectedOption && selectedOption !== option.id ? 0.5 : 1,
               }}
             >
-              {option.name} 
+              {option.name}
               {/* ({count}) */}
             </button>
           );
