@@ -56,6 +56,7 @@ function JoinGroup({
   };
 
   const checkGroupExists = (event) => {
+    setButtonClicked(true);
     event.preventDefault();
     const checkGroupExistsBody = {
       type: "getGroupName",
