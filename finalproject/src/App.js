@@ -77,6 +77,8 @@ function App() {
     atmosphere: null,
     time: null,
     dining_experience: null,
+    museum_exhibits:null,
+    music_type:null,
   });
 
   //GROUP
@@ -86,6 +88,8 @@ function App() {
     atmosphere: null,
     time: null,
     dining_experience: null,
+    museum_exhibits: null,
+    music_type:null,
   });
 
   useEffect(() => {
