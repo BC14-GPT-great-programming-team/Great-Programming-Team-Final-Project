@@ -379,10 +379,10 @@ function App() {
         query.eq("dining_experience", filters.dining_experience);
       }
       if (
-        filters.musueum_exhibits !== null &&
-        filters.musueum_exhibits !== undefined
+        filters.museum_exhibits !== null &&
+        filters.museum_exhibits !== undefined
       ) {
-        query.eq("musueum_exhibits", filters.musueum_exhibits);
+        query.eq("museum_exhibits", filters.museum_exhibits);
       }
       if (filters.music_type !== null && filters.music_type !== undefined) {
         query.eq("music_type", filters.music_type);
