@@ -56,7 +56,7 @@ function Lobby({
 
       <h2 className="welcome-message">{groupName}!</h2>
       <div className="lobbyContainer">
-        <h6 id="lobby-card">Players in this room:</h6>
+        <h6 id="lobby-card">Users in this room:</h6>
         <ul className="playerList">
           {groupUsernames.map((username) => (
             <li id="player-name">{username}</li>

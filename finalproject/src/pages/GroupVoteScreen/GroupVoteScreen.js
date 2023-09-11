@@ -106,6 +106,7 @@ export default function GroupVoteScreen({
 
           return (
             <button
+              count={count}
               key={option.id}
               onClick={() =>
                 handleVote(option.id, option.name, option.roundLabel)
@@ -122,7 +123,8 @@ export default function GroupVoteScreen({
                   selectedOption && selectedOption !== option.id ? 0.5 : 1,
               }}
             >
-              {option.name} ({count})
+              {option.name} 
+              {/* ({count}) */}
             </button>
           );
         })}

@@ -1,6 +1,8 @@
 //import rounds to use useContext
 import { RoundsProvider, useRounds } from "./roundData";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+
+// imported components
 import VoteScreen from "./pages//VoteScreen/VoteScreen";
 import Results from "./pages/Results/Results";
 import { useEffect, useState, useRef } from "react";
@@ -21,7 +23,7 @@ import HomeButton from "./Components/HomeButton/HomeButton";
 
 function App() {
   //below is the server address when testing with netlify dev - uncomment this while testing, and comment out before merging to main for deployment
-  //const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
+  // const serverURL = "http://localhost:8888/.netlify/functions/votehandler";
 
   //below is the server address when deployed to netlify - uncomment this before merging to main for deployment, and comment out while testing with netlify dev
   const serverURL = "https://consensusgpt.netlify.app/.netlify/functions/votehandler";
@@ -75,6 +77,8 @@ function App() {
     atmosphere: null,
     time: null,
     dining_experience: null,
+    museum_exhibits:null,
+    music_type:null,
   });
 
   //GROUP
@@ -84,6 +88,8 @@ function App() {
     atmosphere: null,
     time: null,
     dining_experience: null,
+    museum_exhibits: null,
+    music_type:null,
   });
 
   useEffect(() => {
@@ -373,10 +379,10 @@ function App() {
         query.eq("dining_experience", filters.dining_experience);
       }
       if (
-        filters.musueum_exhibits !== null &&
-        filters.musueum_exhibits !== undefined
+        filters.museum_exhibits !== null &&
+        filters.museum_exhibits !== undefined
       ) {
-        query.eq("musueum_exhibits", filters.musueum_exhibits);
+        query.eq("museum_exhibits", filters.museum_exhibits);
       }
       if (filters.music_type !== null && filters.music_type !== undefined) {
         query.eq("music_type", filters.music_type);

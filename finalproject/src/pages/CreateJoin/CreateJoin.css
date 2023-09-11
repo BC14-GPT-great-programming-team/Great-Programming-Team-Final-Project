@@ -1,5 +1,6 @@
 /* CSS for Create & Join Page */
 
+/* Main Page */
 .createJoinGroup {
   height: 100vh;
   display: flex;
@@ -8,6 +9,7 @@
   justify-content: center;
 }
 
+/* Button */
 .createJoinBtn {
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -22,4 +24,11 @@
 .createJoinBtn:hover {
   transform: scale(1.1);
   opacity: 0.9;
+}
+
+/* If user has reduced motion set this meadia query runs*/
+@media (prefers-reduced-motion: reduce) {
+  .createJoinBtn {
+    animation: none;
+  }
 }

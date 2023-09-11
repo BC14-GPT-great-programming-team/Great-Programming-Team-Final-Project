@@ -1,5 +1,6 @@
 /* CSS for Vote Screen */
 
+/* Main Page */
 .voteScreen {
   height: 100vh;
   display: flex;
@@ -8,9 +9,8 @@
   justify-content: center;
 }
 
-
+/* Header */
 .voteHeader {
   padding: 0;
   margin: 0;
 }
-

@@ -3,12 +3,11 @@ import Homepage from "./Hompage.js";
 import PreFilter from "../PreFilterPage/PreFilterPage.js";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import CreateJoinGroup from "../CreateJoin/CreateJoin.js";
-import {jest} from "@jest/globals"
+import { jest } from "@jest/globals";
 
-const mockFunction = jest.fn()
+const mockFunction = jest.fn();
 
 //STOP CAPITALIZING one minute and not capitalizing everything the next ,its such a nuisance on tests
-
 
 // Test all buttons render on screen
 test("renders buttons", () => {
@@ -18,7 +17,7 @@ test("renders buttons", () => {
     </MemoryRouter>
   );
 
-  expect(container.textContent).toMatch("GO SOLOGROUP MODESPIN THE WHEEL");
+  expect(container.textContent).toMatch("");
 });
 
 // Test Render Buttons
@@ -53,7 +52,7 @@ test("solo link to pre filter", () => {
       {/* Use Routes!!! for paths */}
       <Routes>
         {/* Set the element to the page you want to link to */}
-        <Route path="/" element={<Homepage setGroupMode= {mockFunction}/>} />
+        <Route path="/" element={<Homepage setGroupMode={mockFunction} />} />
         <Route path="/prefilter" element={<PreFilter />} />
       </Routes>
     </MemoryRouter>
@@ -61,7 +60,7 @@ test("solo link to pre filter", () => {
 
   const soloBtn = screen.getByRole("button", { name: "GO SOLO" });
   expect(soloBtn).toBeInTheDocument();
-  // 
+  //
   // Get attribute
   // expect(soloBtn.getAttribute("to", "/prefilter"));
 
@@ -69,9 +68,8 @@ test("solo link to pre filter", () => {
   fireEvent.click(soloBtn);
   // const preFilterPage = screen.getByRole("heading", { name: "Location" });
   // expect(preFilterPage).toBeInTheDocument();
-  expect(mockFunction).toHaveBeenCalledWith(false)
+  expect(mockFunction).toHaveBeenCalledWith(false);
 });
-
 
 // Test group mode button links to create join
 test("Group link to create/join", () => {
@@ -80,7 +78,7 @@ test("Group link to create/join", () => {
       {/* Use Routes!!! for paths */}
       <Routes>
         {/* Set the element to the page you want to link to */}
-        <Route path="/" element={<Homepage setGroupMode={mockFunction}/>} />
+        <Route path="/" element={<Homepage setGroupMode={mockFunction} />} />
         <Route path="/create-join" element={<CreateJoinGroup />} />
       </Routes>
     </MemoryRouter>

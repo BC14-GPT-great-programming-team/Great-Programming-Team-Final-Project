@@ -1,3 +1,6 @@
+/* CSS for Need Help Page */
+
+/* Main Page */
 .help {
   background-color: #d5b5dc;
   line-height: 40px;
@@ -14,6 +17,7 @@
   margin: 0;
 }
 
+/* General Styles */
 p {
   font-family: "Comfortaa-Regular", sans-serif;
 }
@@ -24,6 +28,7 @@ h4 {
   color: white;
 }
 
+/* Content of Page */
 .howto p {
   position: relative;
   text-align: center;
@@ -71,6 +76,7 @@ h4 {
   padding: 0;
 }
 
+/* Smartphones */
 @media (max-width: 700px) {
   .intro {
     width: 80vw;
@@ -82,5 +88,12 @@ h4 {
 
   .answer {
     margin: 0 20px;
+  }
+}
+
+/* Potrait Ipad */
+@media (max-width: 1150px) and (min-width: 710px) {
+  .help {
+    height: 100vh;
   }
 }

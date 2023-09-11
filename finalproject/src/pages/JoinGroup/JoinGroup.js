@@ -16,8 +16,10 @@ function JoinGroup({
   groupUsernames,
   handleHome
 }) {
+  // boolean to check if the next button has been clicked
   const [buttonClicked, setButtonClicked] = useState(false);
-  // use navigate
+ 
+
   const navigate = useNavigate();
   //use location for the functionality to have group id prefilled when user clicks a share link
   const location = useLocation();
@@ -47,13 +49,14 @@ function JoinGroup({
   };
 
   const handleUserNameChange = (event) => {
-    const inputText = event.target.value.trim();
-    setUserNameInput(inputText);
+    const inputText = event.target.value;
+    setUserNameInput(inputText.trim());
     console.log(userNameInput);
     setuserValid(!!inputText);
   };
 
   const checkGroupExists = (event) => {
+    setButtonClicked(true);
     event.preventDefault();
     const checkGroupExistsBody = {
       type: "getGroupName",
@@ -76,6 +79,7 @@ function JoinGroup({
   };
 
   const handleJoinSubmit = (event) => {
+    setButtonClicked(true);
     event.preventDefault();
 
     //put the username and group name into local storage
@@ -160,7 +164,7 @@ function JoinGroup({
           });
       });
 
-    setButtonClicked(true);
+    
   };
 
   return (

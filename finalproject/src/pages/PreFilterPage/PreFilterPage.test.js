@@ -92,23 +92,21 @@ test("checking the link of pre filter to solo voting", () => {
 test("testing button moves the user from createJoin to the createGroup prefilter page", () => {
   render(
     <MemoryRouter>
-  <CreateJoin/>
-  <PreFilter/>
+      <CreateJoin />
+      <PreFilter />
     </MemoryRouter>
   );
-  //checking if the render of the button under the name of create group exists on page of createJoin 
+  //checking if the render of the button under the name of create group exists on page of createJoin
   const createGroupBtn2 = screen.getByRole("button", { name: "Create Group" });
   expect(createGroupBtn2).toBeInTheDocument();
 
-
-
   fireEvent.click(createGroupBtn2);
-   const createTheGroup= screen.getByRole("heading", { name: "Location" });
-  // // getByPlaceholderText('Enter group code');
-   expect(createTheGroup).toBeInTheDocument();
-   
+  const createTheGroup = screen.getByRole("heading", {
+    name: "Enter Location",
   });
+  // // getByPlaceholderText('Enter group code');
+  expect(createTheGroup).toBeInTheDocument();
+});
 // test("prefilter moves from then to create group", () => {
-
 
 // })

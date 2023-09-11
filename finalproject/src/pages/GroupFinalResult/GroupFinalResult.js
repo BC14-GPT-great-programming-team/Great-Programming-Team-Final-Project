@@ -25,10 +25,7 @@ export default function GroupFinalResults({ venueData, handleRestart }) {
           <p> User rating: {venueData && venueData[0].user_rating}</p>
           <p>{venueData && venueData[0].website_url}</p>
         </div>
-        {/* <img src={venueData && venueData[0].image_url} alt="restaurant"></img> */}
       </div>
-      {/* {venueData && venueData.map(restaurant => {
-     return <p>{restaurant.venue_name}</p>})} */}
 
       <button className="finalResultsBtn" onClick={handleRestart}>
         Home/Restart

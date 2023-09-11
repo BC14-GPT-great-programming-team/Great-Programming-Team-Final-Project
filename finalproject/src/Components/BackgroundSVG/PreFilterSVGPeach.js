@@ -1,3 +1,5 @@
+// Component for final page background
+
 function PreFilterSVG() {
   return (
     <svg

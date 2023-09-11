@@ -98,6 +98,7 @@ export default function VoteScreen({
 
           return (
             <button
+              count={count}
               key={option.id}
               onClick={() =>
                 handleVote(option.id, option.name, option.roundLabel)
@@ -114,7 +115,8 @@ export default function VoteScreen({
                   selectedOption && selectedOption !== option.id ? 0.5 : 1,
               }}
             >
-              {option.name} ({count})
+              {option.name}
+              {/* ({count}) */}
             </button>
           );
         })}

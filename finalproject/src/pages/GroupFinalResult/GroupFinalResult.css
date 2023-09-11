@@ -1,11 +1,16 @@
+/* Group Final Results */
+
+/* Main Page */
 .finalResultsPage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: center;
 }
 
+/* Results Card/Container */
 .resultsCard {
   display: flex;
   flex-direction: column;
@@ -21,6 +26,7 @@
   color: var(--dark-purple-color);
 }
 
+/* Main Header */
 .enjoy h2 {
   color: var(--dark-purple-color);
   font-size: 3rem;
@@ -32,24 +38,23 @@
   font-weight: 600;
 }
 
+/* Restaurant Name */
 .restaurantName {
   font-size: 36px;
   color: #301934;
   margin-bottom: 20px;
 }
 
+/* Image */
 img.restaurant_image {
   margin: 0;
   width: 50%;
   border-radius: 10px;
-
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   opacity: 0.8;
 }
 
-.finalResultsPage {
-  text-align: center;
-}
-
+/* Restaurant Details Container */
 .textMargin {
   color: var(--black);
   font-size: 20px;
@@ -57,11 +62,14 @@ img.restaurant_image {
   padding: 0;
 }
 
+/* Directions Icon */
 .venueIcon {
   margin: 10px 0;
   color: var(--light-grey);
 }
 
+/* Media Queries */
+/* Smartphone */
 @media (max-width: 700px) {
   .resultsCard {
     width: 80%;
@@ -73,5 +81,31 @@ img.restaurant_image {
 
   .finalResultsBtn {
     margin-top: 30px;
+  }
+}
+
+/* Portrait Ipad */
+@media (max-width: 1150px) and (min-width: 710px) {
+  .resultsCard {
+    width: 60%;
+    height: 50vh;
+  }
+
+  .finalResultsBtn {
+    margin-top: 60px;
+  }
+
+  .restaurantName {
+    margin-bottom: 50px;
+  }
+}
+
+/* Landscape Ipad */
+@media (max-width: 1200px) and (min-width: 1151px) {
+  .resultsCard {
+    width: 60vw;
+  }
+  .restaurantName {
+    margin-top: 20px;
   }
 }
